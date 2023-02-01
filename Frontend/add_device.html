@@ -1,0 +1,66 @@
+<md-dialog>
+    <form ng-submit="answer(device)">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+              <h2>Add Device </h2>
+              <span flex></span>
+              <md-button class="md-icon-button" ng-click="cancel()">
+                <md-icon ng-bind="'close'" aria-label="Close dialog"></md-icon>
+              </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content layout="column" >
+            <div layout-padding layout-gt-sm="row">
+                <md-input-container class="md-block">
+                    <label>Device Number</label>
+                    <input type="number" ng-model="device.device_number" required/>
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <label>Device Model</label>
+                    <input type="text" ng-model="device.device_model" required/>
+                </md-input-container>
+            </div>
+
+            <div layout-padding layout-gt-sm="row">
+                <md-input-container class="md-block">
+                    <label>Architecture</label>
+                    <input type="text" ng-model="device.architecture" required/>
+                </md-input-container>
+                <!--set min date-->
+                <md-datepicker ng-model="device.blocked_since" md-placeholder="Blocked Since" 
+                    md-min-date="" md-max-date="device.blocked_till"/>
+            </div>
+
+            <div layout-padding layout-gt-sm="row">
+                <md-input-container class="md-block">
+                    <label>Developer</label>
+                    <input type="text" ng-model="device.developer" />
+                </md-input-container>
+                <!--set min date-->
+                <md-datepicker ng-model="device.blocked_till" md-placeholder="Blocked Till" 
+                    md-min-date="device.blocked_since" md-max-date=""/>
+            </div>
+
+            <div layout-padding layout-gt-sm="row">
+                <md-input-container class="md-block">
+                    <label>Comments</label>
+                    <input type="text" ng-model="device.comments" required/>
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <label>Rack</label>
+                    <input type="text" ng-model="device.rack" required/>
+                </md-input-container>
+            </div>
+        </md-dialog-content>
+    
+        <md-dialog-actions layout="row">
+            <md-button class="md-raised md-primary" type="submit"> 
+                save
+            </md-button>
+            <md-button class="md-raised md-primary" ng-click="cancel()">
+                cancel
+            </md-button>
+        </md-dialog-actions>
+    
+</form>    
+</md-dialog>

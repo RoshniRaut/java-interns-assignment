@@ -1,0 +1,123 @@
+<div>
+<md-content layout="row" layout-align="end" class="md-dense navbar">
+  
+    <md-button class="md-raised md-warn" ng-click="logout()">Logout</md-button>
+    
+    <md-button class="md-raised md-warn">Clear Search<md-icon  ng-bind="'close'" aria-label="close"/></md-button>
+    <md-button class="md-raised md-primary" ng-click="addDev($event)" >Add Developer</md-button>
+    <md-button class="md-raised md-primary" ng-click="addDevice($event)" >Add Device</md-button>
+
+</md-content>
+    
+  <div class="main"  >
+  <table class="main-table">
+    
+    <tr >
+      <td colspan="8">
+        <div class="search">
+          <input type="text" placeholder="search" ng-model="search">
+          <button style="background-color: blueviolet; border: none;">
+            <md-icon  ng-bind="'search'" style="color:white;" aria-label="search"/> 
+          </button>
+        </div>
+      </td>
+    </tr>
+
+    <tr>
+      <th>Device Number</th>
+      <th>Device Model</th>
+      <th>Architecture</th>
+      <th>Blocked Since</th>
+      <th>Developer</th>
+      <th>Blocked Till</th>
+      <th>Comments</th>
+      <th>Rack</th>
+    </tr>
+    <tr ng-repeat="d in Device| filter: search">
+      <td>{{d.device_number}}</td>
+      <td>{{d.device_model}}</td>
+      <td>{{d.architecture}}</td>
+      <td>{{d.blocked_since}}</td>
+      <td >
+        <select ng-model="d.developer"style="margin:5px 0px;">
+          <option ng-repeat="u in user" value="{{u.name}}">{{u.name}}</option>
+          <option value="">Free</option>
+        </select>
+      </td>
+      <td>
+        <span ng-class="d.blocked_till!='' && 'chip-green-sm'" >
+          {{d.blocked_till}}
+        </span>
+      </td>
+      <td>{{d.comments}}</td>
+      <td>{{d.rack}}</td>
+    </tr>
+  </table>
+  
+  <div class="side-tables">
+  <table>
+    <tr>
+      <th>Status</th>
+      <th>Count</th>
+    </tr>
+    <tr>
+      <td>
+        <span class="chip chip-yellow">
+        Occupied
+        </span>
+      </td>
+      <td>{{status.occupied}}</td>
+    </tr>
+    <tr>
+      <td>
+        <span class="chip chip-green">
+          Free
+        </span>
+      </td>
+      <td>{{status.free}}</td>
+    </tr>
+  </table>
+
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Devices</th>
+    </tr>
+    <tr ng-repeat="(key,value) in rack">
+      <td>
+        <span class="chip chip-blue">
+        {{key}}
+        </span>
+      </td>
+      <td>{{value}}</td>
+    </tr>
+  </table>
+
+  <table>
+    <tr>
+      <th>Architecture</th>
+      <th>Devices</th>
+    </tr>
+    <tr ng-repeat="(key,value) in arch">
+      <td>
+        <span class="chip chip-blue">
+        {{key}}
+        </span>
+      </td>
+      <td>{{value}}</td>
+    </tr>
+  </table>
+
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+    </tr>
+    <tr ng-repeat="d in user">
+      <td>{{d.name}}</td>
+      <td>{{d.email}}</td>
+    </tr>
+  </table>
+  </div>
+</div>
+</div>
