@@ -8,13 +8,13 @@ app.controller('registerController',function($scope,$http,$location,authFact){
           alert("user already exist!!")
         }
         else{
-          
-          $http.post("http://0.0.0.0:9090/employees",JSON.stringify(user))
-          .then(res=>{
-            //verify and set token
-            authFact.setAccessToken("1234")
-            $location.path("/home");
-          })
+          console.log(user.password)
+          // $http.post("http://0.0.0.0:9090/employees",JSON.stringify(user))
+          // .then(res=>{
+          //   //verify and set token
+          //   authFact.setAccessToken("1234")
+          //   $location.path("/home");
+          // })
         }
       })
     }

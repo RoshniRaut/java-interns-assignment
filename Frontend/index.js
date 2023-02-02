@@ -13,7 +13,7 @@ app.config(function($routeProvider){
   })
   .when("/home",{
     templateUrl:"dashboard.html",
-    controller:"indexController",
+    controller:"dashboardController",
     authenticated: true,
   })
   .otherwise({
@@ -27,6 +27,7 @@ app.config(function($routeProvider){
   $rootScope.$on('$routeChangeStart',function(event, next, current){
    /* if the route is authenticated, then the user should access token */
     if(next.$$route.authenticated){
+      //jwt token
       var userAuth=authFact.getAccessToken();
       console.log(userAuth)
       if(!userAuth){

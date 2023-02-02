@@ -13,4 +13,12 @@ services:
             - "9090:8080"
         links:
             - angular-service
- 
+        depends_on:
+            - mysqldb
+    
+    mysqldb:
+        image: mysql
+        build: ./MySQL
+        environment:
+            - MYSQL_ROOT_PASSWORD=root
+            - MYSQL_DATABASE=mysqldb
