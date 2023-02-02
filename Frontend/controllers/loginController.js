@@ -16,6 +16,8 @@ app.controller('loginController',function($scope,$location,authFact,employeeServ
           }
           else
             alert("user not registered!!!")
+        }).catch(error=>{
+            alert("Server down!!")
         })
       }
 
