@@ -25,6 +25,7 @@ app.controller('loginController',function($scope,$location,authFact,employeeServ
     
 app.service('employeeService',function($http){
     this.getEmployees=function(){
-      return $http.get("http://0.0.0.0:9090/employees")
+      return $http.get("http://localhost:8080/employees")
+      //return $http.get("http://0.0.0.0:9090/employees")
     }
 })

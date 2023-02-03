@@ -1,5 +1,5 @@
 
-app.controller('indexController',function($scope,$mdDialog,$location,authFact){
+app.controller('dashboardController',function($scope,$mdDialog,$location,authFact){
     $scope.Device =
     [
       {
@@ -64,11 +64,14 @@ app.controller('indexController',function($scope,$mdDialog,$location,authFact){
       authFact.setAccessToken(null);
       $location.path('/');
     }
-
-    $scope.rack={};
-    $scope.arch={};
-    $scope.status={occupied:0,free:0}
-    $scope.Device.forEach(ele => {
+    
+    
+    $scope.updateCounts=function(){
+      $scope.rack={};
+      $scope.arch={};
+      $scope.status={occupied:0,free:0}
+     
+      $scope.Device.forEach(ele => {
       if(!$scope.rack[ele.rack])
         $scope.rack[ele.rack]=1
       else
@@ -84,7 +87,8 @@ app.controller('indexController',function($scope,$mdDialog,$location,authFact){
         $scope.status.occupied+=1
       
     });  
-   
+  }
+  $scope.updateCounts();
     $scope.addDev = function(ev) {
       $mdDialog.show({
         controller: DialogController,
@@ -102,6 +106,7 @@ app.controller('indexController',function($scope,$mdDialog,$location,authFact){
       });
     };
     
+
     $scope.addDevice = function(ev) {
       $mdDialog.show({
         controller: DialogController,
@@ -115,10 +120,10 @@ app.controller('indexController',function($scope,$mdDialog,$location,authFact){
           if(answer!=='cancel')
           //put request for device
             $scope.Device.push(answer);
+            $scope.updateCounts();
             console.log($scope.Device)
-      }, function() {
-        $scope.status = "You didn't choose";
       });
+      
     };
 
     function DialogController($scope, $mdDialog) {

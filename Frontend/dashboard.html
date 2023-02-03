@@ -1,21 +1,18 @@
 <div>
-<md-content layout="row" layout-align="end" class="md-dense navbar">
-  
-    <md-button class="md-raised md-warn" ng-click="logout()">Logout</md-button>
-    
-    <md-button class="md-raised md-warn">Clear Search<md-icon  ng-bind="'close'" aria-label="close"/></md-button>
-    <md-button class="md-raised md-primary" ng-click="addDev($event)" >Add Developer</md-button>
-    <md-button class="md-raised md-primary" ng-click="addDevice($event)" >Add Device</md-button>
-
-</md-content>
+  <!--nav bar buttons-->
+  <md-content layout="row" layout-align="end" class="md-dense navbar">
+      <md-button class="md-raised md-warn" ng-click="logout()">Logout</md-button>
+      <md-button class="md-raised md-primary" ng-click="addDev($event)" >Add Developer</md-button>
+      <md-button class="md-raised md-primary" ng-click="addDevice($event)" >Add Device</md-button>
+  </md-content>
     
   <div class="main"  >
   <table class="main-table">
-    
-    <tr >
-      <td colspan="8">
+    <!-- search bar-->
+    <tr><td colspan="8">
         <div class="search">
           <input type="text" placeholder="search" ng-model="search">
+          <!-- search button with icon -->
           <button style="background-color: blueviolet; border: none;">
             <md-icon  ng-bind="'search'" style="color:white;" aria-label="search"/> 
           </button>
@@ -55,59 +52,45 @@
   </table>
   
   <div class="side-tables">
+    <!-- Status and count table -->
   <table>
     <tr>
       <th>Status</th>
       <th>Count</th>
     </tr>
     <tr>
-      <td>
-        <span class="chip chip-yellow">
-        Occupied
-        </span>
-      </td>
+      <td><span class="chip chip-yellow">Occupied</span></td>
       <td>{{status.occupied}}</td>
     </tr>
     <tr>
-      <td>
-        <span class="chip chip-green">
-          Free
-        </span>
-      </td>
+      <td><span class="chip chip-green">Free</span></td>
       <td>{{status.free}}</td>
     </tr>
   </table>
-
+<!-- Rack and count -->
   <table>
     <tr>
       <th>Name</th>
       <th>Devices</th>
     </tr>
     <tr ng-repeat="(key,value) in rack">
-      <td>
-        <span class="chip chip-blue">
-        {{key}}
-        </span>
-      </td>
+      <td><span class="chip chip-blue">{{key}}</span></td>
       <td>{{value}}</td>
     </tr>
   </table>
 
+  <!-- Architecture and count -->
   <table>
     <tr>
       <th>Architecture</th>
       <th>Devices</th>
     </tr>
     <tr ng-repeat="(key,value) in arch">
-      <td>
-        <span class="chip chip-blue">
-        {{key}}
-        </span>
-      </td>
+      <td><span class="chip chip-blue">{{key}}</span></td>
       <td>{{value}}</td>
     </tr>
   </table>
-
+<!-- available developer-->
   <table>
     <tr>
       <th>Name</th>
