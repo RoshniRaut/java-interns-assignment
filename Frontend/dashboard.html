@@ -9,7 +9,7 @@
   <div class="main"  >
   <table class="main-table">
     <!-- search bar-->
-    <tr><td colspan="8">
+    <tr><td colspan="9">
         <div class="search">
           <input type="text" placeholder="search" ng-model="search">
           <!-- search button with icon -->
@@ -48,7 +48,34 @@
       </td>
       <td>{{d.comments}}</td>
       <td>{{d.rack}}</td>
+      <td>
+        
+        <!-- start -->
+        <md-menu>
+          <md-button aria-label="Open phone interactions menu" class="md-icon-button" ng-click="openMenu($mdMenu, $event)">
+            <md-icon ng-bind="'more_vert'" aria-label="more_vert"></md-icon>
+          </md-button>
+          <md-menu-content width="4">
+            <md-menu-item>
+              <md-button ng-click="edit($event)" value="{{d.device_id}}">
+                <md-icon ng-bind="'edit'" md-menu-align-target></md-icon>
+                Edit
+              </md-button>
+            </md-menu-item>
+            <md-menu-item>
+              <md-button ng-click="delete($event)" value="{{d.device_id}}">
+                <md-icon  ng-bind="'delete'"></md-icon>
+                Delete
+              </md-button>
+            </md-menu-item>
+            <!-- <md-menu-divider></md-menu-divider> -->
+           
+          </md-menu-content>
+        </md-menu>
+        <!-- end -->
+      </td>
     </tr>
+    
   </table>
   
   <div class="side-tables">

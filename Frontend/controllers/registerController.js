@@ -1,5 +1,5 @@
-app.controller('registerController',function($scope,$http,$location,authFact){
-  
+app.controller('registerController',function($scope,TokenService,$http,$location){
+  //password validation
   $scope.passwordError=[];
   $scope.validPassword=function(){
     $scope.passwordError=[];
@@ -19,24 +19,40 @@ app.controller('registerController',function($scope,$http,$location,authFact){
       if($scope.user.password.length<6 || $scope.user.password.length>16)
         $scope.passwordError.push("invalid length");
     }
+    if($scope.passwordError.length>0)
+      $scope.registerForm.password.$setValidity("password",false);
+    else
+    $scope.registerForm.password.$setValidity("password",true);
   }  
 
   //creating a new user
   $scope.register=function(user){
-    
-    $http.post("http://localhost:8080/newUser",JSON.stringify(user))
-          // $http.post("http://0.0.0.0:9090/employees",JSON.stringify(user))
-            .then(res=>{
-              console.log(res.data);
-              //to do: verify and set token
-              $http.post("http://localhost:8080/authenticate",JSON.stringify(user)).then(res=>{
-                authFact.setAccessToken(res.data);
-                console.log(res.data);
-                $location.path("/home");
-              })
-            }).catch(error=>{
-              alert("Server down!!")
+    console.log(user);
+    //adding new user
+    $http({
+      method:'POST',
+      // url: 'http://0.0.0.0:9090/authenticate',
+      url: 'http://localhost:8081/newUser',
+      data: user,
+      transformResponse: [function (user) { return user; }]
+    }).then(res=>{
+        console.log(res.data);
+        alert(res.data);
+        if(res.data=="added"){
+          //getting token for new user and logging in 
+          user1={username:user.name,password:user.password};
+          TokenService.generateToken(user1)
+          .then(res=>{
+            TokenService.setToken(res.data)
+            $location.path("/home");
+          })
+          .catch(err=>{
+            console.log(err);
           })
         }
+      }).catch(err=>{
+          alert("Server is facing some issue!! ",err.status)
+        })
+      }
   })
   

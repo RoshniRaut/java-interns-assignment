@@ -1,11 +1,12 @@
-var app=angular.module('myApp',['ngMaterial','ngRoute']);
+var app=angular.module('myApp',['ngMaterial','ngRoute','ngCookies']);
 
 app.config(function($routeProvider){
 
   $routeProvider
   .when("/",{
     templateUrl:"login.html",
-    controller: "loginController"
+    controller: "loginController",
+    authenticated:true,
   })
   .when("/register",{
     templateUrl:"register.html",
@@ -22,29 +23,37 @@ app.config(function($routeProvider){
 
 })
 
- app.run(function($rootScope,$location,authFact){
+ app.run(function($rootScope,$location,$http,TokenService){
 //   //$routeChangeStart is the event
   $rootScope.$on('$routeChangeStart',function(event, next, current){
    /* if the route is authenticated, then the user should access token */
     if(next.$$route.authenticated){
       //jwt token
-      var userAuth=authFact.getAccessToken();
-      console.log(userAuth)
+      var userAuth=TokenService.getToken();
+      //check validation of token
       if(!userAuth){
         console.log("not authenticated")
         $location.path('/');
       }
+      else{
+        $http({
+          method: 'GET',
+          url:'http://localhost:8081/userAdmin',
+          headers:{
+            Authorization: 'Bearer '+ userAuth
+          },
+          transformResponse: [function(data){ return data;}]
+        }).then(res=>{
+          $location.path("/home");
+        }).catch(err=>{
+          console.log("error: ", err);
+          TokenService.removeToken();
+          alert("session expired!!");
+          $location.path("/");
+        })
+      }
+        
     }
   })
  })
 
-app.factory('authFact',function(){
-  var authfact={};
-  authfact.setAccessToken=function(accessToken){
-    authfact.authToken= accessToken;
-  };
-  authfact.getAccessToken=function(){
-    return authfact.authToken;
-  }
-  return authfact;
-})

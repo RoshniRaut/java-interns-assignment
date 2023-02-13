@@ -24,14 +24,13 @@ public class UserService {
         if(userRepository.findByEmail(userInfo.getEmail()).isPresent()){
             return "email already registered";
         }
-
         if(userRepository.findByName(userInfo.getName()).isPresent())
             return "user name already registered";
         if(userInfo.getName()==null || userInfo.getEmail()==null || userInfo.getRoles()==null || userInfo.getPassword()==null)
             return "field cannot be null";
         else{
             userRepository.save(userInfo);
-            return "user added to system";
+            return "added";
         }
     }
 

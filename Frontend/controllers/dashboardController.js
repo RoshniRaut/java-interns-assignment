@@ -1,5 +1,5 @@
 
-app.controller('dashboardController',function($scope,$mdDialog,$location,authFact){
+app.controller('dashboardController',function($scope,$mdDialog,$location,TokenService){
     $scope.Device =
     [
       {
@@ -12,7 +12,7 @@ app.controller('dashboardController',function($scope,$mdDialog,$location,authFac
         "device_number": 10,
         "mac": "54:39:68:16:D5:7F",
         "rack": "Rack 1",
-        "sr_no": 1
+        "device_id": 1
       },
       {
         "architecture": "E4700",
@@ -24,7 +24,7 @@ app.controller('dashboardController',function($scope,$mdDialog,$location,authFac
         "device_number": 11,
         "mac": "54:39:68:03:FF:76",
         "rack": "Rack 1",
-        "sr_no": 2
+        "device_id": 2
       },
       {
         "architecture": "E4700",
@@ -36,7 +36,7 @@ app.controller('dashboardController',function($scope,$mdDialog,$location,authFac
         "device_number": 11,
         "mac": "54:39:68:03:FF:76",
         "rack": "Rack 2",
-        "sr_no": 2
+        "device_id": 3
       },
       {
         "architecture": "E2900",
@@ -48,7 +48,7 @@ app.controller('dashboardController',function($scope,$mdDialog,$location,authFac
         "device_number": 10,
         "mac": "54:39:68:16:D5:7F",
         "rack": "Rack 1",
-        "sr_no": 1
+        "device_id": 4
       }
     ]
     $scope.user=[{
@@ -61,7 +61,7 @@ app.controller('dashboardController',function($scope,$mdDialog,$location,authFac
     }]
 
     $scope.logout=function(){
-      authFact.setAccessToken(null);
+      TokenService.removeToken(null);
       $location.path('/');
     }
     
@@ -140,4 +140,16 @@ app.controller('dashboardController',function($scope,$mdDialog,$location,authFac
         };
       }
     
+      $scope.openMenu=function($mdMenu, ev) {
+        originatorEv = ev;
+        $mdMenu.open(ev);
+      };
+
+      $scope.edit=function(ev){
+        console.log(ev.target.value)
+      }
+
+      $scope.delete=function(ev){
+        console.log(ev.target.value);
+      }
 })

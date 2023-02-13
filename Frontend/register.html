@@ -1,6 +1,6 @@
 <div class="form" >
 
-    <form ng-submit="register(user)" style="min-width:250px;" class="form-content" name="registerForm">
+    <form ng-submit="registerForm.$valid && register(user)" style="min-width:250px;" class="form-content" name="registerForm" novalidate>
         <h3>Registration Page</h3>
         <md-content>
             <md-input-container>
@@ -8,25 +8,35 @@
                 <input type="email" ng-model="user.email" required>
             </md-input-container>
         </md-content>
+        <md-content>
+            <md-input-container>
+                <label>Username</label>
+                <input type="text" ng-model="user.name" required>
+            </md-input-container>
+        </md-content>
+        <md-content>
+            <md-input-container>
+                <select ng-model="user.roles">
+                    <option value=" " selected disabled>--Select role--</option>
+                    <option value="ROLE_USER">User</option>
+                    <option value="ROLE_ADMIN">Admin</option>
+                </select>
+            </md-input-container>
+        </md-content>
 
         <md-content>
             <md-input-container>
                 <label>Password</label>
                 <input type="password" name="password" ng-model="user.password" ng-change="validPassword()"required>
-                <span ng-show="registerForm.password.$touched && registerForm.password.$invalid" 
-                style="color:red; font-size: 10px; display:block">
-                password required</span>
-                <ol ng-show="passwordError" 
-                style="color:red; font-size: 10px; display:block; text-align: left;">
-                    <li ng-repeat="perror in passwordError">{{perror}} </li>
+                <ol ng-show="passwordError" style="color:red; font-size: 10px; display:block; text-align: left;">
+                    <li ng-repeat="perror in passwordError">{{perror}}</li>
                 </ol>
             </md-input-container>
         </md-content>
             
 
         <md-content>
-            <md-button class="md-raised md-primary" type="submit">Register</md-button>
-         
+            <md-button class="md-raised md-primary" type="submit" >Register</md-button>
         </md-content>
         <a href="#!">Login</a>
     </form>
