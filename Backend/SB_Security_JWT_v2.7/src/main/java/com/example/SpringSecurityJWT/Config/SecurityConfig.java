@@ -52,9 +52,9 @@ public class SecurityConfig {
                 .csrf().disable()
                 .cors(Customizer.withDefaults())// by default use a bean by the name corsConfigurationSource
                 .authorizeHttpRequests()
-                .requestMatchers("/newUser","/authenticate","/all","/","/{id}").permitAll()
+                .antMatchers("/newUser","/authenticate","/all","/","/{id}").permitAll()
                 .and()
-                .authorizeHttpRequests().requestMatchers("/admin","/user","/userAdmin")
+                .authorizeHttpRequests().antMatchers("/admin","/user","/userAdmin")
                 .authenticated().and()
 //                .httpBasic(Customizer.withDefaults())
                 .sessionManagement()
@@ -67,7 +67,7 @@ public class SecurityConfig {
     @Bean
     CorsConfigurationSource corsConfigurationSource(){
         CorsConfiguration configuration=new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:8080"));
+        configuration.setAllowedOrigins(List.of("http://localhost:8080"));
         configuration.setAllowedMethods(Arrays.asList("GET","POST"));
         configuration.setAllowedHeaders(List.of("Authorization","Content-Type","Access-Control-Allow-Origin"));
         UrlBasedCorsConfigurationSource source= new UrlBasedCorsConfigurationSource();

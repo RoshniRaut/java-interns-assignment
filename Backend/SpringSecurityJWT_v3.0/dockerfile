@@ -1,3 +1,0 @@
-FROM openjdk:17
-copy ./target/SpringSecurityJWT-loginAPI-0.0.1-SNAPSHOT.jar SpringSecurityJWT-loginAPI-0.0.1-SNAPSHOT.jar
-CMD ["java","-jar","SpringSecurityJWT-loginAPI-0.0.1-SNAPSHOT.jar"]
