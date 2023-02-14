@@ -1,5 +1,5 @@
 
-app.controller('loginController',function($scope,$http,$location,TokenService,$rootScope){
+app.controller('loginController',function($scope,$location,TokenService){
   
   $scope.login=function(user){    
 

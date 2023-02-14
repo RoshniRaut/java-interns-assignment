@@ -29,9 +29,24 @@ app.service('TokenService',function($http,$cookies,$rootScope){
     }
   })
   
-  app.service('userService',function($http,$rootScope){
-    this.getUser=function(){
-      return $http.get($rootScope.location+"/allDeveloper")
+  app.service('DeveloperService',function($http,$rootScope,TokenService){
+    this.getAllDeveloper=function(){
+      return $http({
+        method: 'GET',
+        url:$rootScope.location+'/allDeveloper',
+        headers:{
+          Authorization: 'Bearer '+ TokenService.getToken()
+        },
+        transformResponse: [function(data){ return data;}]
+      })
+    }
+    this.addDeveloper=function(user){
+      return $http({
+        method:'POST',
+        url: $rootScope.location+'/addDeveloper',
+        data: user,
+        transformResponse: [function (user) { return user; }]
+      })
     }
   })
   

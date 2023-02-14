@@ -1,5 +1,5 @@
 
-app.controller('dashboardController',function($scope,$mdDialog,$location,TokenService){
+app.controller('dashboardController',function($scope,$mdDialog,$location,TokenService,DeveloperService){
     $scope.Device =
     [
       {
@@ -51,15 +51,12 @@ app.controller('dashboardController',function($scope,$mdDialog,$location,TokenSe
         "device_id": 4
       }
     ]
-    $scope.user=[{
-      "email": "madhur@ness.com",
-      "name": "madhur"
-    },
-    {
-      "email": "roshni@ness.com",
-      "name": "roshni"
-    }]
+    $scope.user=[];
 
+    DeveloperService.getAllDeveloper().then(res=>{
+      $scope.user=JSON.parse(res.data);
+    });
+    
     $scope.logout=function(){
       TokenService.removeToken(null);
       $location.path('/');
