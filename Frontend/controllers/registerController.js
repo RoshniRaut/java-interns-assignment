@@ -1,4 +1,4 @@
-app.controller('registerController',function($scope,TokenService,$http,$location){
+app.controller('registerController',function($scope,TokenService,$http,$location,$rootScope){
   //password validation
   $scope.passwordError=[];
   $scope.validPassword=function(){
@@ -31,8 +31,7 @@ app.controller('registerController',function($scope,TokenService,$http,$location
     //adding new user
     $http({
       method:'POST',
-      // url: 'http://0.0.0.0:9090/authenticate',
-      url: 'http://localhost:8081/newUser',
+      url: $rootScope.location+'/addDeveloper',
       data: user,
       transformResponse: [function (user) { return user; }]
     }).then(res=>{

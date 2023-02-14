@@ -1,7 +1,7 @@
 package com.example.SpringSecurityJWT.Config;
 
 import com.example.SpringSecurityJWT.Filter.JwtAuthFilter;
-import com.example.SpringSecurityJWT.Service.UserInfoUserDetailsService;
+import com.example.SpringSecurityJWT.Service.DeveloperUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -43,7 +43,7 @@ public class SecurityConfig {
 //                .roles("ADMIN")
 //                .build();
 //        return new InMemoryUserDetailsManager(user1, user);
-        return new UserInfoUserDetailsService();
+        return new DeveloperUserDetailsService();
     }
 
     @Bean
@@ -52,9 +52,9 @@ public class SecurityConfig {
                 .csrf().disable()
                 .cors(Customizer.withDefaults())// by default use a bean by the name corsConfigurationSource
                 .authorizeHttpRequests()
-                .antMatchers("/newUser","/authenticate","/all","/","/{id}").permitAll()
+                .antMatchers("/addDeveloper","/authenticate","/testing","/{id}").permitAll()
                 .and()
-                .authorizeHttpRequests().antMatchers("/admin","/user","/userAdmin")
+                .authorizeHttpRequests().antMatchers("/allDeveloper","/userAdmin","/validate")
                 .authenticated().and()
 //                .httpBasic(Customizer.withDefaults())
                 .sessionManagement()

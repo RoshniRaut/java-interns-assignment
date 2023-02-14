@@ -1,4 +1,4 @@
 FROM mysql:latest
-ENV MYSQL_ROOT_PASSWORD=root
 COPY ./mysql_db.sql /docker-entrypoint-initdb.d/ 
+ENV MYSQL_ROOT_PASSWORD=root
 expose 8083:3306

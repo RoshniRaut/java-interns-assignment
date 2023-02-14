@@ -1,63 +1,48 @@
 package com.example.SpringSecurityJWT.Controller;
 
-import com.example.SpringSecurityJWT.Entity.UserInfo;
+import com.example.SpringSecurityJWT.Entity.Developer;
+import com.example.SpringSecurityJWT.Service.DeveloperService;
 import com.example.SpringSecurityJWT.Service.JwtService;
-import com.example.SpringSecurityJWT.Service.UserService;
 import com.example.SpringSecurityJWT.dto.AuthRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 //@CrossOrigin(origins = "http://localhost:8080")
-public class loginController {
+public class developerController {
     @Autowired
-    private UserService service;
+    private DeveloperService service;
     @Autowired
     private JwtService jwtService;
     @Autowired
     private AuthenticationManager authenticationManager;
-    @GetMapping("/")
+    @GetMapping("/testing")
     String welcome(){
-        return "welcome hye";
-    }
-    @GetMapping("/admin")
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-    String admin() {
-        return "only admin can have access";
-    }
-    @GetMapping("/user")
-    @PreAuthorize("hasAuthority('ROLE_USER')")
-    String user(){
-        return "only users has access";
+        return "testing...";
     }
 
-    @GetMapping("/userAdmin")
-    @PreAuthorize("hasAnyAuthority('ROLE_USER','ROLE_ADMIN')")
+    @GetMapping("/validate")
     //get user details from the token
     String user_admin(){
-        return "both has access";
+        return "valid";
     }
-    @GetMapping("/all")
-    public List<UserInfo> getAll(){
+    @GetMapping("/allDeveloper")
+    public List<Developer> getAll(){
         return service.getUser();
     }
     @DeleteMapping("/{id}")
     public String delete(@PathVariable Integer id){
         return service.deleteById(id);
     }
-    @PostMapping("/newUser")
-    public String addNewUser(@RequestBody UserInfo userInfo){
-        return service.addUser(userInfo);
+    @PostMapping("/addDeveloper")
+    public String addNewUser(@RequestBody Developer developer){
+        return service.addUser(developer);
     }
     @PostMapping("/authenticate")
     public String authenticateAndGetToken(@RequestBody AuthRequest authRequest){

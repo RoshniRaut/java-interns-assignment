@@ -20,5 +20,4 @@ public class Developer {
     private String name;
     private String email;
     private String password;
-//    private String roles;
 }

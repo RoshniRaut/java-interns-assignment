@@ -1,15 +1,23 @@
 
-app.service('TokenService',function($http,$cookies){
+app.service('TokenService',function($http,$cookies,$rootScope){
     this.generateToken=function(user){
       return $http({
         method:'POST',
-        // url: 'http://0.0.0.0:9090/authenticate',
-        url: 'http://localhost:8081/authenticate',
+        url: $rootScope.location+'/authenticate',
         data: user,
         transformResponse: [function (data) { return data; }]
       })
     }
-    
+    this.validateToken=function(){
+      return $http({
+        method: 'GET',
+        url:$rootScope.location+'/validate',
+        headers:{
+          Authorization: 'Bearer '+ this.getToken()
+        },
+        transformResponse: [function(data){ return data;}]
+      })
+    }
     this.getToken=function(){
       return $cookies.get("token");
     }
@@ -21,10 +29,9 @@ app.service('TokenService',function($http,$cookies){
     }
   })
   
-  app.service('userService',function($http){
+  app.service('userService',function($http,$rootScope){
     this.getUser=function(){
-      return $http.get("http://localhost:8081/all")
-      // return $http.get("http://0.0.0.0:9090/all")
+      return $http.get($rootScope.location+"/allDeveloper")
     }
   })
   

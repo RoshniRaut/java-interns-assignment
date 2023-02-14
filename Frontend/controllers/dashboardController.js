@@ -151,5 +151,9 @@ app.controller('dashboardController',function($scope,$mdDialog,$location,TokenSe
 
       $scope.delete=function(ev){
         console.log(ev.target.value);
+        device=$scope.Device.filter(d=> d.device_id==ev.target.value);
+        index=$scope.Device.indexOf(device[0]);
+        $scope.Device.splice(index,1);
+        $scope.updateCounts();
       }
 })

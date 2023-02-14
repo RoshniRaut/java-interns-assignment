@@ -1,5 +1,5 @@
 
-app.controller('loginController',function($scope,$http,$location,TokenService){
+app.controller('loginController',function($scope,$http,$location,TokenService,$rootScope){
   
   $scope.login=function(user){    
 
@@ -7,33 +7,10 @@ app.controller('loginController',function($scope,$http,$location,TokenService){
         TokenService.setToken(res.data)
         console.log(TokenService.getToken());
         //checking authentication
-        
-        $http({
-          method:'GET',
-          url: 'http://localhost:8081/admin',
-          headers:{
-            'Authorization': 'Bearer '+TokenService.getToken()
-          },
-          transformResponse: [function (data) { return data; }]
-        }).then(res=>{
-          alert("Role: admin");
+        TokenService.validateToken.then(res=>{
           $location.path("/home");
         }).catch(err=>{
-          console.log("http admin: ",err);
-        })
-
-        $http({
-          method:'GET',
-          url: 'http://localhost:8081/user',
-          headers:{
-            'Authorization': 'Bearer '+TokenService.getToken()
-          },
-          transformResponse: [function (data) { return data; }]
-        }).then(res=>{
-          alert("Role: user");
-          $location.path("/home");
-        }).catch(err=>{
-          console.log("http admin: ",err);
+          console.log("http validate: ",err);
         })
 
       }).catch(err=>{
