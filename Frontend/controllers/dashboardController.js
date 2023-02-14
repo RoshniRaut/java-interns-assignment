@@ -86,22 +86,6 @@ app.controller('dashboardController',function($scope,$mdDialog,$location,TokenSe
     });  
   }
   $scope.updateCounts();
-    $scope.addDev = function(ev) {
-      $mdDialog.show({
-        controller: DialogController,
-        templateUrl:'add_developer.html',
-        parent: angular.element(document.body),
-        targetEvent: ev,
-        clickOutsideToClose: true,  
-      }).then(function(answer) {
-          if(answer!=='cancel')
-            //put request for user
-            $scope.user.push(answer);
-            console.log($scope.user)
-      }, function() {
-        $scope.status = "You didn't choose";
-      });
-    };
     
 
     $scope.addDevice = function(ev) {
