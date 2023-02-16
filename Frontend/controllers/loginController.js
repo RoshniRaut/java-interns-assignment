@@ -7,7 +7,7 @@ app.controller('loginController',function($scope,$location,TokenService){
         TokenService.setToken(res.data)
         console.log(TokenService.getToken());
         //checking authentication
-        TokenService.validateToken.then(res=>{
+        TokenService.validateToken().then(res=>{
           $location.path("/home");
         }).catch(err=>{
           console.log("http validate: ",err);

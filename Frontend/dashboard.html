@@ -2,7 +2,7 @@
   <!--nav bar buttons-->
   <md-content layout="row" layout-align="end" class="md-dense navbar">
       <md-button class="md-raised md-warn" ng-click="logout()">Logout</md-button>
-      <md-button class="md-raised md-primary" ng-click="addDevice($event)" >Add Device</md-button>
+      <md-button class="md-raised md-primary" ng-click="addDevice($event,developer)" >Add Device</md-button>
   </md-content>
     
   <div class="main"  >
@@ -20,7 +20,12 @@
     </tr>
 
     <tr>
-      <th>Device Number</th>
+      <th ><span style="display:flex;">
+        Device Number 
+        <button ng-click="sortBy(null)" class="plane-btn">
+          <md-icon ng-bind="'sort'" aria-label="sort" ></md-icon>
+        </button>
+      </span></th>
       <th>Device Model</th>
       <th>Architecture</th>
       <th>Blocked Since</th>
@@ -29,16 +34,17 @@
       <th>Comments</th>
       <th>Rack</th>
     </tr>
-    <tr ng-repeat="d in Device| filter: search">
+    <tr ng-repeat="d in Device| filter: search| orderBy: order:reverse">
       <td>{{d.device_number}}</td>
       <td>{{d.device_model}}</td>
       <td>{{d.architecture}}</td>
       <td>{{d.blocked_since}}</td>
       <td >
-        <select ng-model="d.developer"style="margin:5px 0px;">
-          <option ng-repeat="u in user" value="{{u.name}}">{{u.name}}</option>
+        <select ng-model="d.developer_id" style="margin:5px 0px;">
+          <option ng-repeat="u in developer" value="{{u.id}}">{{u.name}}</option>
           <option value="">Free</option>
         </select>
+        <!-- <span>{{(developer |filter: {'id':d.developer_id})[0].name}} </span> -->
       </td>
       <td>
         <span ng-class="d.blocked_till!='' && 'chip-green-sm'" >
@@ -56,7 +62,7 @@
           </md-button>
           <md-menu-content width="4">
             <md-menu-item>
-              <md-button ng-click="edit($event)" value="{{d.device_id}}">
+              <md-button ng-click="editDevice($event)" value="{{d.device_id}}">
                 <md-icon ng-bind="'edit'" md-menu-align-target></md-icon>
                 Edit
               </md-button>
@@ -122,7 +128,7 @@
       <th>Name</th>
       <th>Email</th>
     </tr>
-    <tr ng-repeat="d in user">
+    <tr ng-repeat="d in developer">
       <td>{{d.name}}</td>
       <td>{{d.email}}</td>
     </tr>

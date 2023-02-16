@@ -7,7 +7,7 @@ app.controller('dashboardController',function($scope,$mdDialog,$location,TokenSe
         "blocked_since": "2022-04-04",
         "blocked_till": "2022-07-03",
         "comments": "EV 10.11.14.167",
-        "developer": "madhur",
+        "developer_id": "2",
         "device_model": "2900A",
         "device_number": 10,
         "mac": "54:39:68:16:D5:7F",
@@ -19,7 +19,7 @@ app.controller('dashboardController',function($scope,$mdDialog,$location,TokenSe
         "blocked_since": "",
         "blocked_till": "",
         "comments": "",
-        "developer": null,
+        "developer_id": null,
         "device_model": "4700",
         "device_number": 11,
         "mac": "54:39:68:03:FF:76",
@@ -31,7 +31,7 @@ app.controller('dashboardController',function($scope,$mdDialog,$location,TokenSe
         "blocked_since": "",
         "blocked_till": "",
         "comments": "",
-        "developer": "roshni",
+        "developer_id": "1",
         "device_model": "4700",
         "device_number": 11,
         "mac": "54:39:68:03:FF:76",
@@ -43,7 +43,7 @@ app.controller('dashboardController',function($scope,$mdDialog,$location,TokenSe
         "blocked_since": "2022-04-04",
         "blocked_till": "2022-07-03",
         "comments": "EV 10.11.14.167",
-        "developer": "madhur",
+        "developer_id": "2",
         "device_model": "2900A",
         "device_number": 10,
         "mac": "54:39:68:16:D5:7F",
@@ -51,10 +51,10 @@ app.controller('dashboardController',function($scope,$mdDialog,$location,TokenSe
         "device_id": 4
       }
     ]
-    $scope.user=[];
+    $scope.developer=[];
 
     DeveloperService.getAllDeveloper().then(res=>{
-      $scope.user=JSON.parse(res.data);
+      $scope.developer=JSON.parse(res.data);
     });
     
     $scope.logout=function(){
@@ -62,7 +62,22 @@ app.controller('dashboardController',function($scope,$mdDialog,$location,TokenSe
       $location.path('/');
     }
     
-    
+    $scope.order=null;
+    $scope.reverse=null;
+    $scope.sortBy=function(){
+      if(!$scope.order && !$scope.reverse){
+        $scope.order='device_number';
+        $scope.reverse=false;
+      }
+      else if($scope.order && !$scope.reverse){
+        $scope.reverse=true;
+      }
+      else{
+        $scope.order=null;
+        $scope.reverse=null;
+      }
+    }
+
     $scope.updateCounts=function(){
       $scope.rack={};
       $scope.arch={};
@@ -85,50 +100,72 @@ app.controller('dashboardController',function($scope,$mdDialog,$location,TokenSe
       
     });  
   }
-  $scope.updateCounts();
+    $scope.updateCounts();
     
-
     $scope.addDevice = function(ev) {
       $mdDialog.show({
-        controller: DialogController,
+        locals: {developers:$scope.developer},
+        controller: addDeviceController,
         templateUrl:'add_device.html',
         parent: angular.element(document.body),
         targetEvent: ev,
         clickOutsideToClose: true,  
         transclude: true,
         replace:true
-      }).then(function(answer) {
-          if(answer!=='cancel')
-          //put request for device
-            $scope.Device.push(answer);
+      }).then(function(device) {
+          if(device!=='cancel')
+          //put request for add device
+            $scope.Device.push(device);
             $scope.updateCounts();
             console.log($scope.Device)
       });
       
     };
 
-    function DialogController($scope, $mdDialog) {
-        $scope.hide = function() {
-          $mdDialog.hide();
-        };
-    
-        $scope.cancel = function() {
-          $mdDialog.cancel();
-        };
-    
-        $scope.answer = function(answer) {
-          $mdDialog.hide(answer);
-        };
+    $scope.editDevice = function(ev) {
+      let device=$scope.Device.filter(d=> d.device_id==ev.target.value)[0];
+      $mdDialog.show({
+        locals: {device:device,developer:$scope.developer},
+        controller: editDeviceController,
+        templateUrl:'edit_device.html',
+        parent: angular.element(document.body),
+        targetEvent: ev,
+        clickOutsideToClose: true,  
+        transclude: true,
+        replace:true
+      }).then(function(device) {
+          if(device!=='cancel')
+          //put request for PUT device
+            $scope.Device.forEach(d=>{
+              if(d.device_id==device.device_id){
+                d=device;
+              }
+            })
+            $scope.updateCounts();
+      });
+      
+    };
+
+    function addDeviceController($scope, $mdDialog,developers) {
+        $scope.hide = function(){ $mdDialog.hide();};
+        $scope.cancel =function(){$mdDialog.cancel();};
+        $scope.return =function(device){$mdDialog.hide(device);};
+        $scope.developer=developers;
       }
     
+    function editDeviceController($scope, $mdDialog,device,developer) {
+        $scope.hide = ()=>{ $mdDialog.hide();};
+        $scope.cancel =()=> {$mdDialog.cancel();};
+        $scope.answer =(answer)=> {$mdDialog.hide(answer);};
+        $scope.device=device;
+        $scope.developer=developer;
+      }
+
       $scope.openMenu=function($mdMenu, ev) {
         originatorEv = ev;
         $mdMenu.open(ev);
       };
 
-      $scope.edit=function(ev){
-        console.log(ev.target.value)
-      }
 
       $scope.delete=function(ev){
         console.log(ev.target.value);
