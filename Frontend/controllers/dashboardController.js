@@ -124,7 +124,7 @@ app.controller('dashboardController',function($scope,$mdDialog,$location,TokenSe
     
     $scope.addDevice = function(ev) {
       $mdDialog.show({
-        locals: {developers:$scope.developer},
+        locals: {developers:$scope.developer,rack:$scope.rack, architecture:$scope.architecture},
         controller: addDeviceController,
         templateUrl:'./dialogs/add_device.html',
         parent: angular.element(document.body),
@@ -143,11 +143,13 @@ app.controller('dashboardController',function($scope,$mdDialog,$location,TokenSe
     };
 
 
-    function addDeviceController($scope, $mdDialog,developers) {
+    function addDeviceController($scope, $mdDialog,developers,rack,architecture) {
       $scope.hide = function(){ $mdDialog.hide();};
       $scope.cancel =function(){$mdDialog.cancel();};
       $scope.return =function(device){$mdDialog.hide(device);};
       $scope.developer=developers;
+      $scope.rack=rack;
+      $scope.architecture=architecture;
     }
 
     // editing device
