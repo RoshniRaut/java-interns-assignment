@@ -32,7 +32,6 @@ app.config(function($routeProvider){
       var userAuth=TokenService.getToken();
       //check validation of token
       if(!userAuth){
-        console.log("not authenticated")
         $location.path('/');
       }
       else{

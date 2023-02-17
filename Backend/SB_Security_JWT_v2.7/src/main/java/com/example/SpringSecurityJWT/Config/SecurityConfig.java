@@ -54,7 +54,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests()
                 .antMatchers("/addDeveloper","/authenticate","/testing","/{id}").permitAll()
                 .and()
-                .authorizeHttpRequests().antMatchers("/allDeveloper","/userAdmin","/validate")
+                .authorizeHttpRequests().antMatchers("/allDeveloper","/validate")
                 .authenticated().and()
 //                .httpBasic(Customizer.withDefaults())
                 .sessionManagement()
@@ -67,8 +67,8 @@ public class SecurityConfig {
     @Bean
     CorsConfigurationSource corsConfigurationSource(){
         CorsConfiguration configuration=new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("http://localhost:8080","http://0.0.0.0:8080"));
-        configuration.setAllowedMethods(Arrays.asList("GET","POST"));
+        configuration.setAllowedOrigins(List.of("http://localhost:5500","http://172.17.0.2"));
+        configuration.setAllowedMethods(Arrays.asList("GET","POST",""));
         configuration.setAllowedHeaders(List.of("Authorization","Content-Type","Access-Control-Allow-Origin"));
         UrlBasedCorsConfigurationSource source= new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**",configuration);

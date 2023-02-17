@@ -3,7 +3,7 @@ app.controller('dashboardController',function($scope,$mdDialog,$location,TokenSe
     $scope.Device =
     [
       {
-        "architecture": "E2900",
+        "architecture_id": "1",
         "blocked_since": "2022-04-04",
         "blocked_till": "2022-07-03",
         "comments": "EV 10.11.14.167",
@@ -11,51 +11,77 @@ app.controller('dashboardController',function($scope,$mdDialog,$location,TokenSe
         "device_model": "2900A",
         "device_number": 10,
         "mac": "54:39:68:16:D5:7F",
-        "rack": "Rack 1",
+        "rack_id":"1",
         "device_id": 1
       },
       {
-        "architecture": "E4700",
+        "architecture_id": "2",
         "blocked_since": "",
         "blocked_till": "",
         "comments": "",
         "developer_id": null,
         "device_model": "4700",
-        "device_number": 11,
+        "device_number": 13,
         "mac": "54:39:68:03:FF:76",
-        "rack": "Rack 1",
+        "rack_id": "1",
         "device_id": 2
       },
       {
-        "architecture": "E4700",
+        "architecture_id": "2",
         "blocked_since": "",
         "blocked_till": "",
         "comments": "",
         "developer_id": "1",
         "device_model": "4700",
-        "device_number": 11,
+        "device_number": 12,
         "mac": "54:39:68:03:FF:76",
-        "rack": "Rack 2",
+        "rack_id": "2",
         "device_id": 3
       },
       {
-        "architecture": "E2900",
+        "architecture_id": "1",
         "blocked_since": "2022-04-04",
         "blocked_till": "2022-07-03",
         "comments": "EV 10.11.14.167",
         "developer_id": "2",
         "device_model": "2900A",
-        "device_number": 10,
+        "device_number": 11,
         "mac": "54:39:68:16:D5:7F",
-        "rack": "Rack 1",
+        "rack_id": "1",
         "device_id": 4
       }
-    ]
+    ];
+    $scope.architecture=[
+      {
+      "id":1,
+      "name":"E2900",
+      "device":0
+      },
+      {
+        "id":2,
+        "name":"4700",
+        "device":0
+      }
+    ];
+    $scope.rack=[
+      {
+        "id":1,
+        "name":"Rack 1",
+        "device":0
+      },
+      {
+        "id":2,
+        "name":"Rack 2",
+        "device":0
+      }
+    ];
     $scope.developer=[];
 
+    //fetching data from backend
     DeveloperService.getAllDeveloper().then(res=>{
-      $scope.developer=JSON.parse(res.data);
+      $scope.developer=angular.fromJson(res.data);
     });
+    
     
     $scope.logout=function(){
       TokenService.removeToken(null);
@@ -78,35 +104,29 @@ app.controller('dashboardController',function($scope,$mdDialog,$location,TokenSe
       }
     }
 
+    //every time a new device is added, updateCounts() method is called for re-calculation
     $scope.updateCounts=function(){
-      $scope.rack={};
-      $scope.arch={};
       $scope.status={occupied:0,free:0}
      
       $scope.Device.forEach(ele => {
-      if(!$scope.rack[ele.rack])
-        $scope.rack[ele.rack]=1
-      else
-        $scope.rack[ele.rack]+=1;
-      if(!$scope.arch[ele.architecture])
-        $scope.arch[ele.architecture]=1
-      else
-        $scope.arch[ele.architecture]+=1;
+        $scope.rack[ele.rack_id-1].device+=1;
+        $scope.architecture[ele.architecture_id-1].device+=1;
 
-      if(ele.developer==null)
-        $scope.status.free+=1
-      else  
-        $scope.status.occupied+=1
+        if(ele.developer_id==null)
+          $scope.status.free+=1
+        else  
+          $scope.status.occupied+=1
       
-    });  
-  }
+      });  
+    }
+    //when the page loads method once
     $scope.updateCounts();
     
     $scope.addDevice = function(ev) {
       $mdDialog.show({
         locals: {developers:$scope.developer},
         controller: addDeviceController,
-        templateUrl:'add_device.html',
+        templateUrl:'./dialogs/add_device.html',
         parent: angular.element(document.body),
         targetEvent: ev,
         clickOutsideToClose: true,  
@@ -122,12 +142,21 @@ app.controller('dashboardController',function($scope,$mdDialog,$location,TokenSe
       
     };
 
+
+    function addDeviceController($scope, $mdDialog,developers) {
+      $scope.hide = function(){ $mdDialog.hide();};
+      $scope.cancel =function(){$mdDialog.cancel();};
+      $scope.return =function(device){$mdDialog.hide(device);};
+      $scope.developer=developers;
+    }
+
+    // editing device
     $scope.editDevice = function(ev) {
       let device=$scope.Device.filter(d=> d.device_id==ev.target.value)[0];
       $mdDialog.show({
-        locals: {device:device,developer:$scope.developer},
+        locals: {device:device, developer:$scope.developer, rack:$scope.rack, architecture:$scope.architecture},
         controller: editDeviceController,
-        templateUrl:'edit_device.html',
+        templateUrl:'./dialogs/edit_device.html',
         parent: angular.element(document.body),
         targetEvent: ev,
         clickOutsideToClose: true,  
@@ -145,20 +174,38 @@ app.controller('dashboardController',function($scope,$mdDialog,$location,TokenSe
       });
       
     };
-
-    function addDeviceController($scope, $mdDialog,developers) {
-        $scope.hide = function(){ $mdDialog.hide();};
-        $scope.cancel =function(){$mdDialog.cancel();};
-        $scope.return =function(device){$mdDialog.hide(device);};
-        $scope.developer=developers;
-      }
     
-    function editDeviceController($scope, $mdDialog,device,developer) {
+    function editDeviceController($scope, $mdDialog,device,developer,rack,architecture) {
         $scope.hide = ()=>{ $mdDialog.hide();};
         $scope.cancel =()=> {$mdDialog.cancel();};
         $scope.answer =(answer)=> {$mdDialog.hide(answer);};
         $scope.device=device;
         $scope.developer=developer;
+        $scope.rack=rack;
+        $scope.architecture=architecture;
+      }
+
+      $scope.addRack = function(ev) {
+        $mdDialog.show({
+          controller: addRackController,
+          templateUrl:'./dialogs/add_rack.html',
+          parent: angular.element(document.body),
+          targetEvent: ev,
+          clickOutsideToClose: true,  
+          transclude: true,
+          replace:true
+        }).then(function(rack) {
+            if(rack!=='cancel')
+            //put request for add device
+            rack={name:rack.name, id: $scope.rack.length+1,device:0};
+              $scope.rack.push(rack);
+        });
+        
+      };
+      function addRackController($scope, $mdDialog) {
+        $scope.hide = function(){ $mdDialog.hide();};
+        $scope.cancel =function(){$mdDialog.cancel();};
+        $scope.return =function(device){$mdDialog.hide(device);};
       }
 
       $scope.openMenu=function($mdMenu, ev) {

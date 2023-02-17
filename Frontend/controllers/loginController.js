@@ -5,7 +5,6 @@ app.controller('loginController',function($scope,$location,TokenService){
 
       TokenService.generateToken(user).then(res=>{
         TokenService.setToken(res.data)
-        console.log(TokenService.getToken());
         //checking authentication
         TokenService.validateToken().then(res=>{
           $location.path("/home");

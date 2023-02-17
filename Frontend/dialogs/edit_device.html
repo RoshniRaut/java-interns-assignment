@@ -23,8 +23,9 @@
 
             <div layout-padding layout-gt-sm="row">
                 <md-input-container class="md-block">
-                    <label>Architecture</label>
-                    <input type="text" ng-model="device.architecture" required/>
+                    <md-select style="margin:5px 0px;" placeholder="Architecture" ng-model="device.architecture_id">
+                        <md-option ng-repeat="a in architecture" value="{{a.id}}">{{a.name}}</md-option>
+                      </md-select>
                 </md-input-container>
                 <!--set min date-->
                 <md-datepicker ng-model="device.blocked_since" md-placeholder="Blocked Since" 
@@ -34,12 +35,10 @@
             <div layout-padding layout-gt-sm="row">
                 <md-input-container class="md-block">
                     <md-select style="margin:5px 0px;" placeholder="Developer" ng-model="device.developer_id">
-                        <md-option ng-repeat="u in developer" value="{{u.id}}">{{u.name}}</option>
-                      
-                      </select>
+                        <md-option ng-repeat="u in developer" value="{{u.id}}">{{u.name}}</md-option>
+                    </md-select>
                 </md-input-container>
 
-                <!--set min date-->
                 <md-datepicker ng-model="device.blocked_till" md-placeholder="Blocked Till" 
                     md-min-date="device.blocked_since" md-max-date=""/>
             </div>
@@ -50,8 +49,9 @@
                     <input type="text" ng-model="device.comments" />
                 </md-input-container>
                 <md-input-container class="md-block">
-                    <label>Rack</label>
-                    <input type="text" ng-model="device.rack" required/>
+                    <md-select style="margin:5px 0px;" placeholder="Rack" ng-model="device.rack_id">
+                        <md-option ng-repeat="r in rack" value="{{r.id}}">{{r.name}}</option>
+                      </select>
                 </md-input-container>
             </div>
         </md-dialog-content>

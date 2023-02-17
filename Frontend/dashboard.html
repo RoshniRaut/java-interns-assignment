@@ -1,8 +1,9 @@
 <div>
   <!--nav bar buttons-->
-  <md-content layout="row" layout-align="end" class="md-dense navbar">
+  <md-content layout="row" layout-align="end" class="md-dense ">
       <md-button class="md-raised md-warn" ng-click="logout()">Logout</md-button>
       <md-button class="md-raised md-primary" ng-click="addDevice($event,developer)" >Add Device</md-button>
+      <md-button class="md-raised md-primary" ng-click="addRack($event,developer)" >Add Rack</md-button>
   </md-content>
     
   <div class="main"  >
@@ -37,13 +38,14 @@
     <tr ng-repeat="d in Device| filter: search| orderBy: order:reverse">
       <td>{{d.device_number}}</td>
       <td>{{d.device_model}}</td>
-      <td>{{d.architecture}}</td>
+      <td>{{(architecture | filter: {'id':d.architecture_id})[0].name}}</td>
       <td>{{d.blocked_since}}</td>
       <td >
         <select ng-model="d.developer_id" style="margin:5px 0px;">
-          <option ng-repeat="u in developer" value="{{u.id}}">{{u.name}}</option>
-          <option value="">Free</option>
+          <option ng-repeat="dev in developer" value={{dev.id}} >{{dev.name}}{{u.id}}</option>
+          <option value="">Free </option>
         </select>
+       
         <!-- <span>{{(developer |filter: {'id':d.developer_id})[0].name}} </span> -->
       </td>
       <td>
@@ -52,7 +54,7 @@
         </span>
       </td>
       <td>{{d.comments}}</td>
-      <td>{{d.rack}}</td>
+      <td>{{(rack |filter : {'id':d.rack_id})[0].name}}</td>
       <td>
         
         <!-- start -->
@@ -105,9 +107,9 @@
       <th>Name</th>
       <th>Devices</th>
     </tr>
-    <tr ng-repeat="(key,value) in rack">
-      <td><span class="chip chip-blue">{{key}}</span></td>
-      <td>{{value}}</td>
+    <tr ng-repeat="r in rack">
+      <td><span class="chip chip-blue">{{r.name}}</span></td>
+      <td>{{r.device}}</td>
     </tr>
   </table>
 
@@ -117,9 +119,9 @@
       <th>Architecture</th>
       <th>Devices</th>
     </tr>
-    <tr ng-repeat="(key,value) in arch">
-      <td><span class="chip chip-blue">{{key}}</span></td>
-      <td>{{value}}</td>
+    <tr ng-repeat="a in architecture">
+      <td><span class="chip chip-blue">{{a.name}}</span></td>
+      <td>{{a.device}}</td>
     </tr>
   </table>
 <!-- available developer-->
