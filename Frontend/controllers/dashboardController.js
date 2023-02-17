@@ -77,6 +77,7 @@ app.controller('dashboardController',function($scope,$mdDialog,$location,TokenSe
     ];
     $scope.developer=[];
 
+    
     //fetching data from backend
     DeveloperService.getAllDeveloper().then(res=>{
       $scope.developer=angular.fromJson(res.data);
@@ -135,9 +136,11 @@ app.controller('dashboardController',function($scope,$mdDialog,$location,TokenSe
       }).then(function(device) {
           if(device!=='cancel')
           //put request for add device
+            device.device_id=$scope.Device.length+1;
+            device.blocked_since=moment(device.blocked_since).format("YYYY-MM-DD");
+            device.blocked_till=moment(device.blocked_till).format("YYYY-MM-DD");
             $scope.Device.push(device);
             $scope.updateCounts();
-            console.log($scope.Device)
       });
       
     };
@@ -169,7 +172,9 @@ app.controller('dashboardController',function($scope,$mdDialog,$location,TokenSe
           //put request for PUT device
             $scope.Device.forEach(d=>{
               if(d.device_id==device.device_id){
-                d=device;
+                device.blocked_since=moment(device.blocked_since).format("YYYY-MM-DD");
+                device.blocked_till=moment(device.blocked_till).format("YYYY-MM-DD");
+                d=device
               }
             })
             $scope.updateCounts();

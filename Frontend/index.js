@@ -1,6 +1,6 @@
 var app=angular.module('myApp',['ngMaterial','ngRoute','ngCookies']);
 
-app.config(function($routeProvider){
+app.config(function($routeProvider,$mdDateLocaleProvider){
   $routeProvider
   .when("/",{
     templateUrl:"login.html",
@@ -19,7 +19,7 @@ app.config(function($routeProvider){
   .otherwise({
     redirectTo: "/",
   })
-
+  
 })
 
  app.run(function($rootScope,$location,$http,TokenService,$rootScope){

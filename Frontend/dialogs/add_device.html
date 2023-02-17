@@ -44,13 +44,11 @@
                 <!--set min date-->
                 <md-input-container >
                     <label>Blocked Since</label>
-                    <md-datepicker ng-model="device.blocked_since" 
-                    md-min-date="" md-max-date="device.blocked_till"/>
+                    <md-datepicker ng-model="device.blocked_since" md-min-date="" md-max-date="device.blocked_till"/>
                 </md-input-container>
                 <md-input-container >
                     <label>Blocked Till</label>
-                    <md-datepicker ng-model="device.blocked_till" 
-                    md-min-date="device.blocked_since" md-max-date=""/>
+                    <md-datepicker ng-model="device.blocked_till" md-min-date="device.blocked_since" />
                 </md-input-container>
             </md-content>
 
