@@ -10,50 +10,63 @@
             </div>
         </md-toolbar>
         <md-dialog-content layout="column" >
-            <div layout-padding layout-gt-sm="row">
-                <md-input-container class="md-block">
+            <md-content layout-padding layout-gt-sm="row">
+                <md-input-container >
                     <label>Device Number</label>
                     <input type="number" ng-model="device.device_number" required/>
                 </md-input-container>
-                <md-input-container class="md-block">
+                <md-input-container >
                     <label>Device Model</label>
                     <input type="text" ng-model="device.device_model" required/>
                 </md-input-container>
-            </div>
+            </md-content>
 
-            <div layout-padding layout-gt-sm="row">
-                <md-input-container class="md-block">
-                    <md-select style="margin:5px 0px;" placeholder="Architecture" ng-model="device.architecture_id">
+            <md-content layout-padding layout-gt-sm="row">
+                <md-input-container >
+                    <label>Architecture</label>
+                    <md-select ng-model="device.architecture_id" required>
                         <md-option ng-repeat="a in architecture" value="{{a.id}}">{{a.name}}</md-option>
                       </md-select>
                 </md-input-container>
-                <!--set min date-->
-                <md-datepicker ng-model="device.blocked_since" md-placeholder="Blocked Since" 
-                    md-min-date="" md-max-date="device.blocked_till"/>
-            </div>
-
-            <div layout-padding layout-gt-sm="row">
-                <md-input-container class="md-block">
-                    <md-select style="margin:5px 0px;" placeholder="Developer" ng-model="device.developer_id">
-                        <md-option ng-repeat="u in developer" value="{{u.id}}">{{u.name}}</md-option>
-                    </md-select>
+                <md-input-container >
+                    <label>MAC</label>
+                    <input  ng-model="device.mac" required/>
                 </md-input-container>
-
-                <md-datepicker ng-model="device.blocked_till" md-placeholder="Blocked Till" 
-                    md-min-date="device.blocked_since" md-max-date=""/>
-            </div>
-
-            <div layout-padding layout-gt-sm="row">
-                <md-input-container class="md-block">
-                    <label>Comments</label>
-                    <input type="text" ng-model="device.comments" />
-                </md-input-container>
-                <md-input-container class="md-block">
-                    <md-select style="margin:5px 0px;" placeholder="Rack" ng-model="device.rack_id">
+                <md-input-container >
+                    <label>Rack</label>
+                    <md-select placeholder="Rack" ng-model="device.rack_id" required>
                         <md-option ng-repeat="r in rack" value="{{r.id}}">{{r.name}}</option>
                       </select>
                 </md-input-container>
-            </div>
+            </md-content>
+
+            <md-content layout-padding layout="row"class="md-block">
+                <!--set min date-->
+                <md-input-container >
+                    <label>Blocked Since</label>
+                    <md-datepicker ng-model="device.blocked_since" 
+                    md-min-date="" md-max-date="device.blocked_till"/>
+                </md-input-container>
+                <md-input-container >
+                    <label>Blocked Till</label>
+                    <md-datepicker ng-model="device.blocked_till" 
+                    md-min-date="device.blocked_since" md-max-date=""/>
+                </md-input-container>
+            </md-content>
+
+            <md-content layout-padding layout='row' layout-align="center">
+                <md-input-container >
+                    <label>Developer</label>
+                    <md-select style="margin:5px 0px;"  ng-model="device.developer_id">
+                        <md-option ng-repeat="u in developer" value="{{u.id}}">{{u.name}}</md-option>
+                    </md-select>
+                </md-input-container>
+                <md-input-container >
+                    <label>Comments</label>
+                    <input type="text" ng-model="device.comments" />
+                </md-input-container>
+            </md-content>
+
         </md-dialog-content>
     
         <md-dialog-actions layout="row">
