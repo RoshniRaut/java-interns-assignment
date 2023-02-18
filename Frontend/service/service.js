@@ -21,11 +21,16 @@ app.service('TokenService',function($http,$cookies,$rootScope){
     this.getToken=function(){
       return $cookies.get("token");
     }
-    this.setToken=function(token){
+    this.getCurrentUser=function(){
+      return $cookies.get("currentUser");
+    }
+    this.setToken=function(token,user){
       $cookies.put("token",token);
+      $cookies.put("currentUser",user);
     }
     this.removeToken=function(){
       $cookies.remove('token');
+      $cookies.remove('currentUser');
     }
   })
   
@@ -49,5 +54,3 @@ app.service('TokenService',function($http,$cookies,$rootScope){
       })
     }
   })
-  
-  

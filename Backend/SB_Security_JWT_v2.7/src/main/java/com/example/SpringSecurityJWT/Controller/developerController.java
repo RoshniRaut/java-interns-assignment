@@ -44,12 +44,13 @@ public class developerController {
         return service.addUser(developer);
     }
     @PostMapping("/authenticate")
-    public String authenticateAndGetToken(@RequestBody AuthRequest authRequest){
+    public String[] authenticateAndGetToken(@RequestBody AuthRequest authRequest){
         Authentication authentication=authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getUsername(),authRequest.getPassword()));
         if(authentication.isAuthenticated()){
-            return jwtService.generateToken(authRequest.getUsername());
+            String[] token=new String[]{jwtService.generateToken((authRequest.getUsername())),authRequest.getUsername()};
+            return token;
         }else{
-            return "invalid";
+            return new String[]{"invalid"};
         }
     }
 }

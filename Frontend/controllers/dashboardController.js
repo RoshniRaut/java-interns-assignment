@@ -76,6 +76,7 @@ app.controller('dashboardController',function($scope,$mdDialog,$location,TokenSe
       }
     ];
     $scope.developer=[];
+    $scope.currentUser=TokenService.getCurrentUser();
 
     
     //fetching data from backend

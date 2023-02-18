@@ -37,7 +37,8 @@ app.controller('registerController',function($scope,TokenService,$location,Devel
           user1={username:user.name,password:user.password};
           TokenService.generateToken(user1)
           .then(res=>{
-            TokenService.setToken(res.data)
+            resp=angular.fromJson(res.data);
+            TokenService.setToken(resp[0],resp[1]);
             $location.path("/home");
           })
           .catch(err=>{

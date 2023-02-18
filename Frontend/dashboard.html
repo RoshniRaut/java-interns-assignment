@@ -1,9 +1,15 @@
 <div>
+  <md-content style="float:left;" layout-padding="" >
+    <md-icon ng-bind="'account_circle'"></md-icon>
+    {{currentUser|uppercase}}
+  </md-content>
   <!--nav bar buttons-->
-  <md-content layout="row" layout-align="end" class="md-dense ">
-      <md-button class="md-raised md-warn" ng-click="logout()">Logout</md-button>
-      <md-button class="md-raised md-primary" ng-click="addDevice($event,developer)" >Add Device</md-button>
-      <md-button class="md-raised md-primary" ng-click="addRack($event,developer)" >Add Rack</md-button>
+  <md-content layout="row" layout-align="end" class="md-dense">
+  
+    <md-button class="md-raised md-primary" ng-click="addDevice($event,developer)" >Add Device</md-button>
+    <md-button class="md-raised md-primary" ng-click="addRack($event,developer)" >Add Rack</md-button>
+    <md-button class="md-raised md-warn" ng-click="logout()">Logout</md-button>
+
   </md-content>
     
   <div class="main"  >
@@ -29,8 +35,9 @@
       </span></th>
       <th>Device Model</th>
       <th>Architecture</th>
-      <th>Blocked Since</th>
+      <th>MAC</th>
       <th>Developer</th>
+      <th>Blocked Since</th>
       <th>Blocked Till</th>
       <th>Comments</th>
       <th>Rack</th>
@@ -39,20 +46,10 @@
       <td>{{d.device_number}}</td>
       <td>{{d.device_model}}</td>
       <td>{{(architecture | filter: {'id':d.architecture_id})[0].name}}</td>
+      <td>{{d.mac}}</td>
+      <td><span>{{(developer |filter: {'id':d.developer_id})[0].name}}</span></td>
       <td>{{d.blocked_since}}</td>
-      <td >
-        <select ng-model="d.developer_id" style="margin:5px 0px;">
-          <option ng-repeat="dev in developer" value={{dev.id}} >{{dev.name}}{{u.id}}</option>
-          <option value="">Free </option>
-        </select>
-       
-        <!-- <span>{{(developer |filter: {'id':d.developer_id})[0].name}} </span> -->
-      </td>
-      <td>
-        <span ng-class="d.blocked_till!='' && 'chip-green-sm'" >
-          {{d.blocked_till}}
-        </span>
-      </td>
+      <td><span ng-class="d.blocked_till!='' && 'chip-green-sm'" >{{d.blocked_till}}</span></td>
       <td>{{d.comments}}</td>
       <td>{{(rack |filter : {'id':d.rack_id})[0].name}}</td>
       <td>
@@ -75,14 +72,12 @@
                 Delete
               </md-button>
             </md-menu-item>
-            <!-- <md-menu-divider></md-menu-divider> -->
-           
           </md-menu-content>
         </md-menu>
         <!-- end -->
+
       </td>
     </tr>
-    
   </table>
   
   <div class="side-tables">
@@ -93,11 +88,15 @@
       <th>Count</th>
     </tr>
     <tr>
-      <td><span class="chip chip-yellow">Occupied</span></td>
+      <td><span class="chip chip-yellow">Occupied
+        <md-icon ng-bind="'lock'" style="color: white;"></md-icon>
+      </span></td>
       <td>{{status.occupied}}</td>
     </tr>
     <tr>
-      <td><span class="chip chip-green">Free</span></td>
+      <td><span class="chip chip-green">Free
+        <md-icon ng-bind="'lock_open'" style="color: white;"></md-icon>
+      </span></td>
       <td>{{status.free}}</td>
     </tr>
   </table>
