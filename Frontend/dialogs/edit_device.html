@@ -13,7 +13,7 @@
             <md-content layout-padding layout-gt-sm="row">
                 <md-input-container >
                     <label>Device Number</label>
-                    <input type="number" ng-model="device.device_number" required/>
+                    <input type="number" ng-model="device.device_number" disabled/>
                 </md-input-container>
                 <md-input-container >
                     <label>Device Model</label>
@@ -24,8 +24,8 @@
             <md-content layout-padding layout-gt-sm="row">
                 <md-input-container >
                     <label>Architecture</label>
-                    <md-select ng-model="device.architecture_id" required>
-                        <md-option ng-repeat="a in architecture" value="{{a.id}}">{{a.name}}</md-option>
+                    <md-select ng-model="device.architecture" required>
+                        <md-option ng-repeat="a in architecture" value="{{a.name}}">{{a.name}}</md-option>
                       </md-select>
                 </md-input-container>
                 <md-input-container >
@@ -34,8 +34,8 @@
                 </md-input-container>
                 <md-input-container >
                     <label>Rack</label>
-                    <md-select placeholder="Rack" ng-model="device.rack_id" required>
-                        <md-option ng-repeat="r in rack" value="{{r.id}}">{{r.name}}</option>
+                    <md-select placeholder="Rack" ng-model="device.rack" required>
+                        <md-option ng-repeat="r in rack" value="{{r.name}}">{{r.name}}</option>
                       </select>
                 </md-input-container>
             </md-content>
@@ -57,8 +57,8 @@
             <md-content layout-padding layout='row' layout-align="center">
                 <md-input-container >
                     <label>Developer</label>
-                    <md-select style="margin:5px 0px;"  ng-model="device.developer_id">
-                        <md-option ng-repeat="u in developer" value="{{u.id}}">{{u.name}}</md-option>
+                    <md-select style="margin:5px 0px;"  ng-model="device.developer">
+                        <md-option ng-repeat="u in developer" value="{{u.name}}">{{u.name}}</md-option>
                     </md-select>
                 </md-input-container>
                 <md-input-container >

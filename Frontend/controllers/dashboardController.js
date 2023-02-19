@@ -3,52 +3,48 @@ app.controller('dashboardController',function($scope,$mdDialog,$location,TokenSe
     $scope.Device =
     [
       {
-        "architecture_id": "1",
+        "architecture": "E2900",
         "blocked_since": "2022-04-04",
         "blocked_till": "2022-07-03",
         "comments": "EV 10.11.14.167",
-        "developer_id": "2",
+        "developer": "madhur",
         "device_model": "2900A",
         "device_number": 10,
         "mac": "54:39:68:16:D5:7F",
-        "rack_id":"1",
-        "device_id": 1
+        "rack": "Rack 1"
       },
       {
-        "architecture_id": "2",
+        "architecture": "E4700",
         "blocked_since": "",
         "blocked_till": "",
         "comments": "",
-        "developer_id": null,
+        "developer": null,
         "device_model": "4700",
-        "device_number": 13,
+        "device_number": 11,
         "mac": "54:39:68:03:FF:76",
-        "rack_id": "1",
-        "device_id": 2
+        "rack": "Rack 1"
       },
       {
-        "architecture_id": "2",
-        "blocked_since": "",
-        "blocked_till": "",
-        "comments": "",
-        "developer_id": "1",
-        "device_model": "4700",
-        "device_number": 12,
-        "mac": "54:39:68:03:FF:76",
-        "rack_id": "2",
-        "device_id": 3
-      },
-      {
-        "architecture_id": "1",
+        "architecture": "E2900",
         "blocked_since": "2022-04-04",
         "blocked_till": "2022-07-03",
         "comments": "EV 10.11.14.167",
-        "developer_id": "2",
+        "developer": "roshni",
         "device_model": "2900A",
-        "device_number": 11,
+        "device_number": 12,
         "mac": "54:39:68:16:D5:7F",
-        "rack_id": "1",
-        "device_id": 4
+        "rack": "Rack 2"
+      },
+      {
+        "architecture": "E4700",
+        "blocked_since": "",
+        "blocked_till": "",
+        "comments": "",
+        "developer": null,
+        "device_model": "4700",
+        "device_number": 13,
+        "mac": "54:39:68:03:FF:76",
+        "rack": "Rack 2"
       }
     ];
     $scope.architecture=[
@@ -59,7 +55,7 @@ app.controller('dashboardController',function($scope,$mdDialog,$location,TokenSe
       },
       {
         "id":2,
-        "name":"4700",
+        "name":"E4700",
         "device":0
       }
     ];
@@ -92,9 +88,10 @@ app.controller('dashboardController',function($scope,$mdDialog,$location,TokenSe
     
     $scope.order=null;
     $scope.reverse=null;
-    $scope.sortBy=function(){
+    $scope.sortBy=function(col){
+      console.log(col)
       if(!$scope.order && !$scope.reverse){
-        $scope.order='device_number';
+        $scope.order=col;
         $scope.reverse=false;
       }
       else if($scope.order && !$scope.reverse){
@@ -109,12 +106,23 @@ app.controller('dashboardController',function($scope,$mdDialog,$location,TokenSe
     //every time a new device is added, updateCounts() method is called for re-calculation
     $scope.updateCounts=function(){
       $scope.status={occupied:0,free:0}
-     
+      $scope.rack.forEach(r=>{
+        r.device=0;
+      })
+      $scope.architecture.forEach(a=>{
+        a.device=0;
+      })
       $scope.Device.forEach(ele => {
-        $scope.rack[ele.rack_id-1].device+=1;
-        $scope.architecture[ele.architecture_id-1].device+=1;
+        $scope.rack.forEach(r=>{
+          if(r.name==ele.rack)
+            r.device+=1;
+        })
+        $scope.architecture.forEach(a=>{
+          if(a.name==ele.architecture)
+            a.device+=1;
+        })
 
-        if(ele.developer_id==null)
+        if(ele.developer==null)
           $scope.status.free+=1
         else  
           $scope.status.occupied+=1
@@ -137,7 +145,8 @@ app.controller('dashboardController',function($scope,$mdDialog,$location,TokenSe
       }).then(function(device) {
           if(device!=='cancel')
           //put request for add device
-            device.device_id=$scope.Device.length+1;
+            len=$scope.Device.length;
+            device.device_number=$scope.Device[len-1].device_number+1;
             device.blocked_since=moment(device.blocked_since).format("YYYY-MM-DD");
             device.blocked_till=moment(device.blocked_till).format("YYYY-MM-DD");
             $scope.Device.push(device);
@@ -158,7 +167,7 @@ app.controller('dashboardController',function($scope,$mdDialog,$location,TokenSe
 
     // editing device
     $scope.editDevice = function(ev) {
-      let device=$scope.Device.filter(d=> d.device_id==ev.target.value)[0];
+      let device=$scope.Device.filter(d=> d.device_number==ev.target.value)[0];
       $mdDialog.show({
         locals: {device:device, developer:$scope.developer, rack:$scope.rack, architecture:$scope.architecture},
         controller: editDeviceController,
@@ -172,7 +181,7 @@ app.controller('dashboardController',function($scope,$mdDialog,$location,TokenSe
           if(device!=='cancel')
           //put request for PUT device
             $scope.Device.forEach(d=>{
-              if(d.device_id==device.device_id){
+              if(d.device_number==device.device_number){
                 device.blocked_since=moment(device.blocked_since).format("YYYY-MM-DD");
                 device.blocked_till=moment(device.blocked_till).format("YYYY-MM-DD");
                 d=device
@@ -224,7 +233,7 @@ app.controller('dashboardController',function($scope,$mdDialog,$location,TokenSe
 
       $scope.delete=function(ev){
         console.log(ev.target.value);
-        device=$scope.Device.filter(d=> d.device_id==ev.target.value);
+        device=$scope.Device.filter(d=> d.device_number==ev.target.value);
         index=$scope.Device.indexOf(device[0]);
         $scope.Device.splice(index,1);
         $scope.updateCounts();

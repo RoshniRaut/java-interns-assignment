@@ -56,42 +56,57 @@
       </div> 
 
       <!-- search bar-->
-      <div class="search">
-        <input type="text" placeholder="search" ng-model="search">
-        <!-- search button with icon -->
-        <button style="background-color: blueviolet; border: none;">
-          <md-icon  ng-bind="'search'" style="color:white;" aria-label="search"/> 
-        </button>
+      <div class="filter">
+        <span ng-if="order">Order by: {{order}} in {{reverse?'descending':'ascending'}}</span>
+        <div>
+          <input type="text" placeholder="search" ng-model="search">
+          <button style="background-color: blueviolet; border: none;">
+            <md-icon  ng-bind="'search'" style="color:white;" aria-label="search"/> 
+          </button>
+        </div>
       </div>
-      <table class="device-table">
+      <!-- device table -->
+    <table class="device-table">
 
     <tr>
-      <th ><span style="display:flex;">
-        Device Number 
-        <button ng-click="sortBy(null)" class="plane-btn">
-          <md-icon ng-bind="'sort'" aria-label="sort" ></md-icon>
-        </button>
+      <th ><span style="display:flex;">Device Number 
+        <button ng-click="sortBy('device_number')" class="plane-btn"><md-icon ng-bind="'sort'" aria-label="sort" ></md-icon></button>
       </span></th>
-      <th>Device Model</th>
-      <th>Architecture</th>
-      <th>MAC</th>
-      <th>Developer</th>
+      <th><span style="display:flex;">Device Model
+        <button ng-click="sortBy('device_model')" class="plane-btn"><md-icon ng-bind="'sort'" aria-label="sort" ></md-icon></button>
+      </span>
+      </th>
+      <th><span style="display:flex;">Architecture
+        <button ng-click="sortBy('architecture')" class="plane-btn"><md-icon ng-bind="'sort'" aria-label="sort" ></md-icon></button>
+      </span>
+      </th>
+      <th><span style="display:flex;">MAC
+        <button ng-click="sortBy('mac')" class="plane-btn"><md-icon ng-bind="'sort'" aria-label="sort" ></md-icon></button>
+      </span>
+      </th>
+      <th><span style="display:flex;">Developer
+        <button ng-click="sortBy('developer')" class="plane-btn"><md-icon ng-bind="'sort'" aria-label="sort" ></md-icon></button>
+      </span>
+      </th>
       <th>Blocked Since</th>
       <th>Blocked Till</th>
       <th>Comments</th>
-      <th>Rack</th>
+      <th><span style="display:flex;">Rack
+        <button ng-click="sortBy('rack')" class="plane-btn"><md-icon ng-bind="'sort'" aria-label="sort" ></md-icon></button>
+      </span>
+      </th>
       <th>more</th>
     </tr>
     <tr ng-repeat="d in Device| filter: search| orderBy: order:reverse">
       <td>{{d.device_number}}</td>
       <td>{{d.device_model}}</td>
-      <td>{{(architecture | filter: {'id':d.architecture_id})[0].name}}</td>
+      <td>{{d.architecture}}</td>
       <td>{{d.mac}}</td>
-      <td><span>{{(developer |filter: {'id':d.developer_id})[0].name}}</span></td>
+      <td><span>{{d.developer==null?'Free':d.developer}}</span></td>
       <td>{{d.blocked_since}}</td>
       <td><span ng-class="d.blocked_till!='' && 'chip-green-sm'" >{{d.blocked_till}}</span></td>
       <td>{{d.comments}}</td>
-      <td>{{(rack |filter : {'id':d.rack_id})[0].name}}</td>
+      <td>{{d.rack}}</td>
       <td>
         
         <!-- start -->
@@ -101,13 +116,13 @@
           </md-button>
           <md-menu-content width="4">
             <md-menu-item>
-              <md-button ng-click="editDevice($event)" value="{{d.device_id}}">
+              <md-button ng-click="editDevice($event)" value="{{d.device_number}}">
                 <md-icon ng-bind="'edit'" md-menu-align-target></md-icon>
                 Edit
               </md-button>
             </md-menu-item>
             <md-menu-item>
-              <md-button ng-click="delete($event)" value="{{d.device_id}}">
+              <md-button ng-click="delete($event)" value="{{d.device_number}}">
                 <md-icon  ng-bind="'delete'"></md-icon>
                 Delete
               </md-button>
