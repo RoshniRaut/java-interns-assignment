@@ -1,30 +1,69 @@
 <div>
-  <md-content style="float:left;" layout-padding="" >
-    <md-icon ng-bind="'account_circle'"></md-icon>
-    {{currentUser|uppercase}}
+  <md-content style="float:left;" layout-padding-sm> 
+    <md-icon ng-bind="'account_circle'"></md-icon> Welcome {{currentUser|uppercase}}
   </md-content>
   <!--nav bar buttons-->
-  <md-content layout="row" layout-align="end" class="md-dense">
-  
+  <md-content layout="row" layout-align="end" class="md-dense" >
     <md-button class="md-raised md-primary" ng-click="addDevice($event,developer)" >Add Device</md-button>
     <md-button class="md-raised md-primary" ng-click="addRack($event,developer)" >Add Rack</md-button>
     <md-button class="md-raised md-warn" ng-click="logout()">Logout</md-button>
-
   </md-content>
-    
-  <div class="main"  >
-  <table class="main-table">
-    <!-- search bar-->
-    <tr><td colspan="9">
-        <div class="search">
-          <input type="text" placeholder="search" ng-model="search">
-          <!-- search button with icon -->
-          <button style="background-color: blueviolet; border: none;">
-            <md-icon  ng-bind="'search'" style="color:white;" aria-label="search"/> 
-          </button>
-        </div>
-      </td>
-    </tr>
+  <md-divider></md-divider>
+  <md-content layout="row" layout-padding layout-align="start start">
+    <md-content layout="column">
+      <div class="count-tables">
+      <!-- Status and count table -->
+      <table>
+      <tr>
+        <th>Status</th>
+        <th>Count</th>
+      </tr>
+      <tr>
+        <td><span class="chip chip-yellow">Occupied
+          <md-icon ng-bind="'lock'" style="color: white;"></md-icon>
+        </span></td>
+        <td>{{status.occupied}}</td>
+      </tr>
+      <tr>
+        <td><span class="chip chip-green">Free
+          <md-icon ng-bind="'lock_open'" style="color: white;"></md-icon>
+        </span></td>
+        <td>{{status.free}}</td>
+      </tr>
+      </table>
+    <!-- Rack and count -->
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Devices</th>
+      </tr>
+      <tr ng-repeat="r in rack">
+        <td><span class="chip chip-blue">{{r.name}}</span></td>
+        <td>{{r.device}}</td>
+      </tr>
+    </table>
+    <!-- Architecture and count -->
+    <table>
+      <tr>
+        <th>Architecture</th>
+        <th>Devices</th>
+      </tr>
+      <tr ng-repeat="a in architecture">
+        <td><span class="chip chip-blue">{{a.name}}</span></td>
+        <td>{{a.device}}</td>
+      </tr>
+    </table>
+      </div> 
+
+      <!-- search bar-->
+      <div class="search">
+        <input type="text" placeholder="search" ng-model="search">
+        <!-- search button with icon -->
+        <button style="background-color: blueviolet; border: none;">
+          <md-icon  ng-bind="'search'" style="color:white;" aria-label="search"/> 
+        </button>
+      </div>
+      <table class="device-table">
 
     <tr>
       <th ><span style="display:flex;">
@@ -41,6 +80,7 @@
       <th>Blocked Till</th>
       <th>Comments</th>
       <th>Rack</th>
+      <th>more</th>
     </tr>
     <tr ng-repeat="d in Device| filter: search| orderBy: order:reverse">
       <td>{{d.device_number}}</td>
@@ -78,53 +118,11 @@
 
       </td>
     </tr>
-  </table>
-  
-  <div class="side-tables">
-    <!-- Status and count table -->
-  <table>
-    <tr>
-      <th>Status</th>
-      <th>Count</th>
-    </tr>
-    <tr>
-      <td><span class="chip chip-yellow">Occupied
-        <md-icon ng-bind="'lock'" style="color: white;"></md-icon>
-      </span></td>
-      <td>{{status.occupied}}</td>
-    </tr>
-    <tr>
-      <td><span class="chip chip-green">Free
-        <md-icon ng-bind="'lock_open'" style="color: white;"></md-icon>
-      </span></td>
-      <td>{{status.free}}</td>
-    </tr>
-  </table>
-<!-- Rack and count -->
-  <table>
-    <tr>
-      <th>Name</th>
-      <th>Devices</th>
-    </tr>
-    <tr ng-repeat="r in rack">
-      <td><span class="chip chip-blue">{{r.name}}</span></td>
-      <td>{{r.device}}</td>
-    </tr>
-  </table>
-
-  <!-- Architecture and count -->
-  <table>
-    <tr>
-      <th>Architecture</th>
-      <th>Devices</th>
-    </tr>
-    <tr ng-repeat="a in architecture">
-      <td><span class="chip chip-blue">{{a.name}}</span></td>
-      <td>{{a.device}}</td>
-    </tr>
-  </table>
-<!-- available developer-->
-  <table>
+      </table>
+    </md-content>
+    <!-- available developer-->
+    <md-content layout-padding-sm>
+    <table class="dev-table">
     <tr>
       <th>Name</th>
       <th>Email</th>
@@ -133,7 +131,7 @@
       <td>{{d.name}}</td>
       <td>{{d.email}}</td>
     </tr>
-  </table>
-  </div>
-</div>
+    </table>
+    </md-content>
+  </md-content>
 </div>

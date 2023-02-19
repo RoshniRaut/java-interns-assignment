@@ -34,30 +34,40 @@
     font-size: 25px;
     padding: 5px;
   }
-  .main{
-    margin: auto;
-    width: 90%;
+  .count-tables{
     display:flex;
+    justify-content: space-around;
+    margin: 15px 0;
     align-items: flex-start;
   }
-  .main-table{
-    margin-right: 20px;
-    width: 100%;
+  .count-tables table{
+    min-width: 250px;
   }
-  .side-tables{
-    display:grid;
-    row-gap: 15px;
+  .count-tables td{
+    padding-left: 8px;
   }
   table,th,td{
-    border: 1px solid silver;
+    border: 1px solid grey;
     border-collapse: collapse;
-    padding: 0px 5px;
   }
-
+  
+  .device-table tr:hover{
+    background-color: rgb(234, 218, 252);
+  }
+  .dev-table td{
+    padding:5px;
+  }
+  .dev-table tr:hover{
+    background-color: rgb(234, 218, 252);
+  }
+  th{
+    padding:4px;
+    background-color: blueviolet;
+    color:white;
+  }
   .search{
     display: flex;
-    flex-direction: row;
-    float: right;
+    justify-content: flex-end;
     margin: 3px;
   }
   .chip{
