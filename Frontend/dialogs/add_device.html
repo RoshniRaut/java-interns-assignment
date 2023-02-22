@@ -1,0 +1,84 @@
+<md-dialog >
+    <form ng-submit="return(device)">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+              <h2>Add Device </h2>
+              <span flex></span>
+              <md-button class="md-icon-button" ng-click="cancel()">
+                <md-icon ng-bind="'close'" aria-label="Close dialog"></md-icon>
+              </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content layout="column"  layout-padding>
+            <md-content layout="row">
+                <md-input-container >
+                    <label>Device Number</label>
+                    <input type="number" ng-model="device.device_number"/>
+                </md-input-container>
+                <md-input-container >
+                    <label>Device Model</label>
+                    <input type="text" ng-model="device.device_model" required/>
+                </md-input-container>
+            </md-content>
+
+            <md-content layout="row">
+                <md-input-container flex-gt-sm>
+                    <label>Architecture</label>
+                    <md-select ng-model="device.architecture" required>
+                        <md-option ng-repeat="a in architecture" value="{{a.name}}">{{a.name}}</md-option>
+                      </md-select>
+                </md-input-container>
+                <md-input-container flex-gt-sm >
+                    <label>MAC</label>
+                    <input  ng-model="device.mac" required/>
+                </md-input-container>
+            </md-content>
+            <md-content layout="row">
+                <md-input-container flex-gt-sm>
+                    <label>Developer</label>
+                    <md-select style="margin:5px 0px;"  ng-model="device.developer">
+                        <md-option ng-repeat="u in developer" value="{{u.name}}">{{u.name}}</md-option>
+                    </md-select>
+                </md-input-container>
+                <md-input-container flex-gt-sm>
+                    <label>Rack</label>
+                    <md-select placeholder="Rack" ng-model="device.rack" required>
+                        <md-option ng-repeat="r in rack" value="{{r.name}}">{{r.name}}</option>
+                      </select>
+                </md-input-container>
+            </md-content>
+
+            <md-content layout="row"class="md-block">
+                <!--set min date-->
+                <md-input-container>
+                    <label>Blocked Since</label>
+                    <md-datepicker ng-model="device.blocked_since" 
+                    md-min-date="" md-max-date="device.blocked_till"/>
+                </md-input-container>
+                <md-input-container >
+                    <label>Blocked Till</label>
+                    <md-datepicker ng-model="device.blocked_till" 
+                    md-min-date="device.blocked_since" md-max-date=""/>
+                </md-input-container>
+            </md-content>
+
+            <md-content  layout="row">
+                <md-input-container flex-gt-sm>
+                    <label>Comments</label>
+                    <input type="text" ng-model="device.comments" />
+                </md-input-container>
+            </md-content>
+
+        </md-dialog-content>
+    
+        <md-dialog-actions layout="row">
+            <md-button class="md-raised md-primary" type="submit"> 
+                save
+            </md-button>
+            <md-button class="md-raised md-primary" ng-click="cancel()">
+                cancel
+            </md-button>
+        </md-dialog-actions>
+    
+</form>    
+</md-dialog>
