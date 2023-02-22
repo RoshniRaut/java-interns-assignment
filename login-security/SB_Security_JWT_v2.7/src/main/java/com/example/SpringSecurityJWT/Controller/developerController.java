@@ -44,6 +44,7 @@ public class developerController {
     }
     @PostMapping("/authenticate")
     public String[] authenticateAndGetToken(@RequestBody AuthRequest authRequest){
+        if()
         Authentication authentication=authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getUsername(),authRequest.getPassword()));
         if(authentication.isAuthenticated()){
             String[] token=new String[]{jwtService.generateToken((authRequest.getUsername())),authRequest.getUsername()};
