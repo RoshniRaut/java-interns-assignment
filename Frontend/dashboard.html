@@ -1,6 +1,6 @@
 <div>
-  <md-content style="float:left;" layout-padding-sm> 
-    <md-icon ng-bind="'account_circle'"></md-icon> Welcome {{currentUser|uppercase}}
+  <md-content class="user" layout-padding-sm> 
+    <md-icon ng-bind="'account_circle'"></md-icon>{{currentUser|uppercase}}
   </md-content>
   <!--nav bar buttons-->
   <md-content layout="row" layout-align="end" class="md-dense" >
@@ -8,9 +8,9 @@
     <md-button class="md-raised md-primary" ng-click="addRack($event,developer)" >Add Rack</md-button>
     <md-button class="md-raised md-warn" ng-click="logout()">Logout</md-button>
   </md-content>
-  <md-divider></md-divider>
+  <md-divider style="margin-bottom: 10px;"></md-divider>
   <md-content layout="row" layout-padding layout-align="start start">
-    <md-content layout="column">
+    <md-content layout="column" >
       <div class="count-tables">
       <!-- Status and count table -->
       <table>
@@ -19,14 +19,14 @@
         <th>Count</th>
       </tr>
       <tr>
-        <td><span class="chip chip-yellow">Occupied
-          <md-icon ng-bind="'lock'" style="color: white;"></md-icon>
+        <td><span class="chip-red">Occupied
+          <md-icon ng-bind="'lock'" ></md-icon>
         </span></td>
         <td>{{status.occupied}}</td>
       </tr>
       <tr>
-        <td><span class="chip chip-green">Free
-          <md-icon ng-bind="'lock_open'" style="color: white;"></md-icon>
+        <td><span class="chip-green">Free
+          <md-icon ng-bind="'lock_open'" ></md-icon>
         </span></td>
         <td>{{status.free}}</td>
       </tr>
@@ -57,10 +57,9 @@
 
       <!-- search bar-->
       <div class="filter">
-        <span ng-if="order">Order by: {{order}} in {{reverse?'descending':'ascending'}}</span>
         <div>
           <input type="text" placeholder="search" ng-model="search">
-          <button style="background-color: blueviolet; border: none;">
+          <button style="background-color: grey; border: none;">
             <md-icon  ng-bind="'search'" style="color:white;" aria-label="search"/> 
           </button>
         </div>
@@ -69,33 +68,33 @@
     <table class="device-table">
 
     <tr>
-      <th ><span style="display:flex;">Device Number 
+      <th ><span >Device No
         <button ng-click="sortBy('device_number')" class="plane-btn"><md-icon ng-bind="'sort'" aria-label="sort" ></md-icon></button>
       </span></th>
-      <th><span style="display:flex;">Device Model
+      <th><span >Device Model
         <button ng-click="sortBy('device_model')" class="plane-btn"><md-icon ng-bind="'sort'" aria-label="sort" ></md-icon></button>
       </span>
       </th>
-      <th><span style="display:flex;">Architecture
+      <th><span >Architecture
         <button ng-click="sortBy('architecture')" class="plane-btn"><md-icon ng-bind="'sort'" aria-label="sort" ></md-icon></button>
       </span>
       </th>
-      <th><span style="display:flex;">MAC
+      <th><span >MAC
         <button ng-click="sortBy('mac')" class="plane-btn"><md-icon ng-bind="'sort'" aria-label="sort" ></md-icon></button>
       </span>
       </th>
-      <th><span style="display:flex;">Developer
+      <th><span >Developer
         <button ng-click="sortBy('developer')" class="plane-btn"><md-icon ng-bind="'sort'" aria-label="sort" ></md-icon></button>
       </span>
       </th>
       <th>Blocked Since</th>
       <th>Blocked Till</th>
       <th>Comments</th>
-      <th><span style="display:flex;">Rack
+      <th><span>Rack
         <button ng-click="sortBy('rack')" class="plane-btn"><md-icon ng-bind="'sort'" aria-label="sort" ></md-icon></button>
       </span>
       </th>
-      <th>more</th>
+      <th></th>
     </tr>
     <tr ng-repeat="d in Device| filter: search| orderBy: order:reverse">
       <td>{{d.device_number}}</td>
@@ -104,7 +103,7 @@
       <td>{{d.mac}}</td>
       <td><span>{{d.developer==null?'Free':d.developer}}</span></td>
       <td>{{d.blocked_since}}</td>
-      <td><span ng-class="d.blocked_till!='' && 'chip-green-sm'" >{{d.blocked_till}}</span></td>
+      <td>{{d.blocked_till}}</td>
       <td>{{d.comments}}</td>
       <td>{{d.rack}}</td>
       <td>
@@ -130,16 +129,15 @@
           </md-menu-content>
         </md-menu>
         <!-- end -->
-
       </td>
     </tr>
       </table>
     </md-content>
     <!-- available developer-->
-    <md-content layout-padding-sm>
+    <md-content >
     <table class="dev-table">
     <tr>
-      <th>Name</th>
+      <th>Developer</th>
       <th>Email</th>
     </tr>
     <tr ng-repeat="d in developer">

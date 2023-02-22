@@ -4,10 +4,10 @@ app.controller('dashboardController',function($scope,$mdDialog,$location,TokenSe
     [
       {
         "architecture": "E2900",
-        "blocked_since": "2022-04-04",
-        "blocked_till": "2022-07-03",
+        "blocked_since": "",
+        "blocked_till": "",
         "comments": "EV 10.11.14.167",
-        "developer": "madhur",
+        "developer": null,
         "device_model": "2900A",
         "device_number": 10,
         "mac": "54:39:68:16:D5:7F",
@@ -26,10 +26,10 @@ app.controller('dashboardController',function($scope,$mdDialog,$location,TokenSe
       },
       {
         "architecture": "E2900",
-        "blocked_since": "2022-04-04",
-        "blocked_till": "2022-07-03",
+        "blocked_since": "",
+        "blocked_till": "",
         "comments": "EV 10.11.14.167",
-        "developer": "roshni",
+        "developer": null,
         "device_model": "2900A",
         "device_number": 12,
         "mac": "54:39:68:16:D5:7F",
@@ -147,8 +147,12 @@ app.controller('dashboardController',function($scope,$mdDialog,$location,TokenSe
           //put request for add device
             len=$scope.Device.length;
             device.device_number=$scope.Device[len-1].device_number+1;
-            device.blocked_since=moment(device.blocked_since).format("YYYY-MM-DD");
-            device.blocked_till=moment(device.blocked_till).format("YYYY-MM-DD");
+            console.log(device)
+            console.log(device.blocked_since,device.blocked_till)
+            if(device.blocked_since)
+              device.blocked_since=moment(device.blocked_since).format("YYYY-MM-DD");
+            if(device.blocked_till)
+              device.blocked_till=moment(device.blocked_till).format("YYYY-MM-DD");
             $scope.Device.push(device);
             $scope.updateCounts();
       });
@@ -182,8 +186,11 @@ app.controller('dashboardController',function($scope,$mdDialog,$location,TokenSe
           //put request for PUT device
             $scope.Device.forEach(d=>{
               if(d.device_number==device.device_number){
-                device.blocked_since=moment(device.blocked_since).format("YYYY-MM-DD");
-                device.blocked_till=moment(device.blocked_till).format("YYYY-MM-DD");
+                console.log(device.blocked_since,device.blocked_till)
+            if(device.blocked_since)
+              device.blocked_since=moment(device.blocked_since).format("YYYY-MM-DD");
+            if(device.blocked_till)
+              device.blocked_till=moment(device.blocked_till).format("YYYY-MM-DD");
                 d=device
               }
             })

@@ -1,14 +1,14 @@
 <div class="form" >
-
+    <legend ng-if="error" class="error">{{error}}</legend>
     <form ng-submit="registerForm.$valid && register(user)" style="min-width:250px;" class="form-content" name="registerForm" novalidate>
         <h3>Registration Page</h3>
-        <md-content>
+        <md-content layout-gt-sm>
             <md-input-container>
                 <label>Email</label>
                 <input type="email" ng-model="user.email" required>
             </md-input-container>
         </md-content>
-        <md-content>
+        <md-content layout-gt-sm>
             <md-input-container>
                 <label>Username</label>
                 <input type="text" ng-model="user.name" required>
@@ -24,7 +24,13 @@
                 </ol>
             </md-input-container>
         </md-content>
-            
+        <!-- <md-content>
+        <md-input-container>
+            <label>Confirm Password</label>
+            <input type="password" required ng-model="user.cpassword" ng-invalid="user.password!=user.cpassword">
+            <span ng-show="user.password!=user.cpassword" style="color:red; font-size: 10px; display:block; text-align: left;">Password doesn't match</span>
+        </md-input-container>
+    </md-content>-->
 
         <md-content>
             <md-button class="md-raised md-primary" type="submit" >Register</md-button>

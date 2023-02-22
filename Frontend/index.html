@@ -40,44 +40,46 @@
     margin: 15px 0;
     align-items: flex-start;
   }
+  
+  table,th,td{
+    border-bottom: 1px solid silver;
+    border-collapse: collapse;
+    text-align: center;
+    padding: 4px 0px;
+  }
+  tr:hover{
+    background-color: white;
+  }
+  tr{
+    background-color: rgb(230, 229, 229);
+  }
+  th{
+    border-bottom:1px solid silver;
+    background-color: rgb(143, 141, 141);
+  }
+  .device-table{
+     max-width: 80vw;
+  }
+  .device-table tr{
+    font-size: 15px;
+  }
   .count-tables table{
     min-width: 250px;
   }
   .count-tables td{
     padding-left: 8px;
   }
-  table,th,td{
-    border: 1px solid grey;
-    border-collapse: collapse;
-  }
-  
-  .device-table tr:hover{
-    background-color: rgb(234, 218, 252);
-  }
   .dev-table td{
     padding:5px;
-  }
-  .dev-table tr:hover{
-    background-color: rgb(234, 218, 252);
-  }
-  th{
-    padding:4px;
-    background-color: blueviolet;
-    color:white;
+    font-size: 15px;
   }
   .filter{
     display: flex;
     justify-content: flex-end;
     margin: 3px;
   }
-  .filter span{
-    font-weight: bold;
-    color:blueviolet;
-    margin-right: 10px;
-  }
   .chip{
     padding:6px 10px;
-    margin: 5px 0px;
     border-radius: 8%;
     display: inline-block;
     color: white;
@@ -85,11 +87,14 @@
   .chip-blue{
     background-color: #5da0d8;
   }
-  .chip-yellow{
-    background-color: rgb(255,0,0);
+  .chip-red{
+    font-weight: bold;
+    color: rgb(255,0,0);
+    padding:10px;
   }
   .chip-green{
-    background-color: rgb(20, 110, 30);
+    font-weight: bold;
+    color: rgb(20, 110, 30);
   }
   .chip-green-sm{
     background-color: rgb(20, 110, 30);
@@ -103,7 +108,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    min-height: 90vh;
   }
   .form-content{
     border: 2px solid blueviolet;
@@ -114,6 +119,20 @@
   .plane-btn{
     border: none;
     background: none;
+  }
+  .error{
+    color:red;
+    background-color: rgb(245, 223, 223);
+    padding:5px;
+    margin-bottom: 2px;
+  }
+  .tool{
+    margin-bottom: 10px;;
+  }
+  .user{
+    float:left;
+    font-weight: bold;
+    padding:5px 10px;
   }
   </style>
   

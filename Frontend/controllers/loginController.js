@@ -1,8 +1,7 @@
 
-app.controller('loginController',function($scope,$location,TokenService){
-  
+app.controller('loginController',function($scope,$location,$timeout,TokenService){
+  $scope.error=""
   $scope.login=function(user){    
-
       //response is a stirng[] [0] for token [1] for username
       TokenService.generateToken(user).then(res=>{ 
         resp=angular.fromJson(res.data);
@@ -14,7 +13,10 @@ app.controller('loginController',function($scope,$location,TokenService){
           console.log("http validate: ",err);
         })
       }).catch(err=>{
-        alert("invalid user");
+        $scope.error="Incorrect username or password!!";
+        $timeout(function(){
+          $scope.error="";
+        },4000);
         console.log("generateToken: ",err);
       })
     }
