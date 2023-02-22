@@ -1,0 +1,150 @@
+<div>
+  <md-content class="user" layout-padding-sm> 
+    <md-icon ng-bind="'account_circle'"></md-icon>{{currentUser|uppercase}}
+  </md-content>
+  <!--nav bar buttons-->
+  <md-content layout="row" layout-align="end" class="md-dense" >
+    <md-button class="md-raised md-primary" ng-click="addDevice($event,developer)" >Add Device</md-button>
+    <md-button class="md-raised md-primary" ng-click="addRack($event,developer)" >Add Rack</md-button>
+    <md-button class="md-raised md-warn" ng-click="logout()">Logout</md-button>
+  </md-content>
+  <md-divider style="margin-bottom: 10px;"></md-divider>
+  <md-content layout="row" layout-padding layout-align="start start">
+    <md-content layout="column" >
+      <div class="count-tables">
+      <!-- Status and count table -->
+      <table>
+      <tr>
+        <th>Status</th>
+        <th>Count</th>
+      </tr>
+      <tr>
+        <td><span class="chip-red">Occupied
+          <md-icon ng-bind="'lock'" ></md-icon>
+        </span></td>
+        <td>{{status.occupied}}</td>
+      </tr>
+      <tr>
+        <td><span class="chip-green">Free
+          <md-icon ng-bind="'lock_open'" ></md-icon>
+        </span></td>
+        <td>{{status.free}}</td>
+      </tr>
+      </table>
+    <!-- Rack and count -->
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Devices</th>
+      </tr>
+      <tr ng-repeat="r in rack">
+        <td><span class="chip chip-blue">{{r.name}}</span></td>
+        <td>{{r.device}}</td>
+      </tr>
+    </table>
+    <!-- Architecture and count -->
+    <table>
+      <tr>
+        <th>Architecture</th>
+        <th>Devices</th>
+      </tr>
+      <tr ng-repeat="a in architecture">
+        <td><span class="chip chip-blue">{{a.name}}</span></td>
+        <td>{{a.device}}</td>
+      </tr>
+    </table>
+      </div> 
+
+      <!-- search bar-->
+      <div class="filter">
+        <div>
+          <input type="text" placeholder="search" ng-model="search">
+          <button style="background-color: grey; border: none;">
+            <md-icon  ng-bind="'search'" style="color:white;" aria-label="search"/> 
+          </button>
+        </div>
+      </div>
+      <!-- device table -->
+    <table class="device-table">
+
+    <tr>
+      <th ><span >Device No
+        <button ng-click="sortBy('device_number')" class="plane-btn"><md-icon ng-bind="'sort'" aria-label="sort" ></md-icon></button>
+      </span></th>
+      <th><span >Device Model
+        <button ng-click="sortBy('device_model')" class="plane-btn"><md-icon ng-bind="'sort'" aria-label="sort" ></md-icon></button>
+      </span>
+      </th>
+      <th><span >Architecture
+        <button ng-click="sortBy('architecture')" class="plane-btn"><md-icon ng-bind="'sort'" aria-label="sort" ></md-icon></button>
+      </span>
+      </th>
+      <th><span >MAC
+        <button ng-click="sortBy('mac')" class="plane-btn"><md-icon ng-bind="'sort'" aria-label="sort" ></md-icon></button>
+      </span>
+      </th>
+      <th><span >Developer
+        <button ng-click="sortBy('developer')" class="plane-btn"><md-icon ng-bind="'sort'" aria-label="sort" ></md-icon></button>
+      </span>
+      </th>
+      <th>Blocked Since</th>
+      <th>Blocked Till</th>
+      <th>Comments</th>
+      <th><span>Rack
+        <button ng-click="sortBy('rack')" class="plane-btn"><md-icon ng-bind="'sort'" aria-label="sort" ></md-icon></button>
+      </span>
+      </th>
+      <th></th>
+    </tr>
+    <tr ng-repeat="d in Device| filter: search| orderBy: order:reverse">
+      <td>{{d.device_number}}</td>
+      <td>{{d.device_model}}</td>
+      <td>{{d.architecture}}</td>
+      <td>{{d.mac}}</td>
+      <td><span>{{d.developer==null?'Free':d.developer}}</span></td>
+      <td>{{d.blocked_since}}</td>
+      <td>{{d.blocked_till}}</td>
+      <td>{{d.comments}}</td>
+      <td>{{d.rack}}</td>
+      <td>
+        
+        <!-- start -->
+        <md-menu>
+          <md-button aria-label="Open phone interactions menu" class="md-icon-button" ng-click="openMenu($mdMenu, $event)">
+            <md-icon ng-bind="'more_vert'" aria-label="more_vert"></md-icon>
+          </md-button>
+          <md-menu-content width="4">
+            <md-menu-item>
+              <md-button ng-click="editDevice($event)" value="{{d.device_number}}">
+                <md-icon ng-bind="'edit'" md-menu-align-target></md-icon>
+                Edit
+              </md-button>
+            </md-menu-item>
+            <md-menu-item>
+              <md-button ng-click="delete($event)" value="{{d.device_number}}">
+                <md-icon  ng-bind="'delete'"></md-icon>
+                Delete
+              </md-button>
+            </md-menu-item>
+          </md-menu-content>
+        </md-menu>
+        <!-- end -->
+      </td>
+    </tr>
+      </table>
+    </md-content>
+    <!-- available developer-->
+    <md-content >
+    <table class="dev-table">
+    <tr>
+      <th>Developer</th>
+      <th>Email</th>
+    </tr>
+    <tr ng-repeat="d in developer">
+      <td>{{d.name}}</td>
+      <td>{{d.email}}</td>
+    </tr>
+    </table>
+    </md-content>
+  </md-content>
+</div>

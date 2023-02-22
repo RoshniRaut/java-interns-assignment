@@ -1,0 +1,3 @@
+FROM nginx
+copy . /usr/share/nginx/html
+expose 4200:4200

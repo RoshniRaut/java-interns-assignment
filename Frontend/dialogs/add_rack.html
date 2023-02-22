@@ -1,0 +1,31 @@
+<md-dialog>
+    <form ng-submit="return(rack)">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+              <h2>Add RACK </h2>
+              <span flex></span>
+              <md-button class="md-icon-button" ng-click="cancel()">
+                <md-icon ng-bind="'close'" aria-label="Close dialog"></md-icon>
+              </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content layout="column" >
+            <div layout-padding layout-gt-sm="row">
+                <md-input-container class="md-block">
+                    <label>Rack Name</label>
+                    <input type="text" ng-model="rack.name" required/>
+                </md-input-container>
+            </div>
+        </md-dialog-content>
+    
+        <md-dialog-actions layout="row">
+            <md-button class="md-raised md-primary" type="submit"> 
+                save
+            </md-button>
+            <md-button class="md-raised md-primary" ng-click="cancel()">
+                cancel
+            </md-button>
+        </md-dialog-actions>
+    
+</form>    
+</md-dialog>
