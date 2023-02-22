@@ -1,7 +1,0 @@
-FROM mysql:latest
-COPY ./mysql_db.sql / 
-# WORKDIR /docker-entrypoint-initdb.d
-ENV MYSQL_ROOT_PASSWORD=Ness@123
-ENV MYSQL_DATABASE=SB_Security
-ENV MYSQL_ROOT_USERNAME=root
-expose 3307:3306
