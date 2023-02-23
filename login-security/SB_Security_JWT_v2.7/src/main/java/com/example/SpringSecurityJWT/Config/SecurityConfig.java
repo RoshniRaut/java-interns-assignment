@@ -1,5 +1,6 @@
 package com.example.SpringSecurityJWT.Config;
 
+
 import com.example.SpringSecurityJWT.Filter.JwtAuthFilter;
 import com.example.SpringSecurityJWT.Service.DeveloperUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,11 +52,8 @@ public class SecurityConfig {
         return http
                 .csrf().disable()
                 .cors(Customizer.withDefaults())// by default use a bean by the name corsConfigurationSource
-                .authorizeHttpRequests()
-                .antMatchers("/addDeveloper","/authenticate","/testing","/{id}").permitAll()
-                .and()
-                .authorizeHttpRequests().antMatchers("/allDeveloper","/validate")
-                .authenticated().and()
+                .authorizeRequests().antMatchers("/authenticate","/testing").permitAll().and()
+                .authorizeRequests(auth-> auth.anyRequest().authenticated())
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
@@ -67,7 +65,7 @@ public class SecurityConfig {
     CorsConfigurationSource corsConfigurationSource(){
         CorsConfiguration configuration=new CorsConfiguration();
         configuration.setAllowedOrigins(List.of("http://localhost:5500","http://0.0.0.0:4200","http://127.0.0.1:5500"));
-        configuration.setAllowedMethods(Arrays.asList("GET","POST",""));
+        configuration.setAllowedMethods(Arrays.asList("GET","POST"));
         configuration.setAllowedHeaders(List.of("Authorization","Content-Type","Access-Control-Allow-Origin"));
         UrlBasedCorsConfigurationSource source= new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**",configuration);

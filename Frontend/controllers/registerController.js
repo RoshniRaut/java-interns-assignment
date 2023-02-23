@@ -35,21 +35,9 @@ app.controller('registerController',function($scope,$timeout,TokenService,$locat
         $timeout(()=>{
           $scope.error=""; 
          },4000)
-        if(res.data=="added"){
-          //getting token for new user and logging in 
-          user1={username:user.name,password:user.password};
-          TokenService.generateToken(user1)
-          .then(res=>{
-            resp=angular.fromJson(res.data);
-            TokenService.setToken(resp[0],resp[1]);
-            $location.path("/home");
-          })
-          .catch(err=>{
-            console.log(err);
-          })
-        }
+                
       }).catch(err=>{
-          $scope.error="Server is facing some issue!! ",err.status;
+          $scope.error=err.data,err.status;
           $timeout(()=>{
            $scope.error=""; 
           },4000)

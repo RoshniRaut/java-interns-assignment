@@ -3,6 +3,9 @@ package com.example.SpringSecurityJWT.Service;
 import com.example.SpringSecurityJWT.Entity.Developer;
 import com.example.SpringSecurityJWT.Repository.DeveloperRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -15,18 +18,23 @@ public class DeveloperService {
     private DeveloperRepository developerRepository;
     @Autowired
     private PasswordEncoder passwordEncoder;
-    public String addUser(Developer userInfo){
+    public ResponseEntity<?> addUser(Developer userInfo){
         userInfo.setPassword(passwordEncoder.encode(userInfo.getPassword()));
-        if(developerRepository.findByEmail(userInfo.getEmail()).isPresent()){
-            return "email already registered";
-        }
-        if(developerRepository.findByName(userInfo.getName()).isPresent())
-            return "user name already registered";
-        if(userInfo.getName()==null || userInfo.getEmail()==null || userInfo.getPassword()==null)
-            return "field cannot be null";
-        else{
-            developerRepository.save(userInfo);
-            return "added";
+        try {
+            if (developerRepository.findByEmail(userInfo.getEmail()).isPresent()) {
+                throw new Exception("email already registered");
+//                throw new UsernameNotFoundException("email already registered");
+            }
+            if (developerRepository.findByName(userInfo.getName()).isPresent())
+                throw new Exception("user name already registered");
+            if (userInfo.getName() == null || userInfo.getEmail() == null || userInfo.getPassword() == null)
+                throw new Exception("field cannot be null");
+            else {
+                developerRepository.save(userInfo);
+                return new ResponseEntity<>("New Developer Added", HttpStatus.OK);
+            }
+        }catch(Exception e){
+            return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
         }
     }
 
