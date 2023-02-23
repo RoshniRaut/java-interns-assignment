@@ -41,9 +41,8 @@ public class JwtService {
     }
     public Boolean validateToken(String token, UserDetails userDetails){
         final String username=extractUsername(token);
-        return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
+        return (username.toLowerCase().equals(userDetails.getUsername().toLowerCase()) && !isTokenExpired(token));
     }
-
 
     public String generateToken(String username){
         Map<String,Object> claims=new HashMap<>();
