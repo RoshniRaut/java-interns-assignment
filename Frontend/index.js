@@ -36,25 +36,8 @@ app.config(function($routeProvider,$mdDateLocaleProvider){
         $location.path('/');
       }
       else{
-        $http({
-          method: 'GET',
-          url:$rootScope.location+'/validate',
-          headers:{
-            Authorization: 'Bearer '+ userAuth
-          },
-          transformResponse: [function(data){ return data;}]
-        })
-        .then(res=>{
-          $location.path("/home");
-        })
-        .catch(err=>{
-          console.log("error: ", err);
-          TokenService.removeToken();
-          alert("session expired!!");
-          $location.path("/");
-        })
+        $location.path("/home");
       }
-        
     }
   })
  })

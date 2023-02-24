@@ -8,18 +8,7 @@ app.service('TokenService',function($http,$cookies,$rootScope){
         transformResponse: [function (data) { return data; }]
       })
     }
-    //remove validate and look for another method
-    //how to authenticate on frontend
-    this.validateToken=function(){
-      return $http({
-        method: 'GET',
-        url:$rootScope.location+'/validate',
-        headers:{
-          Authorization: 'Bearer '+ this.getToken()
-        },
-        transformResponse: [function(data){ return data;}]
-      })
-    }
+
     this.getToken=function(){
       return $cookies.get("token");
     }

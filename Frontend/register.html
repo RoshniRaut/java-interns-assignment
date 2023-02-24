@@ -1,5 +1,6 @@
 <div class="form" >
     <legend ng-if="error" class="error">{{error}}</legend>
+    <legend ng-if="success" class="success">{{success}}</legend>
     <form ng-submit="registerForm.$valid && register(user)" style="min-width:250px;" class="form-content" name="registerForm" novalidate>
         <h3>Registration Page</h3>
         <md-content layout-gt-sm>

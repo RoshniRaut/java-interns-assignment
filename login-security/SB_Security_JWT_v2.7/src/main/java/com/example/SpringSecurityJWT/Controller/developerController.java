@@ -1,6 +1,7 @@
 package com.example.SpringSecurityJWT.Controller;
 
 import com.example.SpringSecurityJWT.Entity.Developer;
+import com.example.SpringSecurityJWT.Exceptions.UserAlreadyRegistered;
 import com.example.SpringSecurityJWT.Service.DeveloperService;
 import com.example.SpringSecurityJWT.Service.JwtService;
 import com.example.SpringSecurityJWT.dto.AuthRequest;
@@ -13,6 +14,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,34 +32,29 @@ public class developerController {
         return "testing...";
     }
 
-    @GetMapping("/validate")
-    //get user details from the token
-    String user_admin(){
-        return "valid";
-    }
     @GetMapping("/allDeveloper")
     public List<Developer> getAll(){
         return service.getUser();
     }
     @DeleteMapping("/{id}")
-    public String delete(@PathVariable Integer id){
+    public ResponseEntity<?> delete(@PathVariable Integer id){
         return service.deleteById(id);
     }
     @PostMapping("/addDeveloper")
-    public ResponseEntity addNewUser(@RequestBody Developer developer){
+    public ResponseEntity<?> addNewUser(@Valid @RequestBody Developer developer) throws UserAlreadyRegistered {
         return service.addUser(developer);
     }
     @PostMapping("/authenticate")
-    public ResponseEntity<?> authenticateAndGetToken(@RequestBody AuthRequest authRequest) {
+    public Map<String, String> authenticateAndGetToken(@Valid @RequestBody AuthRequest authRequest) {
         Map<String, String> token = new HashMap<>();
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword()));
         if (authentication.isAuthenticated()) {
             token.put("token", jwtService.generateToken((authRequest.getUsername())));
             token.put("username", authentication.getName());
-            return new ResponseEntity<>(token, HttpStatus.OK);
+            return token;
         }
         else{
-            return new ResponseEntity<>("Username or password invalid",HttpStatus.NOT_FOUND);
+            throw new UsernameNotFoundException("Username or password invalid");
         }
     }
 }

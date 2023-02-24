@@ -39,10 +39,6 @@ public class SecurityConfig {
 //                .password(encoder.encode("1234"))
 //                .roles("USER")
 //                .build();
-//        UserDetails user = User.withUsername("John")
-//                .password(encoder.encode("Pwd2"))
-//                .roles("ADMIN")
-//                .build();
 //        return new InMemoryUserDetailsManager(user1, user);
         return new DeveloperUserDetailsService();
     }
@@ -52,7 +48,7 @@ public class SecurityConfig {
         return http
                 .csrf().disable()
                 .cors(Customizer.withDefaults())// by default use a bean by the name corsConfigurationSource
-                .authorizeRequests().antMatchers("/authenticate","/testing").permitAll().and()
+                .authorizeRequests().antMatchers("/authenticate","/testing","/addDeveloper").permitAll().and()
                 .authorizeRequests(auth-> auth.anyRequest().authenticated())
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)

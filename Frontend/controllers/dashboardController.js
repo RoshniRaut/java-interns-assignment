@@ -78,8 +78,12 @@ app.controller('dashboardController',function($scope,$mdDialog,$location,TokenSe
     //fetching data from backend
     DeveloperService.getAllDeveloper().then(res=>{
       $scope.developer=angular.fromJson(res.data);
-    });
-    
+    })
+    .catch(err=>{
+      alert("session expired!!");
+      TokenService.removeToken(null);
+      $location.path('/');
+    })
     
     $scope.logout=function(){
       TokenService.removeToken(null);

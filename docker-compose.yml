@@ -26,8 +26,8 @@ services:
           - "3307:3306" #internal and external port mapping
         expose:
           - "3307"  #exposed port 
-        # volumes: 
-        #   - my-db= '/var/lib/mysql' #internal volumne
+        volumes: 
+          - my-db= '/var/lib/mysql' #internal volumne
 
     adminer:
       image: adminer
@@ -35,15 +35,15 @@ services:
       ports:
         - 9000:8080
 
-    # rest-api:
-    #     image: rest-api
-    #     build: ./Backend/SB_Security_JWT_v2.7
-    #     ports:
-    #         - "8081:8080"
-    #     links:
-    #         - angular-service
-    #     depends_on:
-    #         - db
+    rest-api:
+        image: rest-api
+        build: ./Backend/SB_Security_JWT_v2.7
+        ports:
+            - "8081:8080"
+        links:
+            - angular-service
+        depends_on:
+            - db
 
-# volumes:
-#   my-db:
+volumes:
+  my-db:
