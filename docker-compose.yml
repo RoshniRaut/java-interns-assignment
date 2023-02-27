@@ -1,4 +1,4 @@
-version: "2" # need depends_on
+version: "3" # need depends_on
 services:
  # mysqldbContainer:
     #     image: mysqldb
@@ -18,7 +18,7 @@ services:
     db: 
         image: mysql
         container_name: mysql-db
-        # restart: always
+        restart: always
         environment: 
           - MYSQL_ROOT_USERNAME=root
           - MYSQL_ROOT_PASSWORD=Ness@123
@@ -37,7 +37,7 @@ services:
 
     rest-api:
         image: rest-api
-        build: ./Backend/SB_Security_JWT_v2.7
+        build: ./login-security/SB_Security_JWT_v2.7
         ports:
             - "8081:8080"
         links:
