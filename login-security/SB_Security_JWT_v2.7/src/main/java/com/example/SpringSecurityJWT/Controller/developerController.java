@@ -1,16 +1,23 @@
 package com.example.SpringSecurityJWT.Controller;
 
 import com.example.SpringSecurityJWT.Entity.Developer;
+import com.example.SpringSecurityJWT.Exceptions.UserAlreadyRegistered;
 import com.example.SpringSecurityJWT.Service.DeveloperService;
 import com.example.SpringSecurityJWT.Service.JwtService;
 import com.example.SpringSecurityJWT.dto.AuthRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class developerController {
@@ -25,32 +32,29 @@ public class developerController {
         return "testing...";
     }
 
-    @GetMapping("/validate")
-    //get user details from the token
-    String user_admin(){
-        return "valid";
-    }
     @GetMapping("/allDeveloper")
     public List<Developer> getAll(){
         return service.getUser();
     }
     @DeleteMapping("/{id}")
-    public String delete(@PathVariable Integer id){
+    public ResponseEntity<?> delete(@PathVariable Integer id){
         return service.deleteById(id);
     }
     @PostMapping("/addDeveloper")
-    public String addNewUser(@RequestBody Developer developer){
+    public ResponseEntity<?> addNewUser(@Valid @RequestBody Developer developer) throws UserAlreadyRegistered {
         return service.addUser(developer);
     }
     @PostMapping("/authenticate")
-    public String[] authenticateAndGetToken(@RequestBody AuthRequest authRequest){
-        if()
-        Authentication authentication=authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getUsername(),authRequest.getPassword()));
-        if(authentication.isAuthenticated()){
-            String[] token=new String[]{jwtService.generateToken((authRequest.getUsername())),authRequest.getUsername()};
+    public Map<String, String> authenticateAndGetToken(@Valid @RequestBody AuthRequest authRequest) {
+        Map<String, String> token = new HashMap<>();
+        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword()));
+        if (authentication.isAuthenticated()) {
+            token.put("token", jwtService.generateToken((authRequest.getUsername())));
+            token.put("username", authentication.getName());
             return token;
-        }else{
-            return new String[]{"invalid"};
+        }
+        else{
+            throw new UsernameNotFoundException("Username or password invalid");
         }
     }
 }

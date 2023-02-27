@@ -1,5 +1,6 @@
 app.controller('registerController',function($scope,$timeout,TokenService,$location,DeveloperService){
   $scope.error="";
+  $scope.success="";
   //password validation
   $scope.passwordError=[];
   $scope.validPassword=function(){
@@ -30,29 +31,17 @@ app.controller('registerController',function($scope,$timeout,TokenService,$locat
   $scope.register=function(user){
     //adding new user
     DeveloperService.addDeveloper(user).then(res=>{
-        console.log(res.data);
-        $scope.error=res.data;
+      $scope.error="";
+        $scope.success=angular.fromJson(res.data).message;
         $timeout(()=>{
-          $scope.error=""; 
-         },4000)
-        if(res.data=="added"){
-          //getting token for new user and logging in 
-          user1={username:user.name,password:user.password};
-          TokenService.generateToken(user1)
-          .then(res=>{
-            resp=angular.fromJson(res.data);
-            TokenService.setToken(resp[0],resp[1]);
-            $location.path("/home");
-          })
-          .catch(err=>{
-            console.log(err);
-          })
-        }
+          $scope.success=""; 
+         },6000)
+                
       }).catch(err=>{
-          $scope.error="Server is facing some issue!! ",err.status;
+          $scope.error=angular.fromJson(err.data).message;
           $timeout(()=>{
            $scope.error=""; 
-          },4000)
+          },6000)
         })
       }
   })

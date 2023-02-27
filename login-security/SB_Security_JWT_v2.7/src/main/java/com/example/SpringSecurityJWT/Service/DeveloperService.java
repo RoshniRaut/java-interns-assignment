@@ -1,12 +1,18 @@
 package com.example.SpringSecurityJWT.Service;
 
 import com.example.SpringSecurityJWT.Entity.Developer;
+import com.example.SpringSecurityJWT.Exceptions.UserAlreadyRegistered;
 import com.example.SpringSecurityJWT.Repository.DeveloperRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -15,33 +21,37 @@ public class DeveloperService {
     private DeveloperRepository developerRepository;
     @Autowired
     private PasswordEncoder passwordEncoder;
-    public String addUser(Developer userInfo){
+    public ResponseEntity<?> addUser(Developer userInfo) throws UserAlreadyRegistered {
+        Map<String, String> message=new HashMap<>();
         userInfo.setPassword(passwordEncoder.encode(userInfo.getPassword()));
-        if(developerRepository.findByEmail(userInfo.getEmail()).isPresent()){
-            return "email already registered";
-        }
-        if(developerRepository.findByName(userInfo.getName()).isPresent())
-            return "user name already registered";
-        if(userInfo.getName()==null || userInfo.getEmail()==null || userInfo.getPassword()==null)
-            return "field cannot be null";
-        else{
+       if (developerRepository.findByEmail(userInfo.getEmail()).isPresent())
+            throw new UserAlreadyRegistered("email already registered");
+       if (developerRepository.findByName(userInfo.getName()).isPresent())
+            throw new UserAlreadyRegistered("user name already registered");
+       else {
+           System.out.println("user found");
             developerRepository.save(userInfo);
-            return "added";
-        }
+            message.put("message","New Developer Added");
+            return new ResponseEntity<>(message, HttpStatus.CREATED);
+       }
     }
 
     public List<Developer> getUser(){
         return developerRepository.findAll();
     }
 
-    public String deleteById(Integer id){
+    public ResponseEntity<?> deleteById(Integer id){
+        Map<String, String> message=new HashMap<>();
         Optional<Developer> userInfo= developerRepository.findById(id);
         if(userInfo.isEmpty()){
-            return "user not found";
+            message.put("message","User not found");
+            return new ResponseEntity<>(message,HttpStatus.NOT_FOUND);
         }
         else {
             developerRepository.deleteById(id);
-            return "user record deleted ";
+
+            message.put("message","user record deleted ");
+            return new ResponseEntity<>(message,HttpStatus.OK);
         }
     }
 }
