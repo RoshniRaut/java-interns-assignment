@@ -10,6 +10,8 @@ public class Device {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "device_id")
     private int device_id;
+    @Column(name = "device_number")
+    private int device_number;
     @Column(name = "arcId")
     private int architectureId;
     @Column(name = "blocked_since")
@@ -33,6 +35,14 @@ public class Device {
 
     public void setDevice_id(int device_id) {
         this.device_id = device_id;
+    }
+
+    public int getDevice_number() {
+        return device_number;
+    }
+
+    public void setDevice_number(int device_number) {
+        this.device_number = device_number;
     }
 
     public int getArchitectureId() {
