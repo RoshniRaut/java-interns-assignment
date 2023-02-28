@@ -1,5 +1,5 @@
 
-app.controller('dashboardController',function($scope,$mdDialog,$location,TokenService,DeveloperService,RackService){
+app.controller('dashboardController',function($scope,$mdDialog,$location,TokenService,DeveloperService,RackService,ArchitectureService){
     $scope.Device =
     [
       {
@@ -47,40 +47,24 @@ app.controller('dashboardController',function($scope,$mdDialog,$location,TokenSe
         "rack": "Rack 2"
       }
     ];
-    $scope.architecture=[
-      {
-      "id":1,
-      "name":"E2900",
-      "device":0
-      },
-      {
-        "id":2,
-        "name":"E4700",
-        "device":0
-      }
-    ];
-    $scope.rack=[
-      {
-        "id":1,
-        "name":"Rack 1",
-        "device":0
-      },
-      {
-        "id":2,
-        "name":"Rack 2",
-        "device":0
-      }
-    ];
+    $scope.architecture=[];
+    $scope.rack=[];
+    $scope.developer=[];
+
+    ArchitectureService.getAllArchitecture().then(res=>{
+      arch=angular.fromJson(res.data)
+      arch.forEach(a=>{
+        architecture={name:a.architecturename, id: a.architecture_id,device:0};
+        $scope.architecture.push(architecture);
+      })
+    })
     RackService.getAllRack().then(res=>{
-      console.log(angular.fromJson(res.data))
       angular.fromJson(res.data).forEach(r=>{
         rack={name:r.rackname, id: r.rack_id,device:0};
         $scope.rack.push(rack);
       })
     })
-    $scope.developer=[];
     $scope.currentUser=TokenService.getCurrentUser();
-
     
     //fetching data from backend
     DeveloperService.getAllDeveloper().then(res=>{
@@ -117,12 +101,12 @@ app.controller('dashboardController',function($scope,$mdDialog,$location,TokenSe
     //every time a new device is added, updateCounts() method is called for re-calculation
     $scope.updateCounts=function(){
       $scope.status={occupied:0,free:0}
-      $scope.rack.forEach(r=>{
-        r.device=0;
-      })
-      $scope.architecture.forEach(a=>{
-        a.device=0;
-      })
+      // $scope.rack.forEach(r=>{
+      //   r.device=0;
+      // })
+      // $scope.architecture.forEach(a=>{
+      //   a.device=0;
+      // })
       $scope.Device.forEach(ele => {
         $scope.rack.forEach(r=>{
           if(r.name==ele.rack)
@@ -169,7 +153,6 @@ app.controller('dashboardController',function($scope,$mdDialog,$location,TokenSe
       });
       
     };
-
 
     function addDeviceController($scope, $mdDialog,developers,rack,architecture) {
       $scope.hide = function(){ $mdDialog.hide();};
@@ -246,15 +229,43 @@ app.controller('dashboardController',function($scope,$mdDialog,$location,TokenSe
       function addRackController($scope, $mdDialog) {
         $scope.hide = function(){ $mdDialog.hide();};
         $scope.cancel =function(){$mdDialog.cancel();};
-        $scope.return =function(device){$mdDialog.hide(device);};
+        $scope.return =function(rack){$mdDialog.hide(rack);};
       }
 
+      //add Architecture popup
+      $scope.addArchitecture = function(ev) {
+        $mdDialog.show({
+          controller: addArchitectureController,
+          templateUrl:'./dialogs/add_architecture.html',
+          parent: angular.element(document.body),
+        
+        }).then(function(architecture) {
+            if(architecture!=='cancel'){
+              ArchitectureService.addArchitecture(architecture).then(res=>{
+                arch={name:res.data.architecturename, id: res.data.architecture_id,device:0};
+                $scope.architecture.push(arch);
+                console.log($scope.architecture)
+              })
+              .catch(err=>{
+                console.log(err);
+                alert(err);
+              })
+            }
+        });
+        
+      };
+      function addArchitectureController($scope, $mdDialog) {
+        $scope.hide = function(){ $mdDialog.hide();};
+        $scope.cancel =function(){$mdDialog.cancel();};
+        $scope.return =function(architecture){$mdDialog.hide(architecture);};
+      }
+
+      //open drop down menu for edit and delete
       $scope.openMenu=function($mdMenu, ev) {
         originatorEv = ev;
         $mdMenu.open(ev);
       };
-
-
+      //delete a device call a api
       $scope.delete=function(ev){
         console.log(ev.target.value);
         device=$scope.Device.filter(d=> d.device_number==ev.target.value);

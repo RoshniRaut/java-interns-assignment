@@ -1,6 +1,7 @@
 package com.example.DeviceAPI.Controller;
 
 import com.example.DeviceAPI.Entity.Architecture;
+import com.example.DeviceAPI.Repository.ArchitectureRepository;
 import com.example.DeviceAPI.Service.ArchitectureService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,6 +18,8 @@ public class ArchitectureController {
 
     @Autowired
     private ArchitectureService architectureService;
+    @Autowired
+    private ArchitectureRepository architectureRepository;
 
     @GetMapping("/getAllArchitecture")
     public List<Architecture> getAllArchitectures(){
@@ -25,9 +28,10 @@ public class ArchitectureController {
     }
 
     @PostMapping("/addArchitecture")
-    public void addArchitecture(@Valid @RequestBody Architecture architecture){
+    public Architecture addArchitecture(@Valid @RequestBody Architecture architecture){
         logger.info("addArchitecture method is called");
         architectureService.addArchitecture(architecture);
+        return architectureRepository.getByArchitecturename(architecture.getArchitecturename());
     }
 
     @DeleteMapping("/architecture/{architecture_id}")
