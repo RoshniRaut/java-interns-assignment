@@ -1,10 +1,10 @@
 --liquibase formatted sql
 
 --changeset dev:3
-CREATE TABLE developers(
+CREATE TABLE developer(
 	dev_id INT NOT NULL AUTO_INCREMENT,
-	name VARCHAR(30),
-	email VARCHAR(60) UNIQUE,
+	name VARCHAR(30) UNIQUE NOT NULL,
+	email VARCHAR(60) UNIQUE NOT NULL,
 	password VARCHAR(255) NOT NULL,
 	PRIMARY KEY(dev_id)
 );

@@ -28,7 +28,6 @@ public class DeveloperService {
        if (developerRepository.findByName(userInfo.getName()).isPresent())
             throw new UserAlreadyRegistered("user name already registered");
        else {
-           System.out.println("user found");
             developerRepository.save(userInfo);
             message.put("message","New Developer Added");
             return new ResponseEntity<>(message, HttpStatus.CREATED);

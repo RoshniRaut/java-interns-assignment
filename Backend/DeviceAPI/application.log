@@ -1839,3 +1839,428 @@ Identify and stop the process that's listening on port 8081 or configure this ap
 2023-02-27 18:39:15,352 INFO  AbstractEntityManagerFactoryBean:651 - [] Closing JPA EntityManagerFactory for persistence unit 'default'
 2023-02-27 18:39:15,354 INFO  HikariDataSource:350 - [] HikariPool-1 - Shutdown initiated...
 2023-02-27 18:39:15,360 INFO  HikariDataSource:352 - [] HikariPool-1 - Shutdown completed.
+2023-02-28 12:14:24,852 INFO  StartupInfoLogger:55 - [] Starting DeviceAPIApplication using Java 19.0.1 on INPNQLT065 with PID 81755 (/home/roshni/Java_Assignment_1/Backend/DeviceAPI/target/classes started by roshni in /home/roshni/Java_Assignment_1/Backend/DeviceAPI)
+2023-02-28 12:14:24,856 INFO  SpringApplication:631 - [] No active profile set, falling back to 1 default profile: "default"
+2023-02-28 12:14:25,616 INFO  RepositoryConfigurationDelegate:132 - [] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-02-28 12:14:25,672 INFO  RepositoryConfigurationDelegate:201 - [] Finished Spring Data repository scanning in 47 ms. Found 4 JPA repository interfaces.
+2023-02-28 12:14:26,339 INFO  TomcatWebServer:108 - [] Tomcat initialized with port(s): 8081 (http)
+2023-02-28 12:14:26,351 INFO  DirectJDKLog:173 - [] Starting service [Tomcat]
+2023-02-28 12:14:26,351 INFO  DirectJDKLog:173 - [] Starting Servlet engine: [Apache Tomcat/9.0.71]
+2023-02-28 12:14:26,432 INFO  DirectJDKLog:173 - [] Initializing Spring embedded WebApplicationContext
+2023-02-28 12:14:26,433 INFO  ServletWebServerApplicationContext:292 - [] Root WebApplicationContext: initialization completed in 1516 ms
+2023-02-28 12:14:26,689 INFO  HikariDataSource:110 - [] HikariPool-1 - Starting...
+2023-02-28 12:14:27,619 INFO  HikariDataSource:123 - [] HikariPool-1 - Start completed.
+2023-02-28 12:14:29,972 INFO  JavaLogger:30 - [] Successfully acquired change log lock
+2023-02-28 12:14:30,138 INFO  JavaLogger:30 - [] Creating database history table with name: DeviceReservationSystem.DATABASECHANGELOG
+2023-02-28 12:14:30,672 INFO  JavaLogger:30 - [] Reading from DeviceReservationSystem.DATABASECHANGELOG
+2023-02-28 12:14:31,765 INFO  JavaLogger:30 - [] Custom SQL executed
+2023-02-28 12:14:31,768 INFO  JavaLogger:30 - [] ChangeSet data/changelog/db.changelog-architecture-and-rack-table.sql::1::arch ran successfully in 1011ms
+2023-02-28 12:14:33,485 INFO  JavaLogger:30 - [] Custom SQL executed
+2023-02-28 12:14:33,488 INFO  JavaLogger:30 - [] ChangeSet data/changelog/db.changelog-architecture-and-rack-table.sql::2::rack ran successfully in 1586ms
+2023-02-28 12:14:35,397 INFO  JavaLogger:30 - [] Custom SQL executed
+2023-02-28 12:14:35,401 INFO  JavaLogger:30 - [] ChangeSet data/changelog/db.changelog-developer-table.sql::3::dev ran successfully in 1723ms
+2023-02-28 12:14:37,734 INFO  JavaLogger:30 - [] Custom SQL executed
+2023-02-28 12:14:37,735 INFO  JavaLogger:30 - [] ChangeSet data/changelog/db.changelog-device-table.sql::4::device ran successfully in 2155ms
+2023-02-28 12:14:38,036 INFO  JavaLogger:30 - [] Successfully released change log lock
+2023-02-28 12:14:38,095 INFO  LogHelper:31 - [] HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-02-28 12:14:38,131 INFO  Version:44 - [] HHH000412: Hibernate ORM core version 5.6.14.Final
+2023-02-28 12:14:38,249 INFO  JavaReflectionManager:56 - [] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-02-28 12:14:38,368 INFO  Dialect:175 - [] HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2023-02-28 12:14:38,858 DEBUG SqlStatementLogger:144 - [] create table developer (dev_id integer not null auto_increment, email varchar(255) not null, name varchar(255) not null, password varchar(255) not null, primary key (dev_id)) engine=InnoDB
+2023-02-28 12:14:40,540 DEBUG SqlStatementLogger:144 - [] alter table device add column arc_id integer not null
+2023-02-28 12:14:41,509 DEBUG SqlStatementLogger:144 - [] alter table device add column dev_id integer
+2023-02-28 12:14:42,759 DEBUG SqlStatementLogger:144 - [] alter table device add column device_number integer not null
+2023-02-28 12:14:44,010 DEBUG SqlStatementLogger:144 - [] alter table device add column rack_id integer not null
+2023-02-28 12:14:44,620 INFO  JtaPlatformInitiator:52 - [] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-02-28 12:14:44,641 INFO  AbstractEntityManagerFactoryBean:437 - [] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-02-28 12:14:45,353 INFO  DefaultSecurityFilterChain:55 - [] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@4936fbc6, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@b4c89b6, org.springframework.security.web.context.SecurityContextPersistenceFilter@278cbf5a, org.springframework.security.web.header.HeaderWriterFilter@1f381eaf, org.springframework.web.filter.CorsFilter@54f62ac6, org.springframework.security.web.authentication.logout.LogoutFilter@5afa0b1a, com.example.DeviceAPI.Filter.JwtAuthFilter@5a23b9d1, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@62cb977a, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7db70494, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7be86438, org.springframework.security.web.session.SessionManagementFilter@36c1b6ff, org.springframework.security.web.access.ExceptionTranslationFilter@68838767, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@62ba3045]
+2023-02-28 12:14:45,417 WARN  JpaBaseConfiguration$JpaWebConfiguration:219 - [] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-02-28 12:14:45,925 INFO  TomcatWebServer:220 - [] Tomcat started on port(s): 8081 (http) with context path ''
+2023-02-28 12:14:45,937 INFO  StartupInfoLogger:61 - [] Started DeviceAPIApplication in 21.533 seconds (JVM running for 21.943)
+2023-02-28 12:23:59,874 INFO  AbstractEntityManagerFactoryBean:651 - [] Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-02-28 12:23:59,877 INFO  HikariDataSource:350 - [] HikariPool-1 - Shutdown initiated...
+2023-02-28 12:23:59,884 INFO  HikariDataSource:352 - [] HikariPool-1 - Shutdown completed.
+2023-02-28 12:24:02,261 INFO  StartupInfoLogger:55 - [] Starting DeviceAPIApplication using Java 19.0.1 on INPNQLT065 with PID 85807 (/home/roshni/Java_Assignment_1/Backend/DeviceAPI/target/classes started by roshni in /home/roshni/Java_Assignment_1/Backend/DeviceAPI)
+2023-02-28 12:24:02,265 INFO  SpringApplication:631 - [] No active profile set, falling back to 1 default profile: "default"
+2023-02-28 12:24:03,070 INFO  RepositoryConfigurationDelegate:132 - [] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-02-28 12:24:03,132 INFO  RepositoryConfigurationDelegate:201 - [] Finished Spring Data repository scanning in 52 ms. Found 4 JPA repository interfaces.
+2023-02-28 12:24:03,822 INFO  TomcatWebServer:108 - [] Tomcat initialized with port(s): 8081 (http)
+2023-02-28 12:24:03,834 INFO  DirectJDKLog:173 - [] Starting service [Tomcat]
+2023-02-28 12:24:03,834 INFO  DirectJDKLog:173 - [] Starting Servlet engine: [Apache Tomcat/9.0.71]
+2023-02-28 12:24:03,911 INFO  DirectJDKLog:173 - [] Initializing Spring embedded WebApplicationContext
+2023-02-28 12:24:03,911 INFO  ServletWebServerApplicationContext:292 - [] Root WebApplicationContext: initialization completed in 1589 ms
+2023-02-28 12:24:04,134 INFO  HikariDataSource:110 - [] HikariPool-1 - Starting...
+2023-02-28 12:24:04,927 INFO  HikariDataSource:123 - [] HikariPool-1 - Start completed.
+2023-02-28 12:24:07,479 INFO  JavaLogger:30 - [] Successfully acquired change log lock
+2023-02-28 12:24:07,642 INFO  JavaLogger:30 - [] Creating database history table with name: DeviceReservationSystem.DATABASECHANGELOG
+2023-02-28 12:24:09,511 INFO  JavaLogger:30 - [] Reading from DeviceReservationSystem.DATABASECHANGELOG
+2023-02-28 12:24:10,446 INFO  JavaLogger:30 - [] Custom SQL executed
+2023-02-28 12:24:10,448 INFO  JavaLogger:30 - [] ChangeSet data/changelog/db.changelog-architecture-and-rack-table.sql::1::arch ran successfully in 838ms
+2023-02-28 12:24:12,320 INFO  JavaLogger:30 - [] Custom SQL executed
+2023-02-28 12:24:12,325 INFO  JavaLogger:30 - [] ChangeSet data/changelog/db.changelog-architecture-and-rack-table.sql::2::rack ran successfully in 1710ms
+2023-02-28 12:24:14,526 INFO  JavaLogger:30 - [] Custom SQL executed
+2023-02-28 12:24:14,528 INFO  JavaLogger:30 - [] ChangeSet data/changelog/db.changelog-developer-table.sql::3::dev ran successfully in 1957ms
+2023-02-28 12:24:14,832 INFO  JavaLogger:30 - [] Successfully released change log lock
+2023-02-28 12:24:14,838 ERROR TomcatStarter:61 - [] Error starting Tomcat context. Exception: org.springframework.beans.factory.UnsatisfiedDependencyException. Message: Error creating bean with name 'jwtAuthFilter': Unsatisfied dependency expressed through field 'developerUserDetailsService'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'developerUserDetailsService': Unsatisfied dependency expressed through field 'developerRepository'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'developerRepository' defined in com.example.DeviceAPI.Repository.DeveloperRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Cannot create inner bean '(inner bean)#78a0ff63' of type [org.springframework.orm.jpa.SharedEntityManagerCreator] while setting bean property 'entityManager'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name '(inner bean)#78a0ff63': Cannot resolve reference to bean 'entityManagerFactory' while setting constructor argument; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'liquibase' defined in class path resource [org/springframework/boot/autoconfigure/liquibase/LiquibaseAutoConfiguration$LiquibaseConfiguration.class]: Invocation of init method failed; nested exception is liquibase.exception.LiquibaseException: liquibase.exception.MigrationFailedException: Migration failed for change set data/changelog/db.changelog-device-table.sql::4::device:
+     Reason: liquibase.exception.DatabaseException: Failed to open the referenced table 'developers' [Failed SQL: (1824) CREATE TABLE device(
+	device_id INT NOT NULL AUTO_INCREMENT,
+	arcId INT NOT NULL,
+	blocked_since VARCHAR(10),
+	blocked_till VARCHAR(10),
+	comments VARCHAR(60),
+	devId INT,
+	device_model VARCHAR(10) NOT NULL,
+	mac VARCHAR(20) NOT NULL,
+	rackId INT NOT NULL,
+	FOREIGN KEY(arcId) REFERENCES architecture(arc_id),
+	FOREIGN KEY(devId) REFERENCES developers(dev_id),
+	FOREIGN KEY(rackId) REFERENCES rack(rack_id),
+	PRIMARY KEY(device_id)
+)]
+2023-02-28 12:24:14,884 INFO  DirectJDKLog:173 - [] Stopping service [Tomcat]
+2023-02-28 12:24:14,888 WARN  DirectJDKLog:173 - [] The web application [ROOT] appears to have started a thread named [HikariPool-1 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.base/jdk.internal.misc.Unsafe.park(Native Method)
+ java.base/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:269)
+ java.base/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1674)
+ java.base/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1182)
+ java.base/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:899)
+ java.base/java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1070)
+ java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+ java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+ java.base/java.lang.Thread.run(Thread.java:1589)
+2023-02-28 12:24:14,889 WARN  AbstractApplicationContext:591 - [] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Unable to start web server; nested exception is org.springframework.boot.web.server.WebServerException: Unable to start embedded Tomcat
+2023-02-28 12:24:14,890 INFO  HikariDataSource:350 - [] HikariPool-1 - Shutdown initiated...
+2023-02-28 12:24:14,897 INFO  HikariDataSource:352 - [] HikariPool-1 - Shutdown completed.
+2023-02-28 12:24:14,904 INFO  ConditionEvaluationReportLoggingListener:136 - [] 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2023-02-28 12:24:14,920 ERROR SpringApplication:821 - [] Application run failed
+org.springframework.context.ApplicationContextException: Unable to start web server; nested exception is org.springframework.boot.web.server.WebServerException: Unable to start embedded Tomcat
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:165)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:577)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:147)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:731)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:408)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:307)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1303)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1292)
+	at com.example.DeviceAPI.DeviceAPIApplication.main(DeviceAPIApplication.java:9)
+Caused by: org.springframework.boot.web.server.WebServerException: Unable to start embedded Tomcat
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:142)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.<init>(TomcatWebServer.java:104)
+	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getTomcatWebServer(TomcatServletWebServerFactory.java:479)
+	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getWebServer(TomcatServletWebServerFactory.java:211)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.createWebServer(ServletWebServerApplicationContext.java:184)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:162)
+	... 8 common frames omitted
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'jwtAuthFilter': Unsatisfied dependency expressed through field 'developerUserDetailsService'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'developerUserDetailsService': Unsatisfied dependency expressed through field 'developerRepository'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'developerRepository' defined in com.example.DeviceAPI.Repository.DeveloperRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Cannot create inner bean '(inner bean)#78a0ff63' of type [org.springframework.orm.jpa.SharedEntityManagerCreator] while setting bean property 'entityManager'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name '(inner bean)#78a0ff63': Cannot resolve reference to bean 'entityManagerFactory' while setting constructor argument; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'liquibase' defined in class path resource [org/springframework/boot/autoconfigure/liquibase/LiquibaseAutoConfiguration$LiquibaseConfiguration.class]: Invocation of init method failed; nested exception is liquibase.exception.LiquibaseException: liquibase.exception.MigrationFailedException: Migration failed for change set data/changelog/db.changelog-device-table.sql::4::device:
+     Reason: liquibase.exception.DatabaseException: Failed to open the referenced table 'developers' [Failed SQL: (1824) CREATE TABLE device(
+	device_id INT NOT NULL AUTO_INCREMENT,
+	arcId INT NOT NULL,
+	blocked_since VARCHAR(10),
+	blocked_till VARCHAR(10),
+	comments VARCHAR(60),
+	devId INT,
+	device_model VARCHAR(10) NOT NULL,
+	mac VARCHAR(20) NOT NULL,
+	rackId INT NOT NULL,
+	FOREIGN KEY(arcId) REFERENCES architecture(arc_id),
+	FOREIGN KEY(devId) REFERENCES developers(dev_id),
+	FOREIGN KEY(rackId) REFERENCES rack(rack_id),
+	PRIMARY KEY(device_id)
+)]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:660)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:640)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:119)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:399)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1431)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:619)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:213)
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.getOrderedBeansOfType(ServletContextInitializerBeans.java:212)
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addAsRegistrationBean(ServletContextInitializerBeans.java:175)
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addAsRegistrationBean(ServletContextInitializerBeans.java:170)
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addAdaptableBeans(ServletContextInitializerBeans.java:155)
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.<init>(ServletContextInitializerBeans.java:87)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.getServletContextInitializerBeans(ServletWebServerApplicationContext.java:262)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.selfInitialize(ServletWebServerApplicationContext.java:236)
+	at org.springframework.boot.web.embedded.tomcat.TomcatStarter.onStartup(TomcatStarter.java:53)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5211)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1393)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1383)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:145)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:916)
+	at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:835)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1393)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1383)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:145)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:916)
+	at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:265)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardService.startInternal(StandardService.java:430)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:930)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.startup.Tomcat.start(Tomcat.java:486)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:123)
+	... 13 common frames omitted
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'developerUserDetailsService': Unsatisfied dependency expressed through field 'developerRepository'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'developerRepository' defined in com.example.DeviceAPI.Repository.DeveloperRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Cannot create inner bean '(inner bean)#78a0ff63' of type [org.springframework.orm.jpa.SharedEntityManagerCreator] while setting bean property 'entityManager'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name '(inner bean)#78a0ff63': Cannot resolve reference to bean 'entityManagerFactory' while setting constructor argument; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'liquibase' defined in class path resource [org/springframework/boot/autoconfigure/liquibase/LiquibaseAutoConfiguration$LiquibaseConfiguration.class]: Invocation of init method failed; nested exception is liquibase.exception.LiquibaseException: liquibase.exception.MigrationFailedException: Migration failed for change set data/changelog/db.changelog-device-table.sql::4::device:
+     Reason: liquibase.exception.DatabaseException: Failed to open the referenced table 'developers' [Failed SQL: (1824) CREATE TABLE device(
+	device_id INT NOT NULL AUTO_INCREMENT,
+	arcId INT NOT NULL,
+	blocked_since VARCHAR(10),
+	blocked_till VARCHAR(10),
+	comments VARCHAR(60),
+	devId INT,
+	device_model VARCHAR(10) NOT NULL,
+	mac VARCHAR(20) NOT NULL,
+	rackId INT NOT NULL,
+	FOREIGN KEY(arcId) REFERENCES architecture(arc_id),
+	FOREIGN KEY(devId) REFERENCES developers(dev_id),
+	FOREIGN KEY(rackId) REFERENCES rack(rack_id),
+	PRIMARY KEY(device_id)
+)]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:660)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:640)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:119)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:399)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1431)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:619)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1391)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1311)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:657)
+	... 55 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'developerRepository' defined in com.example.DeviceAPI.Repository.DeveloperRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Cannot create inner bean '(inner bean)#78a0ff63' of type [org.springframework.orm.jpa.SharedEntityManagerCreator] while setting bean property 'entityManager'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name '(inner bean)#78a0ff63': Cannot resolve reference to bean 'entityManagerFactory' while setting constructor argument; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'liquibase' defined in class path resource [org/springframework/boot/autoconfigure/liquibase/LiquibaseAutoConfiguration$LiquibaseConfiguration.class]: Invocation of init method failed; nested exception is liquibase.exception.LiquibaseException: liquibase.exception.MigrationFailedException: Migration failed for change set data/changelog/db.changelog-device-table.sql::4::device:
+     Reason: liquibase.exception.DatabaseException: Failed to open the referenced table 'developers' [Failed SQL: (1824) CREATE TABLE device(
+	device_id INT NOT NULL AUTO_INCREMENT,
+	arcId INT NOT NULL,
+	blocked_since VARCHAR(10),
+	blocked_till VARCHAR(10),
+	comments VARCHAR(60),
+	devId INT,
+	device_model VARCHAR(10) NOT NULL,
+	mac VARCHAR(20) NOT NULL,
+	rackId INT NOT NULL,
+	FOREIGN KEY(arcId) REFERENCES architecture(arc_id),
+	FOREIGN KEY(devId) REFERENCES developers(dev_id),
+	FOREIGN KEY(rackId) REFERENCES rack(rack_id),
+	PRIMARY KEY(device_id)
+)]
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveInnerBean(BeanDefinitionValueResolver.java:389)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:134)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyPropertyValues(AbstractAutowireCapableBeanFactory.java:1707)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1452)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:619)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1391)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1311)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:657)
+	... 69 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name '(inner bean)#78a0ff63': Cannot resolve reference to bean 'entityManagerFactory' while setting constructor argument; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'liquibase' defined in class path resource [org/springframework/boot/autoconfigure/liquibase/LiquibaseAutoConfiguration$LiquibaseConfiguration.class]: Invocation of init method failed; nested exception is liquibase.exception.LiquibaseException: liquibase.exception.MigrationFailedException: Migration failed for change set data/changelog/db.changelog-device-table.sql::4::device:
+     Reason: liquibase.exception.DatabaseException: Failed to open the referenced table 'developers' [Failed SQL: (1824) CREATE TABLE device(
+	device_id INT NOT NULL AUTO_INCREMENT,
+	arcId INT NOT NULL,
+	blocked_since VARCHAR(10),
+	blocked_till VARCHAR(10),
+	comments VARCHAR(60),
+	devId INT,
+	device_model VARCHAR(10) NOT NULL,
+	mac VARCHAR(20) NOT NULL,
+	rackId INT NOT NULL,
+	FOREIGN KEY(arcId) REFERENCES architecture(arc_id),
+	FOREIGN KEY(devId) REFERENCES developers(dev_id),
+	FOREIGN KEY(rackId) REFERENCES rack(rack_id),
+	PRIMARY KEY(device_id)
+)]
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:342)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:113)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveConstructorArguments(ConstructorResolver.java:693)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:510)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1352)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1195)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveInnerBean(BeanDefinitionValueResolver.java:374)
+	... 82 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'liquibase' defined in class path resource [org/springframework/boot/autoconfigure/liquibase/LiquibaseAutoConfiguration$LiquibaseConfiguration.class]: Invocation of init method failed; nested exception is liquibase.exception.LiquibaseException: liquibase.exception.MigrationFailedException: Migration failed for change set data/changelog/db.changelog-device-table.sql::4::device:
+     Reason: liquibase.exception.DatabaseException: Failed to open the referenced table 'developers' [Failed SQL: (1824) CREATE TABLE device(
+	device_id INT NOT NULL AUTO_INCREMENT,
+	arcId INT NOT NULL,
+	blocked_since VARCHAR(10),
+	blocked_till VARCHAR(10),
+	comments VARCHAR(60),
+	devId INT,
+	device_model VARCHAR(10) NOT NULL,
+	mac VARCHAR(20) NOT NULL,
+	rackId INT NOT NULL,
+	FOREIGN KEY(arcId) REFERENCES architecture(arc_id),
+	FOREIGN KEY(devId) REFERENCES developers(dev_id),
+	FOREIGN KEY(rackId) REFERENCES rack(rack_id),
+	PRIMARY KEY(device_id)
+)]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1804)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:322)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:330)
+	... 90 common frames omitted
+Caused by: liquibase.exception.LiquibaseException: liquibase.exception.MigrationFailedException: Migration failed for change set data/changelog/db.changelog-device-table.sql::4::device:
+     Reason: liquibase.exception.DatabaseException: Failed to open the referenced table 'developers' [Failed SQL: (1824) CREATE TABLE device(
+	device_id INT NOT NULL AUTO_INCREMENT,
+	arcId INT NOT NULL,
+	blocked_since VARCHAR(10),
+	blocked_till VARCHAR(10),
+	comments VARCHAR(60),
+	devId INT,
+	device_model VARCHAR(10) NOT NULL,
+	mac VARCHAR(20) NOT NULL,
+	rackId INT NOT NULL,
+	FOREIGN KEY(arcId) REFERENCES architecture(arc_id),
+	FOREIGN KEY(devId) REFERENCES developers(dev_id),
+	FOREIGN KEY(rackId) REFERENCES rack(rack_id),
+	PRIMARY KEY(device_id)
+)]
+	at liquibase.changelog.ChangeLogIterator.run(ChangeLogIterator.java:126)
+	at liquibase.Liquibase.lambda$null$0(Liquibase.java:265)
+	at liquibase.Scope.lambda$child$0(Scope.java:180)
+	at liquibase.Scope.child(Scope.java:189)
+	at liquibase.Scope.child(Scope.java:179)
+	at liquibase.Scope.child(Scope.java:158)
+	at liquibase.Scope.child(Scope.java:243)
+	at liquibase.Liquibase.lambda$update$1(Liquibase.java:264)
+	at liquibase.Scope.lambda$child$0(Scope.java:180)
+	at liquibase.Scope.child(Scope.java:189)
+	at liquibase.Scope.child(Scope.java:179)
+	at liquibase.Scope.child(Scope.java:158)
+	at liquibase.Liquibase.runInScope(Liquibase.java:2405)
+	at liquibase.Liquibase.update(Liquibase.java:211)
+	at liquibase.Liquibase.update(Liquibase.java:197)
+	at liquibase.integration.spring.SpringLiquibase.performUpdate(SpringLiquibase.java:314)
+	at liquibase.integration.spring.SpringLiquibase.afterPropertiesSet(SpringLiquibase.java:269)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1863)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1800)
+	... 99 common frames omitted
+Caused by: liquibase.exception.MigrationFailedException: Migration failed for change set data/changelog/db.changelog-device-table.sql::4::device:
+     Reason: liquibase.exception.DatabaseException: Failed to open the referenced table 'developers' [Failed SQL: (1824) CREATE TABLE device(
+	device_id INT NOT NULL AUTO_INCREMENT,
+	arcId INT NOT NULL,
+	blocked_since VARCHAR(10),
+	blocked_till VARCHAR(10),
+	comments VARCHAR(60),
+	devId INT,
+	device_model VARCHAR(10) NOT NULL,
+	mac VARCHAR(20) NOT NULL,
+	rackId INT NOT NULL,
+	FOREIGN KEY(arcId) REFERENCES architecture(arc_id),
+	FOREIGN KEY(devId) REFERENCES developers(dev_id),
+	FOREIGN KEY(rackId) REFERENCES rack(rack_id),
+	PRIMARY KEY(device_id)
+)]
+	at liquibase.changelog.ChangeSet.execute(ChangeSet.java:696)
+	at liquibase.changelog.visitor.UpdateVisitor.visit(UpdateVisitor.java:56)
+	at liquibase.changelog.ChangeLogIterator$2.lambda$null$0(ChangeLogIterator.java:113)
+	at liquibase.Scope.lambda$child$0(Scope.java:180)
+	at liquibase.Scope.child(Scope.java:189)
+	at liquibase.Scope.child(Scope.java:179)
+	at liquibase.Scope.child(Scope.java:158)
+	at liquibase.changelog.ChangeLogIterator$2.lambda$run$1(ChangeLogIterator.java:112)
+	at liquibase.Scope.lambda$child$0(Scope.java:180)
+	at liquibase.Scope.child(Scope.java:189)
+	at liquibase.Scope.child(Scope.java:179)
+	at liquibase.Scope.child(Scope.java:158)
+	at liquibase.Scope.child(Scope.java:243)
+	at liquibase.changelog.ChangeLogIterator$2.run(ChangeLogIterator.java:93)
+	at liquibase.Scope.lambda$child$0(Scope.java:180)
+	at liquibase.Scope.child(Scope.java:189)
+	at liquibase.Scope.child(Scope.java:179)
+	at liquibase.Scope.child(Scope.java:158)
+	at liquibase.Scope.child(Scope.java:243)
+	at liquibase.Scope.child(Scope.java:247)
+	at liquibase.changelog.ChangeLogIterator.run(ChangeLogIterator.java:65)
+	... 117 common frames omitted
+Caused by: liquibase.exception.DatabaseException: Failed to open the referenced table 'developers' [Failed SQL: (1824) CREATE TABLE device(
+	device_id INT NOT NULL AUTO_INCREMENT,
+	arcId INT NOT NULL,
+	blocked_since VARCHAR(10),
+	blocked_till VARCHAR(10),
+	comments VARCHAR(60),
+	devId INT,
+	device_model VARCHAR(10) NOT NULL,
+	mac VARCHAR(20) NOT NULL,
+	rackId INT NOT NULL,
+	FOREIGN KEY(arcId) REFERENCES architecture(arc_id),
+	FOREIGN KEY(devId) REFERENCES developers(dev_id),
+	FOREIGN KEY(rackId) REFERENCES rack(rack_id),
+	PRIMARY KEY(device_id)
+)]
+	at liquibase.executor.jvm.JdbcExecutor$ExecuteStatementCallback.doInStatement(JdbcExecutor.java:397)
+	at liquibase.executor.jvm.JdbcExecutor.execute(JdbcExecutor.java:83)
+	at liquibase.executor.jvm.JdbcExecutor.execute(JdbcExecutor.java:151)
+	at liquibase.database.AbstractJdbcDatabase.execute(AbstractJdbcDatabase.java:1279)
+	at liquibase.database.AbstractJdbcDatabase.executeStatements(AbstractJdbcDatabase.java:1261)
+	at liquibase.changelog.ChangeSet.execute(ChangeSet.java:661)
+	... 137 common frames omitted
+Caused by: java.sql.SQLException: Failed to open the referenced table 'developers'
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:129)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.StatementImpl.executeInternal(StatementImpl.java:763)
+	at com.mysql.cj.jdbc.StatementImpl.execute(StatementImpl.java:648)
+	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:94)
+	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java)
+	at liquibase.executor.jvm.JdbcExecutor$ExecuteStatementCallback.doInStatement(JdbcExecutor.java:393)
+	... 142 common frames omitted
+2023-02-28 12:24:55,791 INFO  StartupInfoLogger:55 - [] Starting DeviceAPIApplication using Java 19.0.1 on INPNQLT065 with PID 86092 (/home/roshni/Java_Assignment_1/Backend/DeviceAPI/target/classes started by roshni in /home/roshni/Java_Assignment_1/Backend/DeviceAPI)
+2023-02-28 12:24:55,794 INFO  SpringApplication:631 - [] No active profile set, falling back to 1 default profile: "default"
+2023-02-28 12:24:56,534 INFO  RepositoryConfigurationDelegate:132 - [] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-02-28 12:24:56,595 INFO  RepositoryConfigurationDelegate:201 - [] Finished Spring Data repository scanning in 48 ms. Found 4 JPA repository interfaces.
+2023-02-28 12:24:57,196 INFO  TomcatWebServer:108 - [] Tomcat initialized with port(s): 8081 (http)
+2023-02-28 12:24:57,207 INFO  DirectJDKLog:173 - [] Starting service [Tomcat]
+2023-02-28 12:24:57,208 INFO  DirectJDKLog:173 - [] Starting Servlet engine: [Apache Tomcat/9.0.71]
+2023-02-28 12:24:57,300 INFO  DirectJDKLog:173 - [] Initializing Spring embedded WebApplicationContext
+2023-02-28 12:24:57,300 INFO  ServletWebServerApplicationContext:292 - [] Root WebApplicationContext: initialization completed in 1448 ms
+2023-02-28 12:24:57,524 INFO  HikariDataSource:110 - [] HikariPool-1 - Starting...
+2023-02-28 12:24:57,652 INFO  HikariDataSource:123 - [] HikariPool-1 - Start completed.
+2023-02-28 12:24:57,981 INFO  JavaLogger:30 - [] Successfully acquired change log lock
+2023-02-28 12:24:58,277 INFO  JavaLogger:30 - [] Reading from DeviceReservationSystem.DATABASECHANGELOG
+2023-02-28 12:25:00,663 INFO  JavaLogger:30 - [] Custom SQL executed
+2023-02-28 12:25:00,666 INFO  JavaLogger:30 - [] ChangeSet data/changelog/db.changelog-device-table.sql::4::device ran successfully in 2336ms
+2023-02-28 12:25:00,934 INFO  JavaLogger:30 - [] Successfully released change log lock
+2023-02-28 12:25:01,021 INFO  LogHelper:31 - [] HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-02-28 12:25:01,053 INFO  Version:44 - [] HHH000412: Hibernate ORM core version 5.6.14.Final
+2023-02-28 12:25:01,148 INFO  JavaReflectionManager:56 - [] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-02-28 12:25:01,240 INFO  Dialect:175 - [] HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2023-02-28 12:25:01,656 DEBUG SqlStatementLogger:144 - [] alter table device add column arc_id integer not null
+2023-02-28 12:25:02,840 DEBUG SqlStatementLogger:144 - [] alter table device add column dev_id integer
+2023-02-28 12:25:03,198 DEBUG SqlStatementLogger:144 - [] alter table device add column device_number integer not null
+2023-02-28 12:25:04,811 DEBUG SqlStatementLogger:144 - [] alter table device add column rack_id integer not null
+2023-02-28 12:25:05,389 INFO  JtaPlatformInitiator:52 - [] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-02-28 12:25:05,417 INFO  AbstractEntityManagerFactoryBean:437 - [] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-02-28 12:25:06,008 INFO  DefaultSecurityFilterChain:55 - [] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@4779df3d, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@32b8992e, org.springframework.security.web.context.SecurityContextPersistenceFilter@16a15261, org.springframework.security.web.header.HeaderWriterFilter@2fca9fae, org.springframework.web.filter.CorsFilter@3ef7fb04, org.springframework.security.web.authentication.logout.LogoutFilter@4c9bed65, com.example.DeviceAPI.Filter.JwtAuthFilter@79454d8e, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5d8112e6, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@20d92f1e, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2446be5f, org.springframework.security.web.session.SessionManagementFilter@1443539, org.springframework.security.web.access.ExceptionTranslationFilter@1c41931a, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@22a8c837]
+2023-02-28 12:25:06,059 WARN  JpaBaseConfiguration$JpaWebConfiguration:219 - [] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-02-28 12:25:06,372 INFO  TomcatWebServer:220 - [] Tomcat started on port(s): 8081 (http) with context path ''
+2023-02-28 12:25:06,388 INFO  StartupInfoLogger:61 - [] Started DeviceAPIApplication in 11.067 seconds (JVM running for 11.474)
