@@ -1,6 +1,7 @@
 package com.example.DeviceAPI.Controller;
 
 import com.example.DeviceAPI.Entity.Rack;
+import com.example.DeviceAPI.Exceptions.AlreadyRegistered;
 import com.example.DeviceAPI.Service.RackService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,7 +25,7 @@ public class RackController {
     }
 
     @PostMapping("/addRack")
-    public void addRack(@Valid @RequestBody Rack rack){
+    public void addRack(@Valid @RequestBody Rack rack) throws AlreadyRegistered {
         logger.info("addRack method is called");
         rackService.addRack(rack);
     }

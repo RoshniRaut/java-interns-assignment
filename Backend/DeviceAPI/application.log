@@ -1839,3 +1839,770 @@ Identify and stop the process that's listening on port 8081 or configure this ap
 2023-02-27 18:39:15,352 INFO  AbstractEntityManagerFactoryBean:651 - [] Closing JPA EntityManagerFactory for persistence unit 'default'
 2023-02-27 18:39:15,354 INFO  HikariDataSource:350 - [] HikariPool-1 - Shutdown initiated...
 2023-02-27 18:39:15,360 INFO  HikariDataSource:352 - [] HikariPool-1 - Shutdown completed.
+2023-02-28 12:08:41,231 INFO  StartupInfoLogger:55 - [] Starting DeviceAPIApplication using Java 11.0.18 on INPNQLT161 with PID 93869 (/home/madhur/Documents/Backend/DeviceAPI/target/classes started by madhur in /home/madhur/Documents/Backend/DeviceAPI)
+2023-02-28 12:08:41,235 INFO  SpringApplication:631 - [] No active profile set, falling back to 1 default profile: "default"
+2023-02-28 12:08:42,813 INFO  RepositoryConfigurationDelegate:132 - [] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-02-28 12:08:42,901 INFO  RepositoryConfigurationDelegate:201 - [] Finished Spring Data repository scanning in 68 ms. Found 4 JPA repository interfaces.
+2023-02-28 12:08:43,885 INFO  TomcatWebServer:108 - [] Tomcat initialized with port(s): 8081 (http)
+2023-02-28 12:08:43,928 INFO  DirectJDKLog:173 - [] Starting service [Tomcat]
+2023-02-28 12:08:43,928 INFO  DirectJDKLog:173 - [] Starting Servlet engine: [Apache Tomcat/9.0.71]
+2023-02-28 12:08:44,224 INFO  DirectJDKLog:173 - [] Initializing Spring embedded WebApplicationContext
+2023-02-28 12:08:44,224 INFO  ServletWebServerApplicationContext:292 - [] Root WebApplicationContext: initialization completed in 2849 ms
+2023-02-28 12:08:44,532 INFO  LogHelper:31 - [] HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-02-28 12:08:44,653 INFO  Version:44 - [] HHH000412: Hibernate ORM core version 5.6.14.Final
+2023-02-28 12:08:45,141 INFO  JavaReflectionManager:56 - [] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-02-28 12:08:45,301 INFO  HikariDataSource:110 - [] HikariPool-1 - Starting...
+2023-02-28 12:08:45,968 INFO  HikariDataSource:123 - [] HikariPool-1 - Start completed.
+2023-02-28 12:08:46,509 INFO  Dialect:175 - [] HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2023-02-28 12:08:47,577 DEBUG SqlStatementLogger:144 - [] create table architecture (arc_id integer not null auto_increment, arc_name varchar(255) not null, primary key (arc_id)) engine=InnoDB
+2023-02-28 12:08:49,515 DEBUG SqlStatementLogger:144 - [] create table developer (dev_id integer not null auto_increment, email varchar(255) not null, name varchar(255) not null, password varchar(255) not null, primary key (dev_id)) engine=InnoDB
+2023-02-28 12:08:51,272 DEBUG SqlStatementLogger:144 - [] create table device (device_id integer not null auto_increment, arc_id integer not null, blocked_since varchar(255), blocked_till varchar(255), comments varchar(255), dev_id integer, device_model varchar(255) not null, device_number integer not null, mac varchar(255) not null, rack_id integer not null, primary key (device_id)) engine=InnoDB
+2023-02-28 12:08:53,072 DEBUG SqlStatementLogger:144 - [] create table rack (rack_id integer not null auto_increment, rack_name varchar(255) not null, primary key (rack_id)) engine=InnoDB
+2023-02-28 12:08:55,494 INFO  JtaPlatformInitiator:52 - [] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-02-28 12:08:55,563 INFO  AbstractEntityManagerFactoryBean:437 - [] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-02-28 12:08:56,719 INFO  DefaultSecurityFilterChain:55 - [] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@4840ec68, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7cc3a7f7, org.springframework.security.web.context.SecurityContextPersistenceFilter@7282f7b1, org.springframework.security.web.header.HeaderWriterFilter@e296794, org.springframework.web.filter.CorsFilter@210e2f2f, org.springframework.security.web.authentication.logout.LogoutFilter@4e67e090, com.example.DeviceAPI.Filter.JwtAuthFilter@6d946eee, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@361c4981, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@35fac3ba, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@c31419f, org.springframework.security.web.session.SessionManagementFilter@2ee5c08d, org.springframework.security.web.access.ExceptionTranslationFilter@57ac2910, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@608c2042]
+2023-02-28 12:08:56,782 WARN  JpaBaseConfiguration$JpaWebConfiguration:219 - [] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-02-28 12:08:57,238 INFO  TomcatWebServer:220 - [] Tomcat started on port(s): 8081 (http) with context path ''
+2023-02-28 12:08:57,250 INFO  StartupInfoLogger:61 - [] Started DeviceAPIApplication in 16.855 seconds (JVM running for 18.442)
+2023-02-28 12:56:02,027 INFO  AbstractEntityManagerFactoryBean:651 - [] Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-02-28 12:56:02,030 INFO  HikariDataSource:350 - [] HikariPool-1 - Shutdown initiated...
+2023-02-28 12:56:02,035 INFO  HikariDataSource:352 - [] HikariPool-1 - Shutdown completed.
+2023-02-28 12:56:10,219 INFO  StartupInfoLogger:55 - [] Starting DeviceAPIApplication using Java 11.0.18 on INPNQLT161 with PID 116686 (/home/madhur/Documents/Backend/DeviceAPI/target/classes started by madhur in /home/madhur/Documents/Backend/DeviceAPI)
+2023-02-28 12:56:10,225 INFO  SpringApplication:631 - [] No active profile set, falling back to 1 default profile: "default"
+2023-02-28 12:56:11,051 INFO  RepositoryConfigurationDelegate:132 - [] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-02-28 12:56:11,110 INFO  RepositoryConfigurationDelegate:201 - [] Finished Spring Data repository scanning in 49 ms. Found 4 JPA repository interfaces.
+2023-02-28 12:56:11,824 INFO  TomcatWebServer:108 - [] Tomcat initialized with port(s): 8081 (http)
+2023-02-28 12:56:11,837 INFO  DirectJDKLog:173 - [] Starting service [Tomcat]
+2023-02-28 12:56:11,837 INFO  DirectJDKLog:173 - [] Starting Servlet engine: [Apache Tomcat/9.0.71]
+2023-02-28 12:56:11,930 INFO  DirectJDKLog:173 - [] Initializing Spring embedded WebApplicationContext
+2023-02-28 12:56:11,931 INFO  ServletWebServerApplicationContext:292 - [] Root WebApplicationContext: initialization completed in 1638 ms
+2023-02-28 12:56:12,106 INFO  LogHelper:31 - [] HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-02-28 12:56:12,152 INFO  Version:44 - [] HHH000412: Hibernate ORM core version 5.6.14.Final
+2023-02-28 12:56:12,297 INFO  JavaReflectionManager:56 - [] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-02-28 12:56:12,394 INFO  HikariDataSource:110 - [] HikariPool-1 - Starting...
+2023-02-28 12:56:12,566 INFO  HikariDataSource:123 - [] HikariPool-1 - Start completed.
+2023-02-28 12:56:12,579 INFO  Dialect:175 - [] HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2023-02-28 12:56:13,218 INFO  JtaPlatformInitiator:52 - [] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-02-28 12:56:13,225 INFO  AbstractEntityManagerFactoryBean:437 - [] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-02-28 12:56:13,731 WARN  AbstractApplicationContext:591 - [] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'architectureController': Unsatisfied dependency expressed through field 'architectureService'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'architectureService': Unsatisfied dependency expressed through field 'architectureRepository'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'architectureRepository' defined in com.example.DeviceAPI.Repository.ArchitectureRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is org.springframework.data.repository.query.QueryCreationException: Could not create query for public abstract java.util.Optional com.example.DeviceAPI.Repository.ArchitectureRepository.findByName(java.lang.String); Reason: Failed to create query for method public abstract java.util.Optional com.example.DeviceAPI.Repository.ArchitectureRepository.findByName(java.lang.String)! No property 'name' found for type 'Architecture'; nested exception is java.lang.IllegalArgumentException: Failed to create query for method public abstract java.util.Optional com.example.DeviceAPI.Repository.ArchitectureRepository.findByName(java.lang.String)! No property 'name' found for type 'Architecture'
+2023-02-28 12:56:13,732 INFO  AbstractEntityManagerFactoryBean:651 - [] Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-02-28 12:56:13,733 INFO  HikariDataSource:350 - [] HikariPool-1 - Shutdown initiated...
+2023-02-28 12:56:13,744 INFO  HikariDataSource:352 - [] HikariPool-1 - Shutdown completed.
+2023-02-28 12:56:13,746 INFO  DirectJDKLog:173 - [] Stopping service [Tomcat]
+2023-02-28 12:56:13,757 INFO  ConditionEvaluationReportLoggingListener:136 - [] 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2023-02-28 12:56:13,880 ERROR SpringApplication:821 - [] Application run failed
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'architectureController': Unsatisfied dependency expressed through field 'architectureService'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'architectureService': Unsatisfied dependency expressed through field 'architectureRepository'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'architectureRepository' defined in com.example.DeviceAPI.Repository.ArchitectureRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is org.springframework.data.repository.query.QueryCreationException: Could not create query for public abstract java.util.Optional com.example.DeviceAPI.Repository.ArchitectureRepository.findByName(java.lang.String); Reason: Failed to create query for method public abstract java.util.Optional com.example.DeviceAPI.Repository.ArchitectureRepository.findByName(java.lang.String)! No property 'name' found for type 'Architecture'; nested exception is java.lang.IllegalArgumentException: Failed to create query for method public abstract java.util.Optional com.example.DeviceAPI.Repository.ArchitectureRepository.findByName(java.lang.String)! No property 'name' found for type 'Architecture'
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:660)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:640)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:119)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:399)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1431)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:619)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:955)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:918)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:147)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:731)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:408)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:307)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1303)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1292)
+	at com.example.DeviceAPI.DeviceAPIApplication.main(DeviceAPIApplication.java:9)
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'architectureService': Unsatisfied dependency expressed through field 'architectureRepository'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'architectureRepository' defined in com.example.DeviceAPI.Repository.ArchitectureRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is org.springframework.data.repository.query.QueryCreationException: Could not create query for public abstract java.util.Optional com.example.DeviceAPI.Repository.ArchitectureRepository.findByName(java.lang.String); Reason: Failed to create query for method public abstract java.util.Optional com.example.DeviceAPI.Repository.ArchitectureRepository.findByName(java.lang.String)! No property 'name' found for type 'Architecture'; nested exception is java.lang.IllegalArgumentException: Failed to create query for method public abstract java.util.Optional com.example.DeviceAPI.Repository.ArchitectureRepository.findByName(java.lang.String)! No property 'name' found for type 'Architecture'
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:660)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:640)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:119)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:399)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1431)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:619)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1391)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1311)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:657)
+	... 20 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'architectureRepository' defined in com.example.DeviceAPI.Repository.ArchitectureRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is org.springframework.data.repository.query.QueryCreationException: Could not create query for public abstract java.util.Optional com.example.DeviceAPI.Repository.ArchitectureRepository.findByName(java.lang.String); Reason: Failed to create query for method public abstract java.util.Optional com.example.DeviceAPI.Repository.ArchitectureRepository.findByName(java.lang.String)! No property 'name' found for type 'Architecture'; nested exception is java.lang.IllegalArgumentException: Failed to create query for method public abstract java.util.Optional com.example.DeviceAPI.Repository.ArchitectureRepository.findByName(java.lang.String)! No property 'name' found for type 'Architecture'
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1804)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1391)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1311)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:657)
+	... 34 common frames omitted
+Caused by: org.springframework.data.repository.query.QueryCreationException: Could not create query for public abstract java.util.Optional com.example.DeviceAPI.Repository.ArchitectureRepository.findByName(java.lang.String); Reason: Failed to create query for method public abstract java.util.Optional com.example.DeviceAPI.Repository.ArchitectureRepository.findByName(java.lang.String)! No property 'name' found for type 'Architecture'; nested exception is java.lang.IllegalArgumentException: Failed to create query for method public abstract java.util.Optional com.example.DeviceAPI.Repository.ArchitectureRepository.findByName(java.lang.String)! No property 'name' found for type 'Architecture'
+	at org.springframework.data.repository.query.QueryCreationException.create(QueryCreationException.java:101)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lookupQuery(QueryExecutorMethodInterceptor.java:107)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lambda$mapMethodsToQuery$1(QueryExecutorMethodInterceptor.java:95)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:195)
+	at java.base/java.util.Iterator.forEachRemaining(Iterator.java:133)
+	at java.base/java.util.Collections$UnmodifiableCollection$1.forEachRemaining(Collections.java:1054)
+	at java.base/java.util.Spliterators$IteratorSpliterator.forEachRemaining(Spliterators.java:1801)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:484)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:474)
+	at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:913)
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:578)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.mapMethodsToQuery(QueryExecutorMethodInterceptor.java:97)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lambda$new$0(QueryExecutorMethodInterceptor.java:87)
+	at java.base/java.util.Optional.map(Optional.java:265)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.<init>(QueryExecutorMethodInterceptor.java:87)
+	at org.springframework.data.repository.core.support.RepositoryFactorySupport.getRepository(RepositoryFactorySupport.java:365)
+	at org.springframework.data.repository.core.support.RepositoryFactoryBeanSupport.lambda$afterPropertiesSet$5(RepositoryFactoryBeanSupport.java:323)
+	at org.springframework.data.util.Lazy.getNullable(Lazy.java:231)
+	at org.springframework.data.util.Lazy.get(Lazy.java:115)
+	at org.springframework.data.repository.core.support.RepositoryFactoryBeanSupport.afterPropertiesSet(RepositoryFactoryBeanSupport.java:329)
+	at org.springframework.data.jpa.repository.support.JpaRepositoryFactoryBean.afterPropertiesSet(JpaRepositoryFactoryBean.java:144)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1863)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1800)
+	... 44 common frames omitted
+Caused by: java.lang.IllegalArgumentException: Failed to create query for method public abstract java.util.Optional com.example.DeviceAPI.Repository.ArchitectureRepository.findByName(java.lang.String)! No property 'name' found for type 'Architecture'
+	at org.springframework.data.jpa.repository.query.PartTreeJpaQuery.<init>(PartTreeJpaQuery.java:96)
+	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$CreateQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:119)
+	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$CreateIfNotFoundQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:259)
+	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$AbstractQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:93)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lookupQuery(QueryExecutorMethodInterceptor.java:103)
+	... 66 common frames omitted
+Caused by: org.springframework.data.mapping.PropertyReferenceException: No property 'name' found for type 'Architecture'
+	at org.springframework.data.mapping.PropertyPath.<init>(PropertyPath.java:91)
+	at org.springframework.data.mapping.PropertyPath.create(PropertyPath.java:438)
+	at org.springframework.data.mapping.PropertyPath.create(PropertyPath.java:414)
+	at org.springframework.data.mapping.PropertyPath.lambda$from$0(PropertyPath.java:367)
+	at java.base/java.util.concurrent.ConcurrentMap.computeIfAbsent(ConcurrentMap.java:330)
+	at org.springframework.data.mapping.PropertyPath.from(PropertyPath.java:349)
+	at org.springframework.data.mapping.PropertyPath.from(PropertyPath.java:332)
+	at org.springframework.data.repository.query.parser.Part.<init>(Part.java:81)
+	at org.springframework.data.repository.query.parser.PartTree$OrPart.lambda$new$0(PartTree.java:250)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:195)
+	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:177)
+	at java.base/java.util.Spliterators$ArraySpliterator.forEachRemaining(Spliterators.java:948)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:484)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:474)
+	at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:913)
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:578)
+	at org.springframework.data.repository.query.parser.PartTree$OrPart.<init>(PartTree.java:251)
+	at org.springframework.data.repository.query.parser.PartTree$Predicate.lambda$new$0(PartTree.java:384)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:195)
+	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:177)
+	at java.base/java.util.Spliterators$ArraySpliterator.forEachRemaining(Spliterators.java:948)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:484)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:474)
+	at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:913)
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:578)
+	at org.springframework.data.repository.query.parser.PartTree$Predicate.<init>(PartTree.java:385)
+	at org.springframework.data.repository.query.parser.PartTree.<init>(PartTree.java:96)
+	at org.springframework.data.jpa.repository.query.PartTreeJpaQuery.<init>(PartTreeJpaQuery.java:89)
+	... 70 common frames omitted
+2023-02-28 12:57:33,840 INFO  StartupInfoLogger:55 - [] Starting DeviceAPIApplication using Java 11.0.18 on INPNQLT161 with PID 117282 (/home/madhur/Documents/Backend/DeviceAPI/target/classes started by madhur in /home/madhur/Documents/Backend/DeviceAPI)
+2023-02-28 12:57:33,844 INFO  SpringApplication:631 - [] No active profile set, falling back to 1 default profile: "default"
+2023-02-28 12:57:34,761 INFO  RepositoryConfigurationDelegate:132 - [] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-02-28 12:57:34,846 INFO  RepositoryConfigurationDelegate:201 - [] Finished Spring Data repository scanning in 70 ms. Found 4 JPA repository interfaces.
+2023-02-28 12:57:35,688 INFO  TomcatWebServer:108 - [] Tomcat initialized with port(s): 8081 (http)
+2023-02-28 12:57:35,705 INFO  DirectJDKLog:173 - [] Starting service [Tomcat]
+2023-02-28 12:57:35,706 INFO  DirectJDKLog:173 - [] Starting Servlet engine: [Apache Tomcat/9.0.71]
+2023-02-28 12:57:35,841 INFO  DirectJDKLog:173 - [] Initializing Spring embedded WebApplicationContext
+2023-02-28 12:57:35,841 INFO  ServletWebServerApplicationContext:292 - [] Root WebApplicationContext: initialization completed in 1932 ms
+2023-02-28 12:57:36,065 INFO  LogHelper:31 - [] HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-02-28 12:57:36,122 INFO  Version:44 - [] HHH000412: Hibernate ORM core version 5.6.14.Final
+2023-02-28 12:57:36,308 INFO  JavaReflectionManager:56 - [] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-02-28 12:57:36,424 INFO  HikariDataSource:110 - [] HikariPool-1 - Starting...
+2023-02-28 12:57:36,682 INFO  HikariDataSource:123 - [] HikariPool-1 - Start completed.
+2023-02-28 12:57:36,697 INFO  Dialect:175 - [] HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2023-02-28 12:57:37,645 INFO  JtaPlatformInitiator:52 - [] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-02-28 12:57:37,654 INFO  AbstractEntityManagerFactoryBean:437 - [] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-02-28 12:57:38,281 WARN  AbstractApplicationContext:591 - [] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'architectureController': Unsatisfied dependency expressed through field 'architectureService'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'architectureService': Unsatisfied dependency expressed through field 'architectureRepository'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'architectureRepository' defined in com.example.DeviceAPI.Repository.ArchitectureRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is org.springframework.data.repository.query.QueryCreationException: Could not create query for public abstract java.util.Optional com.example.DeviceAPI.Repository.ArchitectureRepository.findByName(java.lang.String); Reason: Failed to create query for method public abstract java.util.Optional com.example.DeviceAPI.Repository.ArchitectureRepository.findByName(java.lang.String)! No property 'name' found for type 'Architecture'; nested exception is java.lang.IllegalArgumentException: Failed to create query for method public abstract java.util.Optional com.example.DeviceAPI.Repository.ArchitectureRepository.findByName(java.lang.String)! No property 'name' found for type 'Architecture'
+2023-02-28 12:57:38,281 INFO  AbstractEntityManagerFactoryBean:651 - [] Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-02-28 12:57:38,283 INFO  HikariDataSource:350 - [] HikariPool-1 - Shutdown initiated...
+2023-02-28 12:57:38,295 INFO  HikariDataSource:352 - [] HikariPool-1 - Shutdown completed.
+2023-02-28 12:57:38,298 INFO  DirectJDKLog:173 - [] Stopping service [Tomcat]
+2023-02-28 12:57:38,311 INFO  ConditionEvaluationReportLoggingListener:136 - [] 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2023-02-28 12:57:38,339 ERROR SpringApplication:821 - [] Application run failed
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'architectureController': Unsatisfied dependency expressed through field 'architectureService'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'architectureService': Unsatisfied dependency expressed through field 'architectureRepository'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'architectureRepository' defined in com.example.DeviceAPI.Repository.ArchitectureRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is org.springframework.data.repository.query.QueryCreationException: Could not create query for public abstract java.util.Optional com.example.DeviceAPI.Repository.ArchitectureRepository.findByName(java.lang.String); Reason: Failed to create query for method public abstract java.util.Optional com.example.DeviceAPI.Repository.ArchitectureRepository.findByName(java.lang.String)! No property 'name' found for type 'Architecture'; nested exception is java.lang.IllegalArgumentException: Failed to create query for method public abstract java.util.Optional com.example.DeviceAPI.Repository.ArchitectureRepository.findByName(java.lang.String)! No property 'name' found for type 'Architecture'
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:660)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:640)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:119)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:399)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1431)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:619)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:955)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:918)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:147)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:731)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:408)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:307)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1303)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1292)
+	at com.example.DeviceAPI.DeviceAPIApplication.main(DeviceAPIApplication.java:9)
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'architectureService': Unsatisfied dependency expressed through field 'architectureRepository'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'architectureRepository' defined in com.example.DeviceAPI.Repository.ArchitectureRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is org.springframework.data.repository.query.QueryCreationException: Could not create query for public abstract java.util.Optional com.example.DeviceAPI.Repository.ArchitectureRepository.findByName(java.lang.String); Reason: Failed to create query for method public abstract java.util.Optional com.example.DeviceAPI.Repository.ArchitectureRepository.findByName(java.lang.String)! No property 'name' found for type 'Architecture'; nested exception is java.lang.IllegalArgumentException: Failed to create query for method public abstract java.util.Optional com.example.DeviceAPI.Repository.ArchitectureRepository.findByName(java.lang.String)! No property 'name' found for type 'Architecture'
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:660)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:640)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:119)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:399)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1431)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:619)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1391)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1311)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:657)
+	... 20 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'architectureRepository' defined in com.example.DeviceAPI.Repository.ArchitectureRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is org.springframework.data.repository.query.QueryCreationException: Could not create query for public abstract java.util.Optional com.example.DeviceAPI.Repository.ArchitectureRepository.findByName(java.lang.String); Reason: Failed to create query for method public abstract java.util.Optional com.example.DeviceAPI.Repository.ArchitectureRepository.findByName(java.lang.String)! No property 'name' found for type 'Architecture'; nested exception is java.lang.IllegalArgumentException: Failed to create query for method public abstract java.util.Optional com.example.DeviceAPI.Repository.ArchitectureRepository.findByName(java.lang.String)! No property 'name' found for type 'Architecture'
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1804)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1391)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1311)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:657)
+	... 34 common frames omitted
+Caused by: org.springframework.data.repository.query.QueryCreationException: Could not create query for public abstract java.util.Optional com.example.DeviceAPI.Repository.ArchitectureRepository.findByName(java.lang.String); Reason: Failed to create query for method public abstract java.util.Optional com.example.DeviceAPI.Repository.ArchitectureRepository.findByName(java.lang.String)! No property 'name' found for type 'Architecture'; nested exception is java.lang.IllegalArgumentException: Failed to create query for method public abstract java.util.Optional com.example.DeviceAPI.Repository.ArchitectureRepository.findByName(java.lang.String)! No property 'name' found for type 'Architecture'
+	at org.springframework.data.repository.query.QueryCreationException.create(QueryCreationException.java:101)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lookupQuery(QueryExecutorMethodInterceptor.java:107)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lambda$mapMethodsToQuery$1(QueryExecutorMethodInterceptor.java:95)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:195)
+	at java.base/java.util.Iterator.forEachRemaining(Iterator.java:133)
+	at java.base/java.util.Collections$UnmodifiableCollection$1.forEachRemaining(Collections.java:1054)
+	at java.base/java.util.Spliterators$IteratorSpliterator.forEachRemaining(Spliterators.java:1801)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:484)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:474)
+	at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:913)
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:578)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.mapMethodsToQuery(QueryExecutorMethodInterceptor.java:97)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lambda$new$0(QueryExecutorMethodInterceptor.java:87)
+	at java.base/java.util.Optional.map(Optional.java:265)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.<init>(QueryExecutorMethodInterceptor.java:87)
+	at org.springframework.data.repository.core.support.RepositoryFactorySupport.getRepository(RepositoryFactorySupport.java:365)
+	at org.springframework.data.repository.core.support.RepositoryFactoryBeanSupport.lambda$afterPropertiesSet$5(RepositoryFactoryBeanSupport.java:323)
+	at org.springframework.data.util.Lazy.getNullable(Lazy.java:231)
+	at org.springframework.data.util.Lazy.get(Lazy.java:115)
+	at org.springframework.data.repository.core.support.RepositoryFactoryBeanSupport.afterPropertiesSet(RepositoryFactoryBeanSupport.java:329)
+	at org.springframework.data.jpa.repository.support.JpaRepositoryFactoryBean.afterPropertiesSet(JpaRepositoryFactoryBean.java:144)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1863)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1800)
+	... 44 common frames omitted
+Caused by: java.lang.IllegalArgumentException: Failed to create query for method public abstract java.util.Optional com.example.DeviceAPI.Repository.ArchitectureRepository.findByName(java.lang.String)! No property 'name' found for type 'Architecture'
+	at org.springframework.data.jpa.repository.query.PartTreeJpaQuery.<init>(PartTreeJpaQuery.java:96)
+	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$CreateQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:119)
+	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$CreateIfNotFoundQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:259)
+	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$AbstractQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:93)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lookupQuery(QueryExecutorMethodInterceptor.java:103)
+	... 66 common frames omitted
+Caused by: org.springframework.data.mapping.PropertyReferenceException: No property 'name' found for type 'Architecture'
+	at org.springframework.data.mapping.PropertyPath.<init>(PropertyPath.java:91)
+	at org.springframework.data.mapping.PropertyPath.create(PropertyPath.java:438)
+	at org.springframework.data.mapping.PropertyPath.create(PropertyPath.java:414)
+	at org.springframework.data.mapping.PropertyPath.lambda$from$0(PropertyPath.java:367)
+	at java.base/java.util.concurrent.ConcurrentMap.computeIfAbsent(ConcurrentMap.java:330)
+	at org.springframework.data.mapping.PropertyPath.from(PropertyPath.java:349)
+	at org.springframework.data.mapping.PropertyPath.from(PropertyPath.java:332)
+	at org.springframework.data.repository.query.parser.Part.<init>(Part.java:81)
+	at org.springframework.data.repository.query.parser.PartTree$OrPart.lambda$new$0(PartTree.java:250)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:195)
+	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:177)
+	at java.base/java.util.Spliterators$ArraySpliterator.forEachRemaining(Spliterators.java:948)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:484)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:474)
+	at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:913)
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:578)
+	at org.springframework.data.repository.query.parser.PartTree$OrPart.<init>(PartTree.java:251)
+	at org.springframework.data.repository.query.parser.PartTree$Predicate.lambda$new$0(PartTree.java:384)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:195)
+	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:177)
+	at java.base/java.util.Spliterators$ArraySpliterator.forEachRemaining(Spliterators.java:948)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:484)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:474)
+	at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:913)
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:578)
+	at org.springframework.data.repository.query.parser.PartTree$Predicate.<init>(PartTree.java:385)
+	at org.springframework.data.repository.query.parser.PartTree.<init>(PartTree.java:96)
+	at org.springframework.data.jpa.repository.query.PartTreeJpaQuery.<init>(PartTreeJpaQuery.java:89)
+	... 70 common frames omitted
+2023-02-28 13:00:03,812 INFO  StartupInfoLogger:55 - [] Starting DeviceAPIApplication using Java 11.0.18 on INPNQLT161 with PID 117577 (/home/madhur/Documents/Backend/DeviceAPI/target/classes started by madhur in /home/madhur/Documents/Backend/DeviceAPI)
+2023-02-28 13:00:03,816 INFO  SpringApplication:631 - [] No active profile set, falling back to 1 default profile: "default"
+2023-02-28 13:00:04,585 INFO  RepositoryConfigurationDelegate:132 - [] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-02-28 13:00:04,645 INFO  RepositoryConfigurationDelegate:201 - [] Finished Spring Data repository scanning in 48 ms. Found 4 JPA repository interfaces.
+2023-02-28 13:00:05,352 INFO  TomcatWebServer:108 - [] Tomcat initialized with port(s): 8081 (http)
+2023-02-28 13:00:05,369 INFO  DirectJDKLog:173 - [] Starting service [Tomcat]
+2023-02-28 13:00:05,370 INFO  DirectJDKLog:173 - [] Starting Servlet engine: [Apache Tomcat/9.0.71]
+2023-02-28 13:00:05,475 INFO  DirectJDKLog:173 - [] Initializing Spring embedded WebApplicationContext
+2023-02-28 13:00:05,476 INFO  ServletWebServerApplicationContext:292 - [] Root WebApplicationContext: initialization completed in 1592 ms
+2023-02-28 13:00:05,672 INFO  LogHelper:31 - [] HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-02-28 13:00:05,725 INFO  Version:44 - [] HHH000412: Hibernate ORM core version 5.6.14.Final
+2023-02-28 13:00:05,881 INFO  JavaReflectionManager:56 - [] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-02-28 13:00:05,977 INFO  HikariDataSource:110 - [] HikariPool-1 - Starting...
+2023-02-28 13:00:06,159 INFO  HikariDataSource:123 - [] HikariPool-1 - Start completed.
+2023-02-28 13:00:06,176 INFO  Dialect:175 - [] HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2023-02-28 13:00:06,917 INFO  JtaPlatformInitiator:52 - [] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-02-28 13:00:06,924 INFO  AbstractEntityManagerFactoryBean:437 - [] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-02-28 13:00:07,497 WARN  AbstractApplicationContext:591 - [] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'architectureController': Unsatisfied dependency expressed through field 'architectureService'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'architectureService': Unsatisfied dependency expressed through field 'architectureRepository'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'architectureRepository' defined in com.example.DeviceAPI.Repository.ArchitectureRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is org.springframework.data.repository.query.QueryCreationException: Could not create query for public abstract java.util.Optional com.example.DeviceAPI.Repository.ArchitectureRepository.findByArchitecture_name(java.lang.String); Reason: Failed to create query for method public abstract java.util.Optional com.example.DeviceAPI.Repository.ArchitectureRepository.findByArchitecture_name(java.lang.String)! No property 'architecture' found for type 'Architecture'; nested exception is java.lang.IllegalArgumentException: Failed to create query for method public abstract java.util.Optional com.example.DeviceAPI.Repository.ArchitectureRepository.findByArchitecture_name(java.lang.String)! No property 'architecture' found for type 'Architecture'
+2023-02-28 13:00:07,498 INFO  AbstractEntityManagerFactoryBean:651 - [] Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-02-28 13:00:07,500 INFO  HikariDataSource:350 - [] HikariPool-1 - Shutdown initiated...
+2023-02-28 13:00:07,515 INFO  HikariDataSource:352 - [] HikariPool-1 - Shutdown completed.
+2023-02-28 13:00:07,517 INFO  DirectJDKLog:173 - [] Stopping service [Tomcat]
+2023-02-28 13:00:07,530 INFO  ConditionEvaluationReportLoggingListener:136 - [] 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2023-02-28 13:00:07,551 ERROR SpringApplication:821 - [] Application run failed
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'architectureController': Unsatisfied dependency expressed through field 'architectureService'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'architectureService': Unsatisfied dependency expressed through field 'architectureRepository'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'architectureRepository' defined in com.example.DeviceAPI.Repository.ArchitectureRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is org.springframework.data.repository.query.QueryCreationException: Could not create query for public abstract java.util.Optional com.example.DeviceAPI.Repository.ArchitectureRepository.findByArchitecture_name(java.lang.String); Reason: Failed to create query for method public abstract java.util.Optional com.example.DeviceAPI.Repository.ArchitectureRepository.findByArchitecture_name(java.lang.String)! No property 'architecture' found for type 'Architecture'; nested exception is java.lang.IllegalArgumentException: Failed to create query for method public abstract java.util.Optional com.example.DeviceAPI.Repository.ArchitectureRepository.findByArchitecture_name(java.lang.String)! No property 'architecture' found for type 'Architecture'
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:660)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:640)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:119)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:399)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1431)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:619)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:955)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:918)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:147)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:731)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:408)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:307)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1303)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1292)
+	at com.example.DeviceAPI.DeviceAPIApplication.main(DeviceAPIApplication.java:9)
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'architectureService': Unsatisfied dependency expressed through field 'architectureRepository'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'architectureRepository' defined in com.example.DeviceAPI.Repository.ArchitectureRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is org.springframework.data.repository.query.QueryCreationException: Could not create query for public abstract java.util.Optional com.example.DeviceAPI.Repository.ArchitectureRepository.findByArchitecture_name(java.lang.String); Reason: Failed to create query for method public abstract java.util.Optional com.example.DeviceAPI.Repository.ArchitectureRepository.findByArchitecture_name(java.lang.String)! No property 'architecture' found for type 'Architecture'; nested exception is java.lang.IllegalArgumentException: Failed to create query for method public abstract java.util.Optional com.example.DeviceAPI.Repository.ArchitectureRepository.findByArchitecture_name(java.lang.String)! No property 'architecture' found for type 'Architecture'
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:660)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:640)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:119)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:399)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1431)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:619)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1391)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1311)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:657)
+	... 20 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'architectureRepository' defined in com.example.DeviceAPI.Repository.ArchitectureRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is org.springframework.data.repository.query.QueryCreationException: Could not create query for public abstract java.util.Optional com.example.DeviceAPI.Repository.ArchitectureRepository.findByArchitecture_name(java.lang.String); Reason: Failed to create query for method public abstract java.util.Optional com.example.DeviceAPI.Repository.ArchitectureRepository.findByArchitecture_name(java.lang.String)! No property 'architecture' found for type 'Architecture'; nested exception is java.lang.IllegalArgumentException: Failed to create query for method public abstract java.util.Optional com.example.DeviceAPI.Repository.ArchitectureRepository.findByArchitecture_name(java.lang.String)! No property 'architecture' found for type 'Architecture'
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1804)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1391)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1311)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:657)
+	... 34 common frames omitted
+Caused by: org.springframework.data.repository.query.QueryCreationException: Could not create query for public abstract java.util.Optional com.example.DeviceAPI.Repository.ArchitectureRepository.findByArchitecture_name(java.lang.String); Reason: Failed to create query for method public abstract java.util.Optional com.example.DeviceAPI.Repository.ArchitectureRepository.findByArchitecture_name(java.lang.String)! No property 'architecture' found for type 'Architecture'; nested exception is java.lang.IllegalArgumentException: Failed to create query for method public abstract java.util.Optional com.example.DeviceAPI.Repository.ArchitectureRepository.findByArchitecture_name(java.lang.String)! No property 'architecture' found for type 'Architecture'
+	at org.springframework.data.repository.query.QueryCreationException.create(QueryCreationException.java:101)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lookupQuery(QueryExecutorMethodInterceptor.java:107)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lambda$mapMethodsToQuery$1(QueryExecutorMethodInterceptor.java:95)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:195)
+	at java.base/java.util.Iterator.forEachRemaining(Iterator.java:133)
+	at java.base/java.util.Collections$UnmodifiableCollection$1.forEachRemaining(Collections.java:1054)
+	at java.base/java.util.Spliterators$IteratorSpliterator.forEachRemaining(Spliterators.java:1801)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:484)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:474)
+	at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:913)
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:578)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.mapMethodsToQuery(QueryExecutorMethodInterceptor.java:97)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lambda$new$0(QueryExecutorMethodInterceptor.java:87)
+	at java.base/java.util.Optional.map(Optional.java:265)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.<init>(QueryExecutorMethodInterceptor.java:87)
+	at org.springframework.data.repository.core.support.RepositoryFactorySupport.getRepository(RepositoryFactorySupport.java:365)
+	at org.springframework.data.repository.core.support.RepositoryFactoryBeanSupport.lambda$afterPropertiesSet$5(RepositoryFactoryBeanSupport.java:323)
+	at org.springframework.data.util.Lazy.getNullable(Lazy.java:231)
+	at org.springframework.data.util.Lazy.get(Lazy.java:115)
+	at org.springframework.data.repository.core.support.RepositoryFactoryBeanSupport.afterPropertiesSet(RepositoryFactoryBeanSupport.java:329)
+	at org.springframework.data.jpa.repository.support.JpaRepositoryFactoryBean.afterPropertiesSet(JpaRepositoryFactoryBean.java:144)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1863)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1800)
+	... 44 common frames omitted
+Caused by: java.lang.IllegalArgumentException: Failed to create query for method public abstract java.util.Optional com.example.DeviceAPI.Repository.ArchitectureRepository.findByArchitecture_name(java.lang.String)! No property 'architecture' found for type 'Architecture'
+	at org.springframework.data.jpa.repository.query.PartTreeJpaQuery.<init>(PartTreeJpaQuery.java:96)
+	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$CreateQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:119)
+	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$CreateIfNotFoundQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:259)
+	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$AbstractQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:93)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lookupQuery(QueryExecutorMethodInterceptor.java:103)
+	... 66 common frames omitted
+Caused by: org.springframework.data.mapping.PropertyReferenceException: No property 'architecture' found for type 'Architecture'
+	at org.springframework.data.mapping.PropertyPath.<init>(PropertyPath.java:91)
+	at org.springframework.data.mapping.PropertyPath.create(PropertyPath.java:438)
+	at org.springframework.data.mapping.PropertyPath.create(PropertyPath.java:414)
+	at org.springframework.data.mapping.PropertyPath.lambda$from$0(PropertyPath.java:367)
+	at java.base/java.util.concurrent.ConcurrentMap.computeIfAbsent(ConcurrentMap.java:330)
+	at org.springframework.data.mapping.PropertyPath.from(PropertyPath.java:349)
+	at org.springframework.data.mapping.PropertyPath.from(PropertyPath.java:332)
+	at org.springframework.data.repository.query.parser.Part.<init>(Part.java:81)
+	at org.springframework.data.repository.query.parser.PartTree$OrPart.lambda$new$0(PartTree.java:250)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:195)
+	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:177)
+	at java.base/java.util.Spliterators$ArraySpliterator.forEachRemaining(Spliterators.java:948)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:484)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:474)
+	at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:913)
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:578)
+	at org.springframework.data.repository.query.parser.PartTree$OrPart.<init>(PartTree.java:251)
+	at org.springframework.data.repository.query.parser.PartTree$Predicate.lambda$new$0(PartTree.java:384)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:195)
+	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:177)
+	at java.base/java.util.Spliterators$ArraySpliterator.forEachRemaining(Spliterators.java:948)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:484)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:474)
+	at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:913)
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:578)
+	at org.springframework.data.repository.query.parser.PartTree$Predicate.<init>(PartTree.java:385)
+	at org.springframework.data.repository.query.parser.PartTree.<init>(PartTree.java:96)
+	at org.springframework.data.jpa.repository.query.PartTreeJpaQuery.<init>(PartTreeJpaQuery.java:89)
+	... 70 common frames omitted
+2023-02-28 13:11:36,465 INFO  StartupInfoLogger:55 - [] Starting DeviceAPIApplication using Java 11.0.18 on INPNQLT161 with PID 123689 (/home/madhur/Documents/Backend/DeviceAPI/target/classes started by madhur in /home/madhur/Documents/Backend/DeviceAPI)
+2023-02-28 13:11:36,468 INFO  SpringApplication:631 - [] No active profile set, falling back to 1 default profile: "default"
+2023-02-28 13:11:37,248 INFO  RepositoryConfigurationDelegate:132 - [] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-02-28 13:11:37,310 INFO  RepositoryConfigurationDelegate:201 - [] Finished Spring Data repository scanning in 49 ms. Found 4 JPA repository interfaces.
+2023-02-28 13:11:37,967 INFO  TomcatWebServer:108 - [] Tomcat initialized with port(s): 8081 (http)
+2023-02-28 13:11:37,981 INFO  DirectJDKLog:173 - [] Starting service [Tomcat]
+2023-02-28 13:11:37,982 INFO  DirectJDKLog:173 - [] Starting Servlet engine: [Apache Tomcat/9.0.71]
+2023-02-28 13:11:38,112 INFO  DirectJDKLog:173 - [] Initializing Spring embedded WebApplicationContext
+2023-02-28 13:11:38,112 INFO  ServletWebServerApplicationContext:292 - [] Root WebApplicationContext: initialization completed in 1584 ms
+2023-02-28 13:11:38,315 INFO  LogHelper:31 - [] HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-02-28 13:11:38,372 INFO  Version:44 - [] HHH000412: Hibernate ORM core version 5.6.14.Final
+2023-02-28 13:11:38,528 INFO  JavaReflectionManager:56 - [] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-02-28 13:11:38,622 INFO  HikariDataSource:110 - [] HikariPool-1 - Starting...
+2023-02-28 13:11:38,787 INFO  HikariDataSource:123 - [] HikariPool-1 - Start completed.
+2023-02-28 13:11:38,802 INFO  Dialect:175 - [] HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2023-02-28 13:11:39,486 INFO  JtaPlatformInitiator:52 - [] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-02-28 13:11:39,493 INFO  AbstractEntityManagerFactoryBean:437 - [] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-02-28 13:11:40,060 WARN  AbstractApplicationContext:591 - [] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'architectureController': Unsatisfied dependency expressed through field 'architectureService'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'architectureService': Unsatisfied dependency expressed through field 'architectureRepository'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'architectureRepository' defined in com.example.DeviceAPI.Repository.ArchitectureRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is org.springframework.data.repository.query.QueryCreationException: Could not create query for public abstract java.util.Optional com.example.DeviceAPI.Repository.ArchitectureRepository.findByName(java.lang.String); Reason: Failed to create query for method public abstract java.util.Optional com.example.DeviceAPI.Repository.ArchitectureRepository.findByName(java.lang.String)! No property 'name' found for type 'Architecture'; nested exception is java.lang.IllegalArgumentException: Failed to create query for method public abstract java.util.Optional com.example.DeviceAPI.Repository.ArchitectureRepository.findByName(java.lang.String)! No property 'name' found for type 'Architecture'
+2023-02-28 13:11:40,060 INFO  AbstractEntityManagerFactoryBean:651 - [] Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-02-28 13:11:40,062 INFO  HikariDataSource:350 - [] HikariPool-1 - Shutdown initiated...
+2023-02-28 13:11:40,078 INFO  HikariDataSource:352 - [] HikariPool-1 - Shutdown completed.
+2023-02-28 13:11:40,080 INFO  DirectJDKLog:173 - [] Stopping service [Tomcat]
+2023-02-28 13:11:40,091 INFO  ConditionEvaluationReportLoggingListener:136 - [] 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2023-02-28 13:11:40,112 ERROR SpringApplication:821 - [] Application run failed
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'architectureController': Unsatisfied dependency expressed through field 'architectureService'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'architectureService': Unsatisfied dependency expressed through field 'architectureRepository'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'architectureRepository' defined in com.example.DeviceAPI.Repository.ArchitectureRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is org.springframework.data.repository.query.QueryCreationException: Could not create query for public abstract java.util.Optional com.example.DeviceAPI.Repository.ArchitectureRepository.findByName(java.lang.String); Reason: Failed to create query for method public abstract java.util.Optional com.example.DeviceAPI.Repository.ArchitectureRepository.findByName(java.lang.String)! No property 'name' found for type 'Architecture'; nested exception is java.lang.IllegalArgumentException: Failed to create query for method public abstract java.util.Optional com.example.DeviceAPI.Repository.ArchitectureRepository.findByName(java.lang.String)! No property 'name' found for type 'Architecture'
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:660)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:640)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:119)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:399)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1431)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:619)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:955)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:918)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:147)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:731)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:408)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:307)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1303)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1292)
+	at com.example.DeviceAPI.DeviceAPIApplication.main(DeviceAPIApplication.java:9)
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'architectureService': Unsatisfied dependency expressed through field 'architectureRepository'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'architectureRepository' defined in com.example.DeviceAPI.Repository.ArchitectureRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is org.springframework.data.repository.query.QueryCreationException: Could not create query for public abstract java.util.Optional com.example.DeviceAPI.Repository.ArchitectureRepository.findByName(java.lang.String); Reason: Failed to create query for method public abstract java.util.Optional com.example.DeviceAPI.Repository.ArchitectureRepository.findByName(java.lang.String)! No property 'name' found for type 'Architecture'; nested exception is java.lang.IllegalArgumentException: Failed to create query for method public abstract java.util.Optional com.example.DeviceAPI.Repository.ArchitectureRepository.findByName(java.lang.String)! No property 'name' found for type 'Architecture'
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:660)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:640)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:119)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:399)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1431)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:619)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1391)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1311)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:657)
+	... 20 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'architectureRepository' defined in com.example.DeviceAPI.Repository.ArchitectureRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is org.springframework.data.repository.query.QueryCreationException: Could not create query for public abstract java.util.Optional com.example.DeviceAPI.Repository.ArchitectureRepository.findByName(java.lang.String); Reason: Failed to create query for method public abstract java.util.Optional com.example.DeviceAPI.Repository.ArchitectureRepository.findByName(java.lang.String)! No property 'name' found for type 'Architecture'; nested exception is java.lang.IllegalArgumentException: Failed to create query for method public abstract java.util.Optional com.example.DeviceAPI.Repository.ArchitectureRepository.findByName(java.lang.String)! No property 'name' found for type 'Architecture'
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1804)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1391)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1311)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:657)
+	... 34 common frames omitted
+Caused by: org.springframework.data.repository.query.QueryCreationException: Could not create query for public abstract java.util.Optional com.example.DeviceAPI.Repository.ArchitectureRepository.findByName(java.lang.String); Reason: Failed to create query for method public abstract java.util.Optional com.example.DeviceAPI.Repository.ArchitectureRepository.findByName(java.lang.String)! No property 'name' found for type 'Architecture'; nested exception is java.lang.IllegalArgumentException: Failed to create query for method public abstract java.util.Optional com.example.DeviceAPI.Repository.ArchitectureRepository.findByName(java.lang.String)! No property 'name' found for type 'Architecture'
+	at org.springframework.data.repository.query.QueryCreationException.create(QueryCreationException.java:101)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lookupQuery(QueryExecutorMethodInterceptor.java:107)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lambda$mapMethodsToQuery$1(QueryExecutorMethodInterceptor.java:95)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:195)
+	at java.base/java.util.Iterator.forEachRemaining(Iterator.java:133)
+	at java.base/java.util.Collections$UnmodifiableCollection$1.forEachRemaining(Collections.java:1054)
+	at java.base/java.util.Spliterators$IteratorSpliterator.forEachRemaining(Spliterators.java:1801)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:484)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:474)
+	at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:913)
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:578)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.mapMethodsToQuery(QueryExecutorMethodInterceptor.java:97)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lambda$new$0(QueryExecutorMethodInterceptor.java:87)
+	at java.base/java.util.Optional.map(Optional.java:265)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.<init>(QueryExecutorMethodInterceptor.java:87)
+	at org.springframework.data.repository.core.support.RepositoryFactorySupport.getRepository(RepositoryFactorySupport.java:365)
+	at org.springframework.data.repository.core.support.RepositoryFactoryBeanSupport.lambda$afterPropertiesSet$5(RepositoryFactoryBeanSupport.java:323)
+	at org.springframework.data.util.Lazy.getNullable(Lazy.java:231)
+	at org.springframework.data.util.Lazy.get(Lazy.java:115)
+	at org.springframework.data.repository.core.support.RepositoryFactoryBeanSupport.afterPropertiesSet(RepositoryFactoryBeanSupport.java:329)
+	at org.springframework.data.jpa.repository.support.JpaRepositoryFactoryBean.afterPropertiesSet(JpaRepositoryFactoryBean.java:144)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1863)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1800)
+	... 44 common frames omitted
+Caused by: java.lang.IllegalArgumentException: Failed to create query for method public abstract java.util.Optional com.example.DeviceAPI.Repository.ArchitectureRepository.findByName(java.lang.String)! No property 'name' found for type 'Architecture'
+	at org.springframework.data.jpa.repository.query.PartTreeJpaQuery.<init>(PartTreeJpaQuery.java:96)
+	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$CreateQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:119)
+	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$CreateIfNotFoundQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:259)
+	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$AbstractQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:93)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lookupQuery(QueryExecutorMethodInterceptor.java:103)
+	... 66 common frames omitted
+Caused by: org.springframework.data.mapping.PropertyReferenceException: No property 'name' found for type 'Architecture'
+	at org.springframework.data.mapping.PropertyPath.<init>(PropertyPath.java:91)
+	at org.springframework.data.mapping.PropertyPath.create(PropertyPath.java:438)
+	at org.springframework.data.mapping.PropertyPath.create(PropertyPath.java:414)
+	at org.springframework.data.mapping.PropertyPath.lambda$from$0(PropertyPath.java:367)
+	at java.base/java.util.concurrent.ConcurrentMap.computeIfAbsent(ConcurrentMap.java:330)
+	at org.springframework.data.mapping.PropertyPath.from(PropertyPath.java:349)
+	at org.springframework.data.mapping.PropertyPath.from(PropertyPath.java:332)
+	at org.springframework.data.repository.query.parser.Part.<init>(Part.java:81)
+	at org.springframework.data.repository.query.parser.PartTree$OrPart.lambda$new$0(PartTree.java:250)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:195)
+	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:177)
+	at java.base/java.util.Spliterators$ArraySpliterator.forEachRemaining(Spliterators.java:948)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:484)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:474)
+	at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:913)
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:578)
+	at org.springframework.data.repository.query.parser.PartTree$OrPart.<init>(PartTree.java:251)
+	at org.springframework.data.repository.query.parser.PartTree$Predicate.lambda$new$0(PartTree.java:384)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:195)
+	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:177)
+	at java.base/java.util.Spliterators$ArraySpliterator.forEachRemaining(Spliterators.java:948)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:484)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:474)
+	at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:913)
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:578)
+	at org.springframework.data.repository.query.parser.PartTree$Predicate.<init>(PartTree.java:385)
+	at org.springframework.data.repository.query.parser.PartTree.<init>(PartTree.java:96)
+	at org.springframework.data.jpa.repository.query.PartTreeJpaQuery.<init>(PartTreeJpaQuery.java:89)
+	... 70 common frames omitted
+2023-02-28 13:12:21,141 INFO  StartupInfoLogger:55 - [] Starting DeviceAPIApplication using Java 11.0.18 on INPNQLT161 with PID 123888 (/home/madhur/Documents/Backend/DeviceAPI/target/classes started by madhur in /home/madhur/Documents/Backend/DeviceAPI)
+2023-02-28 13:12:21,145 INFO  SpringApplication:631 - [] No active profile set, falling back to 1 default profile: "default"
+2023-02-28 13:12:21,925 INFO  RepositoryConfigurationDelegate:132 - [] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-02-28 13:12:21,992 INFO  RepositoryConfigurationDelegate:201 - [] Finished Spring Data repository scanning in 56 ms. Found 4 JPA repository interfaces.
+2023-02-28 13:12:22,732 INFO  TomcatWebServer:108 - [] Tomcat initialized with port(s): 8081 (http)
+2023-02-28 13:12:22,746 INFO  DirectJDKLog:173 - [] Starting service [Tomcat]
+2023-02-28 13:12:22,747 INFO  DirectJDKLog:173 - [] Starting Servlet engine: [Apache Tomcat/9.0.71]
+2023-02-28 13:12:22,853 INFO  DirectJDKLog:173 - [] Initializing Spring embedded WebApplicationContext
+2023-02-28 13:12:22,853 INFO  ServletWebServerApplicationContext:292 - [] Root WebApplicationContext: initialization completed in 1649 ms
+2023-02-28 13:12:23,039 INFO  LogHelper:31 - [] HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-02-28 13:12:23,092 INFO  Version:44 - [] HHH000412: Hibernate ORM core version 5.6.14.Final
+2023-02-28 13:12:23,273 INFO  JavaReflectionManager:56 - [] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-02-28 13:12:23,363 INFO  HikariDataSource:110 - [] HikariPool-1 - Starting...
+2023-02-28 13:12:23,550 INFO  HikariDataSource:123 - [] HikariPool-1 - Start completed.
+2023-02-28 13:12:23,566 INFO  Dialect:175 - [] HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2023-02-28 13:12:24,291 INFO  JtaPlatformInitiator:52 - [] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-02-28 13:12:24,298 INFO  AbstractEntityManagerFactoryBean:437 - [] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-02-28 13:12:24,942 WARN  AbstractApplicationContext:591 - [] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'rackController': Unsatisfied dependency expressed through field 'rackService'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'rackService': Unsatisfied dependency expressed through field 'rackRepository'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'rackRepository' defined in com.example.DeviceAPI.Repository.RackRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is org.springframework.data.repository.query.QueryCreationException: Could not create query for public abstract java.util.Optional com.example.DeviceAPI.Repository.RackRepository.findByName(java.lang.String); Reason: Failed to create query for method public abstract java.util.Optional com.example.DeviceAPI.Repository.RackRepository.findByName(java.lang.String)! No property 'name' found for type 'Rack'; nested exception is java.lang.IllegalArgumentException: Failed to create query for method public abstract java.util.Optional com.example.DeviceAPI.Repository.RackRepository.findByName(java.lang.String)! No property 'name' found for type 'Rack'
+2023-02-28 13:12:24,943 INFO  AbstractEntityManagerFactoryBean:651 - [] Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-02-28 13:12:24,945 INFO  HikariDataSource:350 - [] HikariPool-1 - Shutdown initiated...
+2023-02-28 13:12:24,956 INFO  HikariDataSource:352 - [] HikariPool-1 - Shutdown completed.
+2023-02-28 13:12:24,958 INFO  DirectJDKLog:173 - [] Stopping service [Tomcat]
+2023-02-28 13:12:24,969 INFO  ConditionEvaluationReportLoggingListener:136 - [] 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2023-02-28 13:12:24,989 ERROR SpringApplication:821 - [] Application run failed
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'rackController': Unsatisfied dependency expressed through field 'rackService'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'rackService': Unsatisfied dependency expressed through field 'rackRepository'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'rackRepository' defined in com.example.DeviceAPI.Repository.RackRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is org.springframework.data.repository.query.QueryCreationException: Could not create query for public abstract java.util.Optional com.example.DeviceAPI.Repository.RackRepository.findByName(java.lang.String); Reason: Failed to create query for method public abstract java.util.Optional com.example.DeviceAPI.Repository.RackRepository.findByName(java.lang.String)! No property 'name' found for type 'Rack'; nested exception is java.lang.IllegalArgumentException: Failed to create query for method public abstract java.util.Optional com.example.DeviceAPI.Repository.RackRepository.findByName(java.lang.String)! No property 'name' found for type 'Rack'
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:660)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:640)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:119)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:399)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1431)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:619)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:955)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:918)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:147)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:731)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:408)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:307)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1303)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1292)
+	at com.example.DeviceAPI.DeviceAPIApplication.main(DeviceAPIApplication.java:9)
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'rackService': Unsatisfied dependency expressed through field 'rackRepository'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'rackRepository' defined in com.example.DeviceAPI.Repository.RackRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is org.springframework.data.repository.query.QueryCreationException: Could not create query for public abstract java.util.Optional com.example.DeviceAPI.Repository.RackRepository.findByName(java.lang.String); Reason: Failed to create query for method public abstract java.util.Optional com.example.DeviceAPI.Repository.RackRepository.findByName(java.lang.String)! No property 'name' found for type 'Rack'; nested exception is java.lang.IllegalArgumentException: Failed to create query for method public abstract java.util.Optional com.example.DeviceAPI.Repository.RackRepository.findByName(java.lang.String)! No property 'name' found for type 'Rack'
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:660)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:640)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:119)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:399)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1431)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:619)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1391)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1311)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:657)
+	... 20 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'rackRepository' defined in com.example.DeviceAPI.Repository.RackRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is org.springframework.data.repository.query.QueryCreationException: Could not create query for public abstract java.util.Optional com.example.DeviceAPI.Repository.RackRepository.findByName(java.lang.String); Reason: Failed to create query for method public abstract java.util.Optional com.example.DeviceAPI.Repository.RackRepository.findByName(java.lang.String)! No property 'name' found for type 'Rack'; nested exception is java.lang.IllegalArgumentException: Failed to create query for method public abstract java.util.Optional com.example.DeviceAPI.Repository.RackRepository.findByName(java.lang.String)! No property 'name' found for type 'Rack'
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1804)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1391)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1311)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:657)
+	... 34 common frames omitted
+Caused by: org.springframework.data.repository.query.QueryCreationException: Could not create query for public abstract java.util.Optional com.example.DeviceAPI.Repository.RackRepository.findByName(java.lang.String); Reason: Failed to create query for method public abstract java.util.Optional com.example.DeviceAPI.Repository.RackRepository.findByName(java.lang.String)! No property 'name' found for type 'Rack'; nested exception is java.lang.IllegalArgumentException: Failed to create query for method public abstract java.util.Optional com.example.DeviceAPI.Repository.RackRepository.findByName(java.lang.String)! No property 'name' found for type 'Rack'
+	at org.springframework.data.repository.query.QueryCreationException.create(QueryCreationException.java:101)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lookupQuery(QueryExecutorMethodInterceptor.java:107)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lambda$mapMethodsToQuery$1(QueryExecutorMethodInterceptor.java:95)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:195)
+	at java.base/java.util.Iterator.forEachRemaining(Iterator.java:133)
+	at java.base/java.util.Collections$UnmodifiableCollection$1.forEachRemaining(Collections.java:1054)
+	at java.base/java.util.Spliterators$IteratorSpliterator.forEachRemaining(Spliterators.java:1801)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:484)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:474)
+	at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:913)
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:578)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.mapMethodsToQuery(QueryExecutorMethodInterceptor.java:97)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lambda$new$0(QueryExecutorMethodInterceptor.java:87)
+	at java.base/java.util.Optional.map(Optional.java:265)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.<init>(QueryExecutorMethodInterceptor.java:87)
+	at org.springframework.data.repository.core.support.RepositoryFactorySupport.getRepository(RepositoryFactorySupport.java:365)
+	at org.springframework.data.repository.core.support.RepositoryFactoryBeanSupport.lambda$afterPropertiesSet$5(RepositoryFactoryBeanSupport.java:323)
+	at org.springframework.data.util.Lazy.getNullable(Lazy.java:231)
+	at org.springframework.data.util.Lazy.get(Lazy.java:115)
+	at org.springframework.data.repository.core.support.RepositoryFactoryBeanSupport.afterPropertiesSet(RepositoryFactoryBeanSupport.java:329)
+	at org.springframework.data.jpa.repository.support.JpaRepositoryFactoryBean.afterPropertiesSet(JpaRepositoryFactoryBean.java:144)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1863)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1800)
+	... 44 common frames omitted
+Caused by: java.lang.IllegalArgumentException: Failed to create query for method public abstract java.util.Optional com.example.DeviceAPI.Repository.RackRepository.findByName(java.lang.String)! No property 'name' found for type 'Rack'
+	at org.springframework.data.jpa.repository.query.PartTreeJpaQuery.<init>(PartTreeJpaQuery.java:96)
+	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$CreateQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:119)
+	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$CreateIfNotFoundQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:259)
+	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$AbstractQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:93)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lookupQuery(QueryExecutorMethodInterceptor.java:103)
+	... 66 common frames omitted
+Caused by: org.springframework.data.mapping.PropertyReferenceException: No property 'name' found for type 'Rack'
+	at org.springframework.data.mapping.PropertyPath.<init>(PropertyPath.java:91)
+	at org.springframework.data.mapping.PropertyPath.create(PropertyPath.java:438)
+	at org.springframework.data.mapping.PropertyPath.create(PropertyPath.java:414)
+	at org.springframework.data.mapping.PropertyPath.lambda$from$0(PropertyPath.java:367)
+	at java.base/java.util.concurrent.ConcurrentMap.computeIfAbsent(ConcurrentMap.java:330)
+	at org.springframework.data.mapping.PropertyPath.from(PropertyPath.java:349)
+	at org.springframework.data.mapping.PropertyPath.from(PropertyPath.java:332)
+	at org.springframework.data.repository.query.parser.Part.<init>(Part.java:81)
+	at org.springframework.data.repository.query.parser.PartTree$OrPart.lambda$new$0(PartTree.java:250)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:195)
+	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:177)
+	at java.base/java.util.Spliterators$ArraySpliterator.forEachRemaining(Spliterators.java:948)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:484)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:474)
+	at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:913)
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:578)
+	at org.springframework.data.repository.query.parser.PartTree$OrPart.<init>(PartTree.java:251)
+	at org.springframework.data.repository.query.parser.PartTree$Predicate.lambda$new$0(PartTree.java:384)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:195)
+	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:177)
+	at java.base/java.util.Spliterators$ArraySpliterator.forEachRemaining(Spliterators.java:948)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:484)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:474)
+	at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:913)
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:578)
+	at org.springframework.data.repository.query.parser.PartTree$Predicate.<init>(PartTree.java:385)
+	at org.springframework.data.repository.query.parser.PartTree.<init>(PartTree.java:96)
+	at org.springframework.data.jpa.repository.query.PartTreeJpaQuery.<init>(PartTreeJpaQuery.java:89)
+	... 70 common frames omitted
+2023-02-28 14:13:11,010 INFO  StartupInfoLogger:55 - [] Starting DeviceAPIApplication using Java 11.0.18 on INPNQLT161 with PID 125432 (/home/madhur/Documents/Backend/DeviceAPI/target/classes started by madhur in /home/madhur/Documents/Backend/DeviceAPI)
+2023-02-28 14:13:11,014 INFO  SpringApplication:631 - [] No active profile set, falling back to 1 default profile: "default"
+2023-02-28 14:13:11,802 INFO  RepositoryConfigurationDelegate:132 - [] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-02-28 14:13:11,861 INFO  RepositoryConfigurationDelegate:201 - [] Finished Spring Data repository scanning in 49 ms. Found 4 JPA repository interfaces.
+2023-02-28 14:13:12,544 INFO  TomcatWebServer:108 - [] Tomcat initialized with port(s): 8081 (http)
+2023-02-28 14:13:12,556 INFO  DirectJDKLog:173 - [] Starting service [Tomcat]
+2023-02-28 14:13:12,557 INFO  DirectJDKLog:173 - [] Starting Servlet engine: [Apache Tomcat/9.0.71]
+2023-02-28 14:13:12,672 INFO  DirectJDKLog:173 - [] Initializing Spring embedded WebApplicationContext
+2023-02-28 14:13:12,673 INFO  ServletWebServerApplicationContext:292 - [] Root WebApplicationContext: initialization completed in 1620 ms
+2023-02-28 14:13:12,898 INFO  LogHelper:31 - [] HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-02-28 14:13:12,940 INFO  Version:44 - [] HHH000412: Hibernate ORM core version 5.6.14.Final
+2023-02-28 14:13:13,071 INFO  JavaReflectionManager:56 - [] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-02-28 14:13:13,185 INFO  HikariDataSource:110 - [] HikariPool-1 - Starting...
+2023-02-28 14:13:13,380 INFO  HikariDataSource:123 - [] HikariPool-1 - Start completed.
+2023-02-28 14:13:13,396 INFO  Dialect:175 - [] HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2023-02-28 14:13:14,036 INFO  JtaPlatformInitiator:52 - [] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-02-28 14:13:14,042 INFO  AbstractEntityManagerFactoryBean:437 - [] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-02-28 14:13:14,906 INFO  DefaultSecurityFilterChain:55 - [] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@7fff419d, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6127ef86, org.springframework.security.web.context.SecurityContextPersistenceFilter@73eae5f, org.springframework.security.web.header.HeaderWriterFilter@16745abd, org.springframework.web.filter.CorsFilter@542754be, org.springframework.security.web.authentication.logout.LogoutFilter@178ebac3, com.example.DeviceAPI.Filter.JwtAuthFilter@36f40d72, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7698a3d9, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4b62f1ba, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@af57949, org.springframework.security.web.session.SessionManagementFilter@337fb1a5, org.springframework.security.web.access.ExceptionTranslationFilter@3809f65d, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@2ad6895a]
+2023-02-28 14:13:14,963 WARN  JpaBaseConfiguration$JpaWebConfiguration:219 - [] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-02-28 14:13:15,381 INFO  TomcatWebServer:220 - [] Tomcat started on port(s): 8081 (http) with context path ''
+2023-02-28 14:13:15,390 INFO  StartupInfoLogger:61 - [] Started DeviceAPIApplication in 4.969 seconds (JVM running for 5.515)
+2023-02-28 14:38:24,113 INFO  AbstractEntityManagerFactoryBean:651 - [] Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-02-28 14:38:24,115 INFO  HikariDataSource:350 - [] HikariPool-1 - Shutdown initiated...
+2023-02-28 14:38:24,125 INFO  HikariDataSource:352 - [] HikariPool-1 - Shutdown completed.

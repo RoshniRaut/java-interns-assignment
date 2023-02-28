@@ -1,7 +1,7 @@
 package com.example.DeviceAPI.Controller;
 
 import com.example.DeviceAPI.Entity.Developer;
-import com.example.DeviceAPI.Exceptions.UserAlreadyRegistered;
+import com.example.DeviceAPI.Exceptions.AlreadyRegistered;
 import com.example.DeviceAPI.Service.DeveloperService;
 import com.example.DeviceAPI.Service.JwtService;
 import com.example.DeviceAPI.dto.AuthRequest;
@@ -43,10 +43,11 @@ public class DeveloperController {
     }
     @DeleteMapping("/developer/{id}")
     public ResponseEntity<?> delete(@PathVariable Integer id){
+        logger.info("Delete method for developer is called");
         return service.deleteById(id);
     }
     @PostMapping("/addDeveloper")
-    public ResponseEntity<?> addNewUser(@Valid @RequestBody Developer developer) throws UserAlreadyRegistered {
+    public ResponseEntity<?> addNewDeveloper(@Valid @RequestBody Developer developer) throws AlreadyRegistered {
         logger.info("addDeveloper method is called");
         return service.addUser(developer);
     }
@@ -58,9 +59,12 @@ public class DeveloperController {
         if (authentication.isAuthenticated()) {
             token.put("token", jwtService.generateToken((authRequest.getUsername())));
             token.put("username", authentication.getName());
+            logger.info("Authentication token generated");
             return token;
         }
-        else
+        else {
+            logger.warn("password invalid");
             throw new UsernameNotFoundException("Username or password invalid");
+        }
     }
 }

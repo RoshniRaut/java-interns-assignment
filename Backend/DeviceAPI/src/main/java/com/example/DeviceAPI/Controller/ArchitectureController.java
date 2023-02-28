@@ -1,6 +1,7 @@
 package com.example.DeviceAPI.Controller;
 
 import com.example.DeviceAPI.Entity.Architecture;
+import com.example.DeviceAPI.Exceptions.AlreadyRegistered;
 import com.example.DeviceAPI.Service.ArchitectureService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,7 +26,7 @@ public class ArchitectureController {
     }
 
     @PostMapping("/addArchitecture")
-    public void addArchitecture(@Valid @RequestBody Architecture architecture){
+    public void addArchitecture(@Valid @RequestBody Architecture architecture) throws AlreadyRegistered {
         logger.info("addArchitecture method is called");
         architectureService.addArchitecture(architecture);
     }
