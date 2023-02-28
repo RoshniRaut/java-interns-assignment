@@ -1,6 +1,6 @@
 package com.example.DeviceAPI.advice;
 
-import com.example.DeviceAPI.Exceptions.UserAlreadyRegistered;
+import com.example.DeviceAPI.Exceptions.AlreadyRegistered;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -24,9 +24,9 @@ public class GlobalExceptionHandler {
         return error;
     }
 
-    @ExceptionHandler(UserAlreadyRegistered.class)
+    @ExceptionHandler(AlreadyRegistered.class)
     @ResponseStatus(HttpStatus.NOT_ACCEPTABLE)
-    public Map<String, String> UserAlreadyRegistered(UserAlreadyRegistered ex){
+    public Map<String, String> AlreadyRegistered(AlreadyRegistered ex){
         Map<String, String> errorMap=new HashMap<>();
         errorMap.put("message",ex.getMessage());
         return errorMap;

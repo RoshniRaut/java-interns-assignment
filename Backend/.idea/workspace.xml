@@ -5,10 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d349cdba-2612-44c0-b356-ee0156602927" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../.idea/compiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SB_Security_JWT_v2.7/src/main/java/com/example/SpringSecurityJWT/Controller/developerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/SB_Security_JWT_v2.7/src/main/java/com/example/SpringSecurityJWT/Controller/developerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DeviceAPI/src/main/java/com/example/DeviceAPI/Controller/ArchitectureController.java" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceAPI/src/main/java/com/example/DeviceAPI/Controller/ArchitectureController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DeviceAPI/src/main/java/com/example/DeviceAPI/Controller/DeveloperController.java" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceAPI/src/main/java/com/example/DeviceAPI/Controller/DeveloperController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DeviceAPI/src/main/java/com/example/DeviceAPI/Exceptions/UserAlreadyRegistered.java" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceAPI/src/main/java/com/example/DeviceAPI/Exceptions/AlreadyRegistered.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DeviceAPI/src/main/java/com/example/DeviceAPI/Service/DeveloperService.java" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceAPI/src/main/java/com/example/DeviceAPI/Service/DeveloperService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DeviceAPI/src/main/java/com/example/DeviceAPI/advice/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceAPI/src/main/java/com/example/DeviceAPI/advice/GlobalExceptionHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,6 +19,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="JpbToolWindowState">
+    <option name="isToolWindowVisible" value="false" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -37,7 +42,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "/home/roshni/Java_Assignment_1/login-security/SB_Security_JWT_v2.7"
+    "last_opened_file_path": "/home/madhur/Documents/Backend/DeviceAPI"
   }
 }]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />

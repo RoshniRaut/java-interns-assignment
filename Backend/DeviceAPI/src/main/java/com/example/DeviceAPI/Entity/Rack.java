@@ -19,6 +19,6 @@ public class Rack {
     private int rack_id;
     @Column(name = "rack_name")
     @NotNull
-    private String rack_name;
+    private String rackName;
 
 }
