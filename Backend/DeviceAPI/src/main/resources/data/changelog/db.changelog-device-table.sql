@@ -7,12 +7,12 @@ CREATE TABLE device(
 	blocked_since VARCHAR(10),
 	blocked_till VARCHAR(10),
 	comments VARCHAR(60),
-	devId INT NOT NULL,
+	devId INT,
 	device_model VARCHAR(10) NOT NULL,
 	mac VARCHAR(20) NOT NULL,
 	rackId INT NOT NULL,
 	FOREIGN KEY(arcId) REFERENCES architecture(arc_id),
-	FOREIGN KEY(devId) REFERENCES developers(dev_id),
+	FOREIGN KEY(devId) REFERENCES developer(dev_id),
 	FOREIGN KEY(rackId) REFERENCES rack(rack_id),
 	PRIMARY KEY(device_id)
 );
