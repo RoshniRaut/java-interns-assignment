@@ -1,5 +1,5 @@
 
-app.controller('dashboardController',function($scope,$mdDialog,$location,TokenService,DeveloperService){
+app.controller('dashboardController',function($scope,$mdDialog,$location,TokenService,DeveloperService,RackService){
     $scope.Device =
     [
       {
@@ -71,6 +71,9 @@ app.controller('dashboardController',function($scope,$mdDialog,$location,TokenSe
         "device":0
       }
     ];
+    RackService.getAllRack().then(res=>{
+      console.log(angular.fromJson(res.data))
+    })
     $scope.developer=[];
     $scope.currentUser=TokenService.getCurrentUser();
 

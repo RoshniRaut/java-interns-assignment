@@ -48,7 +48,7 @@ public class SecurityConfig {
         return http
                 .csrf().disable()
                 .cors(Customizer.withDefaults())// by default use a bean by the name corsConfigurationSource
-                .authorizeRequests().antMatchers("/authenticate","/testing","/addDeveloper").permitAll().and()
+                .authorizeRequests().antMatchers("/authenticate","/addDeveloper").permitAll().and()
                 .authorizeRequests(auth-> auth.anyRequest().authenticated())
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)

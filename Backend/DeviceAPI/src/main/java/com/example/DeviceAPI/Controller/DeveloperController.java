@@ -31,11 +31,6 @@ public class DeveloperController {
     private JwtService jwtService;
     @Autowired
     private AuthenticationManager authenticationManager;
-    @GetMapping("/testing")
-    String welcome(){
-        return "testing...";
-    }
-
     @GetMapping("/allDeveloper")
     public List<Developer> getAllDevelopers(){
         logger.info("getAllDevelopers method is called");
@@ -47,7 +42,7 @@ public class DeveloperController {
         return service.deleteById(id);
     }
     @PostMapping("/addDeveloper")
-    public ResponseEntity<?> addNewDeveloper(@Valid @RequestBody Developer developer) throws AlreadyRegistered {
+    public ResponseEntity<?> addNewDeveloper(@Valid @RequestBody Developer developer) throws AlreadyRegistered{
         logger.info("addDeveloper method is called");
         return service.addUser(developer);
     }
