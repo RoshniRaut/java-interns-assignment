@@ -1,23 +1,24 @@
 <div class="form">
-<form ng-submit="login(user)" style="min-width:250px;" class="form-content">
-    <h3>Login Page</h3>
-    <md-content>
-        <md-input-container>
-            <label>Email</label>
-            <input type="email" ng-model="user.email" required>
-        </md-input-container>
-    </md-content>
-
-    <md-content>
-        <md-input-container>
-            <label>Password</label>
-            <input type="password" ng-model="user.password" required>
-        </md-input-container>
-    </md-content>
-
-    <md-content>
-        <md-button class="md-raised md-primary" type="submit">Login</md-button>
-    </md-content>
+    <legend ng-if="error" class="error">{{error}}</legend>
+    <form ng-submit="login(user)" style="min-width:250px;" class="form-content">
+        <h3>Login Page</h3>
+        <md-content>
+            <md-input-container>
+                <label>username</label>
+                <input type="text" ng-model="user.username" required>
+            </md-input-container>
+        </md-content>
+        
+        <md-content>
+            <md-input-container>
+                <label>Password</label>
+                <input type="password" ng-model="user.password" required>
+            </md-input-container>
+        </md-content>
+        
+        <md-content>
+            <md-button class="md-raised md-primary" type="submit">Login</md-button>
+        </md-content>
     <a href="#!register">Register</a>
 </form>
 </div>

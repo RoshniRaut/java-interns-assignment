@@ -18,45 +18,68 @@
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
   <!-- Angular Routing -->
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
-  
+  <!-- Angularjs cookie-->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-cookies.js"></script>
   <script src="./controllers/loginController.js"></script>
   <script src="./controllers/registerController.js"></script>
-  <script src="./controllers/indexController.js"></script>
+  <script src="./controllers/dashboardController.js"></script>
+  <script src="./service/service.js"></script>
+  <!-- Moment.js script for date formating-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
 <style>
 
   .navbar{
     background-color: black;
-    margin-bottom: 15px;
+    color:white;
+    font-size: 25px;
+    padding: 5px;
   }
-  .main{
-    margin: auto;
-    width: 90%;
+  .count-tables{
     display:flex;
+    justify-content: space-around;
+    margin: 15px 0;
     align-items: flex-start;
   }
-  .main-table{
-    margin-right: 20px;
-    width: 100%;
-  }
-  .side-tables{
-    display:grid;
-    row-gap: 15px;
-  }
+  
   table,th,td{
-    border: 1px solid silver;
+    border-bottom: 1px solid silver;
     border-collapse: collapse;
-    padding: 0px 5px;
+    text-align: center;
+    padding: 4px 0px;
   }
-
-  .search{
+  tr:hover{
+    background-color: white;
+  }
+  tr{
+    background-color: rgb(230, 229, 229);
+  }
+  th{
+    border-bottom:1px solid silver;
+    background-color: rgb(143, 141, 141);
+  }
+  .device-table{
+     max-width: 80vw;
+  }
+  .device-table tr{
+    font-size: 15px;
+  }
+  .count-tables table{
+    min-width: 250px;
+  }
+  .count-tables td{
+    padding-left: 8px;
+  }
+  .dev-table td{
+    padding:5px;
+    font-size: 15px;
+  }
+  .filter{
     display: flex;
-    flex-direction: row;
-    float: right;
+    justify-content: flex-end;
     margin: 3px;
   }
   .chip{
     padding:6px 10px;
-    margin: 5px 0px;
     border-radius: 8%;
     display: inline-block;
     color: white;
@@ -64,14 +87,17 @@
   .chip-blue{
     background-color: #5da0d8;
   }
-  .chip-yellow{
-    background-color: rgb(245, 213, 73);
+  .chip-red{
+    font-weight: bold;
+    color: rgb(255,0,0);
+    padding:10px;
   }
   .chip-green{
-    background-color: rgb(85, 224, 139);
+    font-weight: bold;
+    color: rgb(20, 110, 30);
   }
   .chip-green-sm{
-    background-color: rgb(85, 224, 139);
+    background-color: rgb(20, 110, 30);
     padding: 3px;
     color: white;
     border-radius: 10%;
@@ -82,7 +108,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    min-height: 90vh;
   }
   .form-content{
     border: 2px solid blueviolet;
@@ -90,9 +116,34 @@
     border-radius: 5%;
     padding: 20px;
   }
+  .plane-btn{
+    border: none;
+    background: none;
+  }
+  .error{
+    color:red;
+    background-color: rgb(245, 223, 223);
+    padding:5px;
+    margin-bottom: 2px;
+  }
+  .success{
+    color:green;
+    background-color: rgb(208, 247, 208);
+    padding:5px;
+    margin-bottom: 2px;
+  }
+  .tool{
+    margin-bottom: 10px;;
+  }
+  .user{
+    float:left;
+    font-weight: bold;
+    padding:5px 10px;
+  }
   </style>
   
   <body ng-app="myApp">
+    <nav class="navbar">Device Reservation System</nav>
     <div ng-view></div>
   </body>
  

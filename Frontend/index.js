@@ -1,11 +1,11 @@
-var app=angular.module('myApp',['ngMaterial','ngRoute']);
+var app=angular.module('myApp',['ngMaterial','ngRoute','ngCookies']);
 
-app.config(function($routeProvider){
-
+app.config(function($routeProvider,$mdDateLocaleProvider){
   $routeProvider
   .when("/",{
     templateUrl:"login.html",
-    controller: "loginController"
+    controller: "loginController",
+    authenticated:true,
   })
   .when("/register",{
     templateUrl:"register.html",
@@ -13,37 +13,32 @@ app.config(function($routeProvider){
   })
   .when("/home",{
     templateUrl:"dashboard.html",
-    controller:"indexController",
+    controller:"dashboardController",
     authenticated: true,
   })
   .otherwise({
     redirectTo: "/",
   })
-
+  
 })
 
- app.run(function($rootScope,$location,authFact){
+ app.run(function($rootScope,$location,$http,TokenService,$rootScope){
+  $rootScope.location="http://localhost:8081"
+  // $rootScope.location="http://172.17.0.2:8081"
 //   //$routeChangeStart is the event
   $rootScope.$on('$routeChangeStart',function(event, next, current){
    /* if the route is authenticated, then the user should access token */
     if(next.$$route.authenticated){
-      var userAuth=authFact.getAccessToken();
-      console.log(userAuth)
+      //jwt token
+      var userAuth=TokenService.getToken();
+      //check validation of token
       if(!userAuth){
-        console.log("not authenticated")
         $location.path('/');
+      }
+      else{
+        $location.path("/home");
       }
     }
   })
  })
 
-app.factory('authFact',function(){
-  var authfact={};
-  authfact.setAccessToken=function(accessToken){
-    authfact.authToken= accessToken;
-  };
-  authfact.getAccessToken=function(){
-    return authfact.authToken;
-  }
-  return authfact;
-})

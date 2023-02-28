@@ -1,28 +1,22 @@
 
-app.controller('loginController',function($scope,$location,authFact,employeeService){
-      $scope.login=function(user){
-        
-        employeeService.getEmployees().then(function(result){
-          let found=result.data.find(e=> e.email==user.email)
-          console.log(result.data)
-          if(found){
-            if(found.password!=user.password)
-              alert("invalid password");
-              else{
-                //verify and set token
-                authFact.setAccessToken("1234")
-                $location.path("/home");
-              }
-          }
-          else
-            alert("user not registered!!!")
+app.controller('loginController',function($scope,$location,$timeout,TokenService){
+  $scope.error=""
+  $scope.login=function(user){    
+      TokenService.generateToken(user).then(res=>{ 
+        resp=angular.fromJson(res.data);
+        TokenService.setToken(resp.token,resp.username);
+        $location.path("/home");
+      }).catch(err=>{
+        if(err.status==-1)
+          $scope.error="Server is facing some issue!!";
+        else
+          $scope.error="Incorrect username or password!!";
+          $timeout(function(){
+            $scope.error="";
+          },4000);
+          console.log("generateToken: ",err);
         })
       }
-
 })
     
-app.service('employeeService',function($http){
-    this.getEmployees=function(){
-      return $http.get("http://0.0.0.0:9090/employees")
-    }
-})
+
