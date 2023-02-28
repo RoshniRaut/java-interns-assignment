@@ -73,6 +73,10 @@ app.controller('dashboardController',function($scope,$mdDialog,$location,TokenSe
     ];
     RackService.getAllRack().then(res=>{
       console.log(angular.fromJson(res.data))
+      angular.fromJson(res.data).forEach(r=>{
+        rack={name:r.rackname, id: r.rack_id,device:0};
+        $scope.rack.push(rack);
+      })
     })
     $scope.developer=[];
     $scope.currentUser=TokenService.getCurrentUser();
@@ -226,10 +230,16 @@ app.controller('dashboardController',function($scope,$mdDialog,$location,TokenSe
           transclude: true,
           replace:true
         }).then(function(rack) {
-            if(rack!=='cancel')
-            //put request for add device
-            rack={name:rack.name, id: $scope.rack.length+1,device:0};
-              $scope.rack.push(rack);
+            if(rack!=='cancel'){
+              RackService.addRack(rack).then(res=>{
+                rack={name:res.data.rackname, id: res.data.rack_id,device:0};
+                $scope.rack.push(rack);
+              })
+              .catch(err=>{
+                console.log(err);
+                alert(err);
+              })
+            }
         });
         
       };
