@@ -27,7 +27,7 @@ public class ArchitectureController {
     }
 
     @PostMapping("/addArchitecture")
-    public Optional<Architecture> addArchitecture(@Valid @RequestBody Architecture architecture)throws AlreadyRegistered {
+    public Optional<Architecture> addArchitecture(@Valid @RequestBody Architecture architecture){
         logger.info("addArchitecture method is called");
         return architectureService.addArchitecture(architecture);
     }

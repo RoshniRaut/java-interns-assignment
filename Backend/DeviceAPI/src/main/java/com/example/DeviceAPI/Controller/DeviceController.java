@@ -28,9 +28,9 @@ public class DeviceController {
         return deviceService.getDevice(device_id);
     }
     @PostMapping("/addDevice")
-    public void addDevice(@Valid @RequestBody Device device){
+    public Device addDevice(@Valid @RequestBody Device device){
         logger.info("addDevices method is called");
-        deviceService.addDevice(device);
+        return deviceService.addDevice(device);
     }
     @PutMapping("/device/{device_id}")
     public void updateDevice(@RequestBody Device device){

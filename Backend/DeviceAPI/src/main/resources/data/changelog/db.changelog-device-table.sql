@@ -3,16 +3,17 @@
 --changeset device:4
 CREATE TABLE device(
 	device_id INT NOT NULL AUTO_INCREMENT,
-	arcId INT NOT NULL,
+	device_number INT NOT NULL UNIQUE,
+	arc_id INT NOT NULL,
 	blocked_since VARCHAR(10),
 	blocked_till VARCHAR(10),
 	comments VARCHAR(60),
-	devId INT,
+	dev_id INT,
 	device_model VARCHAR(10) NOT NULL,
 	mac VARCHAR(20) NOT NULL,
-	rackId INT NOT NULL,
-	FOREIGN KEY(arcId) REFERENCES architecture(arc_id),
-	FOREIGN KEY(devId) REFERENCES developer(dev_id),
-	FOREIGN KEY(rackId) REFERENCES rack(rack_id),
+	rack_id INT NOT NULL,
+	FOREIGN KEY(arc_id) REFERENCES architecture(arc_id),
+	FOREIGN KEY(dev_id) REFERENCES developer(dev_id),
+	FOREIGN KEY(rack_id) REFERENCES rack(rack_id),
 	PRIMARY KEY(device_id)
 );

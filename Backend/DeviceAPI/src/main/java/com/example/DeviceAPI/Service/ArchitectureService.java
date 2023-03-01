@@ -26,15 +26,15 @@ public class ArchitectureService {
         return architectures;
     }
 
-    public Optional<Architecture> addArchitecture(Architecture architecture) throws AlreadyRegistered {
-        if (architectureRepository.findByArchitectureName(architecture.getArchitectureName()).isPresent()) {
-            logger.warn("Provided architecture already registered");
-            throw new AlreadyRegistered("architecture already registered");
-        }
-        else{
+    public Optional<Architecture> addArchitecture(Architecture architecture){
+//        if (architectureRepository.findByArchitectureName(architecture.getArchitectureName()).isPresent()) {
+//            logger.warn("Provided architecture already registered");
+////            throw new AlreadyRegistered("architecture already registered");
+//        }
+//        else{
             architectureRepository.save(architecture);
             return architectureRepository.findByArchitectureName(architecture.getArchitectureName());
-        }
+//        }
     }
 
     public void deleteArchitecture(int architecture_id){

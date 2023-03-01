@@ -50,37 +50,63 @@ app.controller('dashboardController',function($scope,$mdDialog,$location,TokenSe
     $scope.architecture=[];
     $scope.rack=[];
     $scope.developer=[];
+    //every time a new device is added, updateCounts() method is called for re-calculation
+    $scope.updateCounts=function(){
+      $scope.status={occupied:0,free:0}
+      $scope.rack.forEach(r=>r.device=0)
+      $scope.architecture.forEach(a=>a.device=0)
+      $scope.Device.forEach(ele => {
+        $scope.rack.forEach(r=>{
+          if(r.name==ele.rack)
+            r.device+=1;
+        })
+        $scope.architecture.forEach(a=>{
+          if(a.name==ele.architecture)
+            a.device+=1;
+        })
+      
+        if(ele.developer==null)
+          $scope.status.free+=1
+        else  
+          $scope.status.occupied+=1
+      
+      });  
+    }
+    function load(){
+      ArchitectureService.getAllArchitecture().then(res=>{
+        arch=angular.fromJson(res.data)
+        arch.forEach(a=>{
+          architecture={name:a.architectureName, id: a.architecture_id,device:0};
+          $scope.architecture.push(architecture);
+        })
+      })
+      RackService.getAllRack().then(res=>{
+        angular.fromJson(res.data).forEach(r=>{
+          rack={name:r.rackName, id: r.rack_id,device:0};
+          $scope.rack.push(rack);
+        })
+      }).then(()=>{
+        //when the page loads all data call method once
+        $scope.updateCounts();
+      })
+      $scope.currentUser=TokenService.getCurrentUser();
 
-    ArchitectureService.getAllArchitecture().then(res=>{
-      arch=angular.fromJson(res.data)
-      arch.forEach(a=>{
-        architecture={name:a.architecturename, id: a.architecture_id,device:0};
-        $scope.architecture.push(architecture);
+      DeveloperService.getAllDeveloper().then(res=>{
+        $scope.developer=angular.fromJson(res.data);
       })
-    })
-    RackService.getAllRack().then(res=>{
-      angular.fromJson(res.data).forEach(r=>{
-        rack={name:r.rackname, id: r.rack_id,device:0};
-        $scope.rack.push(rack);
+      .catch(err=>{
+        alert("session expired!!");
+        $scope.logout();
       })
-    })
-    $scope.currentUser=TokenService.getCurrentUser();
-    
-    //fetching data from backend
-    DeveloperService.getAllDeveloper().then(res=>{
-      $scope.developer=angular.fromJson(res.data);
-    })
-    .catch(err=>{
-      alert("session expired!!");
-      TokenService.removeToken(null);
-      $location.path('/');
-    })
-    
+       
+  }
+    load();
     $scope.logout=function(){
       TokenService.removeToken(null);
       $location.path('/');
     }
     
+    //sorting on each column
     $scope.order=null;
     $scope.reverse=null;
     $scope.sortBy=function(col){
@@ -98,35 +124,8 @@ app.controller('dashboardController',function($scope,$mdDialog,$location,TokenSe
       }
     }
 
-    //every time a new device is added, updateCounts() method is called for re-calculation
-    $scope.updateCounts=function(){
-      $scope.status={occupied:0,free:0}
-      // $scope.rack.forEach(r=>{
-      //   r.device=0;
-      // })
-      // $scope.architecture.forEach(a=>{
-      //   a.device=0;
-      // })
-      $scope.Device.forEach(ele => {
-        $scope.rack.forEach(r=>{
-          if(r.name==ele.rack)
-            r.device+=1;
-        })
-        $scope.architecture.forEach(a=>{
-          if(a.name==ele.architecture)
-            a.device+=1;
-        })
-
-        if(ele.developer==null)
-          $scope.status.free+=1
-        else  
-          $scope.status.occupied+=1
-      
-      });  
-    }
-    //when the page loads method once
-    $scope.updateCounts();
     
+       
     $scope.addDevice = function(ev) {
       $mdDialog.show({
         locals: {developers:$scope.developer,rack:$scope.rack, architecture:$scope.architecture},
@@ -215,7 +214,8 @@ app.controller('dashboardController',function($scope,$mdDialog,$location,TokenSe
         }).then(function(rack) {
             if(rack!=='cancel'){
               RackService.addRack(rack).then(res=>{
-                rack={name:res.data.rackname, id: res.data.rack_id,device:0};
+               
+                rack={name:res.data.rackName, id: res.data.rack_id,device:0};
                 $scope.rack.push(rack);
               })
               .catch(err=>{
@@ -242,7 +242,7 @@ app.controller('dashboardController',function($scope,$mdDialog,$location,TokenSe
         }).then(function(architecture) {
             if(architecture!=='cancel'){
               ArchitectureService.addArchitecture(architecture).then(res=>{
-                arch={name:res.data.architecturename, id: res.data.architecture_id,device:0};
+                arch={name:res.data.architectureName, id: res.data.architecture_id,device:0};
                 $scope.architecture.push(arch);
                 console.log($scope.architecture)
               })
