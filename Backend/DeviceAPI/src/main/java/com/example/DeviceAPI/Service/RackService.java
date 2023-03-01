@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class RackService {
@@ -25,13 +26,14 @@ public class RackService {
         return racks;
     }
 
-    public void addRack(Rack rack) throws AlreadyRegistered {
+    public Optional<Rack> addRack(Rack rack) throws AlreadyRegistered {
         if(rackRepository.findByRackName(rack.getRackName()).isPresent()){
             logger.warn("Provided rack already registered");
             throw new AlreadyRegistered("rack already registered");
         }
         else {
             rackRepository.save(rack);
+            return rackRepository.findByRackName(rack.getRackName());
         }
     }
 

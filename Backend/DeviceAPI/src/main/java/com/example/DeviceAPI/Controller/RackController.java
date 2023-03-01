@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class RackController {
@@ -25,9 +26,9 @@ public class RackController {
     }
 
     @PostMapping("/addRack")
-    public void addRack(@Valid @RequestBody Rack rack) throws AlreadyRegistered {
+    public Optional<Rack> addRack(@Valid @RequestBody Rack rack) throws AlreadyRegistered {
         logger.info("addRack method is called");
-        rackService.addRack(rack);
+        return rackService.addRack(rack);
     }
 
     @DeleteMapping("/rack/{rack_id}")

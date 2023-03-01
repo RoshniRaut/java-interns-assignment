@@ -22,8 +22,9 @@ public class DeviceService {
         return devices;
     }
 
-    public void addDevice(Device device){
+    public Device addDevice(Device device){
         deviceRepository.save(device);
+        return deviceRepository.findByDeviceNumber(device.getDeviceNumber());
     }
 
     public void updateDevice(Device device){

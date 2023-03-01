@@ -20,7 +20,7 @@ public class Device {
     private int device_id;
     @Column(name = "device_number")
     @NotNull
-    private int device_number;
+    private int deviceNumber;
     @Column(name = "arcId")
     @NotNull
     private int architectureId;

@@ -1,8 +1,8 @@
 <md-dialog>
-    <form ng-submit="return(rack)">
+    <form ng-submit="return(architecture)">
         <md-toolbar>
             <div class="md-toolbar-tools">
-              <h2>Add RACK </h2>
+              <h2>Add Architecture </h2>
               <span flex></span>
               <md-button class="md-icon-button" ng-click="cancel()">
                 <md-icon ng-bind="'close'" aria-label="Close dialog"></md-icon>
@@ -12,8 +12,8 @@
         <md-dialog-content layout="column" >
             <div layout-padding layout-gt-sm="row">
                 <md-input-container class="md-block">
-                    <label>Rack Name</label>
-                    <input type="text" ng-model="rack.rackName" required/>
+                    <label>Architecture Name</label>
+                    <input type="text" ng-model="architecture.architectureName" required/>
                 </md-input-container>
             </div>
         </md-dialog-content>
@@ -27,5 +27,5 @@
             </md-button>
         </md-dialog-actions>
     
-</form>    
+    </form>    
 </md-dialog>

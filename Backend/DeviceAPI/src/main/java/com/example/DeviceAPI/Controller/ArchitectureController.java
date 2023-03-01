@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class ArchitectureController {
@@ -26,9 +27,9 @@ public class ArchitectureController {
     }
 
     @PostMapping("/addArchitecture")
-    public void addArchitecture(@Valid @RequestBody Architecture architecture) throws AlreadyRegistered {
+    public Optional<Architecture> addArchitecture(@Valid @RequestBody Architecture architecture){
         logger.info("addArchitecture method is called");
-        architectureService.addArchitecture(architecture);
+        return architectureService.addArchitecture(architecture);
     }
 
     @DeleteMapping("/architecture/{architecture_id}")

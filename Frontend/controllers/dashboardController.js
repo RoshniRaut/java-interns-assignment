@@ -1,5 +1,5 @@
 
-app.controller('dashboardController',function($scope,$mdDialog,$location,TokenService,DeveloperService,RackService){
+app.controller('dashboardController',function($scope,$mdDialog,$location,TokenService,DeveloperService,RackService,ArchitectureService){
     $scope.Device =
     [
       {
@@ -47,52 +47,66 @@ app.controller('dashboardController',function($scope,$mdDialog,$location,TokenSe
         "rack": "Rack 2"
       }
     ];
-    $scope.architecture=[
-      {
-      "id":1,
-      "name":"E2900",
-      "device":0
-      },
-      {
-        "id":2,
-        "name":"E4700",
-        "device":0
-      }
-    ];
-    $scope.rack=[
-      {
-        "id":1,
-        "name":"Rack 1",
-        "device":0
-      },
-      {
-        "id":2,
-        "name":"Rack 2",
-        "device":0
-      }
-    ];
-    RackService.getAllRack().then(res=>{
-      console.log(angular.fromJson(res.data))
-    })
+    $scope.architecture=[];
+    $scope.rack=[];
     $scope.developer=[];
-    $scope.currentUser=TokenService.getCurrentUser();
+    //every time a new device is added, updateCounts() method is called for re-calculation
+    $scope.updateCounts=function(){
+      $scope.status={occupied:0,free:0}
+      $scope.rack.forEach(r=>r.device=0)
+      $scope.architecture.forEach(a=>a.device=0)
+      $scope.Device.forEach(ele => {
+        $scope.rack.forEach(r=>{
+          if(r.name==ele.rack)
+            r.device+=1;
+        })
+        $scope.architecture.forEach(a=>{
+          if(a.name==ele.architecture)
+            a.device+=1;
+        })
+      
+        if(ele.developer==null)
+          $scope.status.free+=1
+        else  
+          $scope.status.occupied+=1
+      
+      });  
+    }
+    function load(){
+      ArchitectureService.getAllArchitecture().then(res=>{
+        arch=angular.fromJson(res.data)
+        arch.forEach(a=>{
+          architecture={name:a.architectureName, id: a.architecture_id,device:0};
+          $scope.architecture.push(architecture);
+        })
+      })
+      RackService.getAllRack().then(res=>{
+        angular.fromJson(res.data).forEach(r=>{
+          rack={name:r.rackName, id: r.rack_id,device:0};
+          $scope.rack.push(rack);
+        })
+      }).then(()=>{
+        //when the page loads all data call method once
+        $scope.updateCounts();
+      })
+      $scope.currentUser=TokenService.getCurrentUser();
 
-    
-    //fetching data from backend
-    DeveloperService.getAllDeveloper().then(res=>{
-      $scope.developer=angular.fromJson(res.data);
-    })
-    .catch(err=>{
-      alert("session expired!!");
-      TokenService.removeToken(null);
-      $location.path('/');
-    })
-    
+      DeveloperService.getAllDeveloper().then(res=>{
+        $scope.developer=angular.fromJson(res.data);
+      })
+      .catch(err=>{
+        alert("session expired!!");
+        $scope.logout();
+      })
+       
+  }
+    load();
     $scope.logout=function(){
       TokenService.removeToken(null);
       $location.path('/');
     }
     
+    //sorting on each column
     $scope.order=null;
     $scope.reverse=null;
     $scope.sortBy=function(col){
@@ -110,35 +124,8 @@ app.controller('dashboardController',function($scope,$mdDialog,$location,TokenSe
       }
     }
 
-    //every time a new device is added, updateCounts() method is called for re-calculation
-    $scope.updateCounts=function(){
-      $scope.status={occupied:0,free:0}
-      $scope.rack.forEach(r=>{
-        r.device=0;
-      })
-      $scope.architecture.forEach(a=>{
-        a.device=0;
-      })
-      $scope.Device.forEach(ele => {
-        $scope.rack.forEach(r=>{
-          if(r.name==ele.rack)
-            r.device+=1;
-        })
-        $scope.architecture.forEach(a=>{
-          if(a.name==ele.architecture)
-            a.device+=1;
-        })
-
-        if(ele.developer==null)
-          $scope.status.free+=1
-        else  
-          $scope.status.occupied+=1
-      
-      });  
-    }
-    //when the page loads method once
-    $scope.updateCounts();
     
+       
     $scope.addDevice = function(ev) {
       $mdDialog.show({
         locals: {developers:$scope.developer,rack:$scope.rack, architecture:$scope.architecture},
@@ -165,7 +152,6 @@ app.controller('dashboardController',function($scope,$mdDialog,$location,TokenSe
       });
       
     };
-
 
     function addDeviceController($scope, $mdDialog,developers,rack,architecture) {
       $scope.hide = function(){ $mdDialog.hide();};
@@ -226,25 +212,60 @@ app.controller('dashboardController',function($scope,$mdDialog,$location,TokenSe
           transclude: true,
           replace:true
         }).then(function(rack) {
-            if(rack!=='cancel')
-            //put request for add device
-            rack={name:rack.name, id: $scope.rack.length+1,device:0};
-              $scope.rack.push(rack);
+            if(rack!=='cancel'){
+              RackService.addRack(rack).then(res=>{
+               
+                rack={name:res.data.rackName, id: res.data.rack_id,device:0};
+                $scope.rack.push(rack);
+              })
+              .catch(err=>{
+                console.log(err);
+                alert(err);
+              })
+            }
         });
         
       };
       function addRackController($scope, $mdDialog) {
         $scope.hide = function(){ $mdDialog.hide();};
         $scope.cancel =function(){$mdDialog.cancel();};
-        $scope.return =function(device){$mdDialog.hide(device);};
+        $scope.return =function(rack){$mdDialog.hide(rack);};
       }
 
+      //add Architecture popup
+      $scope.addArchitecture = function(ev) {
+        $mdDialog.show({
+          controller: addArchitectureController,
+          templateUrl:'./dialogs/add_architecture.html',
+          parent: angular.element(document.body),
+        
+        }).then(function(architecture) {
+            if(architecture!=='cancel'){
+              ArchitectureService.addArchitecture(architecture).then(res=>{
+                arch={name:res.data.architectureName, id: res.data.architecture_id,device:0};
+                $scope.architecture.push(arch);
+                console.log($scope.architecture)
+              })
+              .catch(err=>{
+                console.log(err);
+                alert(err);
+              })
+            }
+        });
+        
+      };
+      function addArchitectureController($scope, $mdDialog) {
+        $scope.hide = function(){ $mdDialog.hide();};
+        $scope.cancel =function(){$mdDialog.cancel();};
+        $scope.return =function(architecture){$mdDialog.hide(architecture);};
+      }
+
+      //open drop down menu for edit and delete
       $scope.openMenu=function($mdMenu, ev) {
         originatorEv = ev;
         $mdMenu.open(ev);
       };
-
-
+      //delete a device call a api
       $scope.delete=function(ev){
         console.log(ev.target.value);
         device=$scope.Device.filter(d=> d.device_number==ev.target.value);
