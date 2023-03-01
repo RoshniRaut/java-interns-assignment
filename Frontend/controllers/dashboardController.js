@@ -1,5 +1,5 @@
 
-app.controller('dashboardController',function($scope,$mdDialog,$location,TokenService,DeveloperService,RackService,ArchitectureService){
+app.controller('dashboardController',function($scope,$mdDialog,$location,TokenService,DeveloperService,RackService,ArchitectureService,DeviceService){
     $scope.Device =
     [
       {
@@ -98,7 +98,10 @@ app.controller('dashboardController',function($scope,$mdDialog,$location,TokenSe
         alert("session expired!!");
         $scope.logout();
       })
-       
+      DeviceService.getAllDevice().then(res=>{
+        $scope.Device=angular.fromJson(res.data);
+        console.log(res.data[0])
+      })
   }
     load();
     $scope.logout=function(){
@@ -124,8 +127,7 @@ app.controller('dashboardController',function($scope,$mdDialog,$location,TokenSe
       }
     }
 
-    
-       
+        
     $scope.addDevice = function(ev) {
       $mdDialog.show({
         locals: {developers:$scope.developer,rack:$scope.rack, architecture:$scope.architecture},
@@ -137,16 +139,17 @@ app.controller('dashboardController',function($scope,$mdDialog,$location,TokenSe
         transclude: true,
         replace:true
       }).then(function(device) {
-          if(device!=='cancel')
-          //put request for add device
-            len=$scope.Device.length;
-            device.device_number=$scope.Device[len-1].device_number+1;
+            //put request for add device
             console.log(device)
-            console.log(device.blocked_since,device.blocked_till)
             if(device.blocked_since)
               device.blocked_since=moment(device.blocked_since).format("YYYY-MM-DD");
             if(device.blocked_till)
               device.blocked_till=moment(device.blocked_till).format("YYYY-MM-DD");
+            DeviceService.addDevice(device).then(res=>{
+              $scope.Device.push(device);
+            }).catch(err=>{
+              console.log(err);
+            })
             $scope.Device.push(device);
             $scope.updateCounts();
       });
@@ -207,22 +210,17 @@ app.controller('dashboardController',function($scope,$mdDialog,$location,TokenSe
           controller: addRackController,
           templateUrl:'./dialogs/add_rack.html',
           parent: angular.element(document.body),
-          targetEvent: ev,
-          clickOutsideToClose: true,  
-          transclude: true,
-          replace:true
+          targetEvent: ev
         }).then(function(rack) {
-            if(rack!=='cancel'){
               RackService.addRack(rack).then(res=>{
-               
                 rack={name:res.data.rackName, id: res.data.rack_id,device:0};
                 $scope.rack.push(rack);
               })
               .catch(err=>{
-                console.log(err);
-                alert(err);
+                $scope.error=err.data.message;
+                console.log(err.data.message);
+                
               })
-            }
         });
         
       };
@@ -247,8 +245,8 @@ app.controller('dashboardController',function($scope,$mdDialog,$location,TokenSe
                 console.log($scope.architecture)
               })
               .catch(err=>{
-                console.log(err);
-                alert(err);
+                console.log(err.data.message);
+                alert(err.data.message);
               })
             }
         });

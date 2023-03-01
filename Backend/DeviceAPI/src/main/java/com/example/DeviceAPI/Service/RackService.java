@@ -29,7 +29,7 @@ public class RackService {
     public Optional<Rack> addRack(Rack rack) throws AlreadyRegistered {
         if(rackRepository.findByRackName(rack.getRackName()).isPresent()){
             logger.warn("Provided rack already registered");
-            throw new AlreadyRegistered("rack already registered");
+            throw new AlreadyRegistered("Rack name already exist");
         }
         else {
             rackRepository.save(rack);

@@ -1,7 +1,9 @@
 package com.example.DeviceAPI.Controller;
 
 import com.example.DeviceAPI.Entity.Device;
+import com.example.DeviceAPI.Exceptions.AlreadyRegistered;
 import com.example.DeviceAPI.Service.DeviceService;
+import com.example.DeviceAPI.dto.DeviceRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +20,7 @@ public class DeviceController {
     @Autowired
     private DeviceService deviceService;
     @GetMapping("/getAllDevice")
-    public List<Device> getAllDevices(){
+    public List<DeviceRequest> getAllDevices(){
         logger.info("getAllDevices method is called");
         return deviceService.getAllDevices();
     }
@@ -28,9 +30,9 @@ public class DeviceController {
         return deviceService.getDevice(device_id);
     }
     @PostMapping("/addDevice")
-    public Device addDevice(@Valid @RequestBody Device device){
+    public Optional<DeviceRequest> addDevice(@Valid @RequestBody DeviceRequest deviceRequest)throws AlreadyRegistered {
         logger.info("addDevices method is called");
-        return deviceService.addDevice(device);
+        return deviceService.addDevice(deviceRequest);
     }
     @PutMapping("/device/{device_id}")
     public void updateDevice(@RequestBody Device device){

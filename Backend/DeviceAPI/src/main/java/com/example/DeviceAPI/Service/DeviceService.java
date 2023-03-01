@@ -1,7 +1,12 @@
 package com.example.DeviceAPI.Service;
 
 import com.example.DeviceAPI.Entity.Device;
+import com.example.DeviceAPI.Exceptions.AlreadyRegistered;
+import com.example.DeviceAPI.Repository.ArchitectureRepository;
+import com.example.DeviceAPI.Repository.DeveloperRepository;
 import com.example.DeviceAPI.Repository.DeviceRepository;
+import com.example.DeviceAPI.Repository.RackRepository;
+import com.example.DeviceAPI.dto.DeviceRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,15 +19,38 @@ public class DeviceService {
 
     @Autowired
     private DeviceRepository deviceRepository;
+    @Autowired
+    private ArchitectureRepository architectureRepository;
+    @Autowired
+    private DeveloperRepository developerRepository;
+    @Autowired
+    private RackRepository rackRepository;
 
-    public List<Device> getAllDevices(){
-        List<Device> devices = new ArrayList<>();
-        deviceRepository.findAll()
-                .forEach(devices::add);
+    public List<DeviceRequest> getAllDevices(){
+        List<DeviceRequest> devices = new ArrayList<>();
+        devices=deviceRepository.findAllDevice();
         return devices;
     }
 
-    public Device addDevice(Device device){
+    public Optional<DeviceRequest> addDevice(DeviceRequest deviceRequest)throws AlreadyRegistered {
+        Device device=new Device();
+        if(deviceRepository.findByDeviceNumber(deviceRequest.getDeviceNumber()).isPresent())
+            throw new AlreadyRegistered("Device number already present");
+        device.setDeviceNumber(deviceRequest.getDeviceNumber());
+        device.setDevice_model(deviceRequest.getDevice_model());
+        if(architectureRepository.findByArchitectureName(deviceRequest.getArchitectureName()).isEmpty())
+            throw new AlreadyRegistered("ArchitectureName not found");
+        device.setArchitectureId(architectureRepository.findByArchitectureName(deviceRequest.getArchitectureName()).get().getArchitecture_id());
+        device.setBlocked_since(deviceRequest.getBlocked_since());
+        device.setBlocked_till(deviceRequest.getBlocked_till());
+        device.setComments(deviceRequest.getComments());
+        if(developerRepository.findByName(deviceRequest.getDeveloperName()).isEmpty())
+            throw  new AlreadyRegistered("DeveloperName not found");
+        device.setDeveloperId(developerRepository.findByName(deviceRequest.getDeveloperName()).get().getId());
+        device.setMac(deviceRequest.getMac());
+        if(rackRepository.findByRackName(deviceRequest.getRackName()).isEmpty())
+            throw new AlreadyRegistered("Rack name not found");
+        device.setRackId(rackRepository.findByRackName(deviceRequest.getRackName()).get().getRack_id());
         deviceRepository.save(device);
         return deviceRepository.findByDeviceNumber(device.getDeviceNumber());
     }
