@@ -3,7 +3,9 @@ package com.example.DeviceAPI.Repository;
 import com.example.DeviceAPI.Entity.Rack;
 import org.springframework.data.repository.CrudRepository;
 
-public interface RackRepository extends CrudRepository<Rack, Integer> {
+import java.util.Optional;
 
-    Rack getByRackname(String rackName);
+public interface RackRepository extends CrudRepository<Rack, Integer> {
+    Optional<Rack> findByRackName(String name);
+
 }

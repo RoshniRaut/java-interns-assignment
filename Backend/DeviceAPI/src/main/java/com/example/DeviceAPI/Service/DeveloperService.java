@@ -1,8 +1,10 @@
 package com.example.DeviceAPI.Service;
 
 import com.example.DeviceAPI.Entity.Developer;
-import com.example.DeviceAPI.Exceptions.UserAlreadyRegistered;
+import com.example.DeviceAPI.Exceptions.AlreadyRegistered;
 import com.example.DeviceAPI.Repository.DeveloperRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,17 +18,23 @@ import java.util.Optional;
 
 @Service
 public class DeveloperService {
+    Logger logger = LoggerFactory.getLogger(DeveloperService.class);
+
     @Autowired
     private DeveloperRepository developerRepository;
     @Autowired
     private PasswordEncoder passwordEncoder;
-    public ResponseEntity<?> addUser(Developer userInfo) throws UserAlreadyRegistered {
+    public ResponseEntity<?> addUser(Developer userInfo) throws AlreadyRegistered {
         Map<String, String> message=new HashMap<>();
         userInfo.setPassword(passwordEncoder.encode(userInfo.getPassword()));
-       if (developerRepository.findByEmail(userInfo.getEmail()).isPresent())
-            throw new UserAlreadyRegistered("email already registered");
-       if (developerRepository.findByName(userInfo.getName()).isPresent())
-            throw new UserAlreadyRegistered("user name already registered");
+       if (developerRepository.findByEmail(userInfo.getEmail()).isPresent()) {
+           logger.warn("Provided email already registered");
+           throw new AlreadyRegistered("email already registered");
+       }
+       if (developerRepository.findByName(userInfo.getName()).isPresent()) {
+           logger.warn("Provided username already registered");
+           throw new AlreadyRegistered("user name already registered");
+       }
        else {
             developerRepository.save(userInfo);
             message.put("message","New Developer Added");
@@ -43,6 +51,7 @@ public class DeveloperService {
         Optional<Developer> userInfo= developerRepository.findById(id);
         if(userInfo.isEmpty()){
             message.put("message","User not found");
+            logger.warn("Developer to be deleted not found");
             return new ResponseEntity<>(message,HttpStatus.NOT_FOUND);
         }
         else {

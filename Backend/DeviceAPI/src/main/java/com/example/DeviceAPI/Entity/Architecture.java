@@ -20,5 +20,5 @@ public class Architecture {
     private int architecture_id;
     @Column(name = "arc_name")
     @NotNull
-    private String architecturename;
+    private String architectureName;
 }
