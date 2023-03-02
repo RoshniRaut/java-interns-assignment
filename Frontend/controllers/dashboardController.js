@@ -1,52 +1,6 @@
 
 app.controller('dashboardController',function($scope,$mdDialog,$location,TokenService,DeveloperService,RackService,ArchitectureService,DeviceService){
-    $scope.Device =
-    [
-      {
-        "architecture": "E2900",
-        "blocked_since": "",
-        "blocked_till": "",
-        "comments": "EV 10.11.14.167",
-        "developer": null,
-        "device_model": "2900A",
-        "device_number": 10,
-        "mac": "54:39:68:16:D5:7F",
-        "rack": "Rack 1"
-      },
-      {
-        "architecture": "E4700",
-        "blocked_since": "",
-        "blocked_till": "",
-        "comments": "",
-        "developer": null,
-        "device_model": "4700",
-        "device_number": 11,
-        "mac": "54:39:68:03:FF:76",
-        "rack": "Rack 1"
-      },
-      {
-        "architecture": "E2900",
-        "blocked_since": "",
-        "blocked_till": "",
-        "comments": "EV 10.11.14.167",
-        "developer": null,
-        "device_model": "2900A",
-        "device_number": 12,
-        "mac": "54:39:68:16:D5:7F",
-        "rack": "Rack 2"
-      },
-      {
-        "architecture": "E4700",
-        "blocked_since": "",
-        "blocked_till": "",
-        "comments": "",
-        "developer": null,
-        "device_model": "4700",
-        "device_number": 13,
-        "mac": "54:39:68:03:FF:76",
-        "rack": "Rack 2"
-      }
-    ];
+    $scope.Device =[];
     $scope.architecture=[];
     $scope.rack=[];
     $scope.developer=[];
@@ -167,7 +121,7 @@ app.controller('dashboardController',function($scope,$mdDialog,$location,TokenSe
 
     // editing device
     $scope.editDevice = function(ev) {
-      let device=$scope.Device.filter(d=> d.device_number==ev.target.value)[0];
+      let device=$scope.Device.filter(d=> d.device_id==ev.target.value)[0];
       $mdDialog.show({
         locals: {device:device, developer:$scope.developer, rack:$scope.rack, architecture:$scope.architecture},
         controller: editDeviceController,
@@ -180,16 +134,13 @@ app.controller('dashboardController',function($scope,$mdDialog,$location,TokenSe
       }).then(function(device) {
           if(device!=='cancel')
           //put request for PUT device
-            $scope.Device.forEach(d=>{
-              if(d.device_number==device.device_number){
-                console.log(device.blocked_since,device.blocked_till)
             if(device.blocked_since)
               device.blocked_since=moment(device.blocked_since).format("YYYY-MM-DD");
             if(device.blocked_till)
               device.blocked_till=moment(device.blocked_till).format("YYYY-MM-DD");
-                d=device
-              }
-            })
+            
+            DeviceService.updateDevice(device);
+            
             $scope.updateCounts();
       });
       
@@ -266,9 +217,11 @@ app.controller('dashboardController',function($scope,$mdDialog,$location,TokenSe
       //delete a device call a api
       $scope.delete=function(ev){
         console.log(ev.target.value);
-        device=$scope.Device.filter(d=> d.device_number==ev.target.value);
-        index=$scope.Device.indexOf(device[0]);
-        $scope.Device.splice(index,1);
+        DeviceService.deleteDevice(ev.target.value).then(res=>{
+          console.log("successfully deleted");
+        }).catch(err=>{
+          console.log(err)
+        })
         $scope.updateCounts();
       }
 })

@@ -55,8 +55,26 @@ public class DeviceService {
         return deviceRepository.findByDeviceNumber(device.getDeviceNumber());
     }
 
-    public void updateDevice(Device device){
+    public Optional<DeviceRequest> updateDevice(int device_id,DeviceRequest deviceRequest) throws AlreadyRegistered{
+        Device device=new Device();
+        device.setDevice_id(device_id);
+        device.setDeviceNumber(deviceRequest.getDeviceNumber());
+        device.setDevice_model(deviceRequest.getDevice_model());
+        if(architectureRepository.findByArchitectureName(deviceRequest.getArchitectureName()).isEmpty())
+            throw new AlreadyRegistered("ArchitectureName not found");
+        device.setArchitectureId(architectureRepository.findByArchitectureName(deviceRequest.getArchitectureName()).get().getArchitecture_id());
+        device.setBlocked_since(deviceRequest.getBlocked_since());
+        device.setBlocked_till(deviceRequest.getBlocked_till());
+        device.setComments(deviceRequest.getComments());
+        if(developerRepository.findByName(deviceRequest.getDeveloperName()).isEmpty())
+            throw  new AlreadyRegistered("DeveloperName not found");
+        device.setDeveloperId(developerRepository.findByName(deviceRequest.getDeveloperName()).get().getId());
+        device.setMac(deviceRequest.getMac());
+        if(rackRepository.findByRackName(deviceRequest.getRackName()).isEmpty())
+            throw new AlreadyRegistered("Rack name not found");
+        device.setRackId(rackRepository.findByRackName(deviceRequest.getRackName()).get().getRack_id());
         deviceRepository.save(device);
+        return deviceRepository.findByDeviceNumber(device.getDeviceNumber());
     }
 
     public void deleteDevice(int device_id){

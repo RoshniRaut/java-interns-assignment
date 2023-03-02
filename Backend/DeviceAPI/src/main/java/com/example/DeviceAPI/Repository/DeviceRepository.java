@@ -35,4 +35,5 @@ public interface DeviceRepository extends CrudRepository<Device, Integer> {
             "and d.rackId=r.rack_id " +
             "and d.developerId=dev.id")
     List<DeviceRequest> findAllDevice();
+
 }

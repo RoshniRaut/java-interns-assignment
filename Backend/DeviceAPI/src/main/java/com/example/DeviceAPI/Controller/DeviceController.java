@@ -2,11 +2,14 @@ package com.example.DeviceAPI.Controller;
 
 import com.example.DeviceAPI.Entity.Device;
 import com.example.DeviceAPI.Exceptions.AlreadyRegistered;
+import com.example.DeviceAPI.Repository.DeveloperRepository;
+import com.example.DeviceAPI.Repository.DeviceRepository;
 import com.example.DeviceAPI.Service.DeviceService;
 import com.example.DeviceAPI.dto.DeviceRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -19,6 +22,11 @@ public class DeviceController {
     Logger logger = LoggerFactory.getLogger(DeviceController.class);
     @Autowired
     private DeviceService deviceService;
+    @Autowired
+    private DeveloperRepository developerRepository;
+    @Autowired
+    private DeviceRepository deviceRepository;
+
     @GetMapping("/getAllDevice")
     public List<DeviceRequest> getAllDevices(){
         logger.info("getAllDevices method is called");
@@ -35,9 +43,11 @@ public class DeviceController {
         return deviceService.addDevice(deviceRequest);
     }
     @PutMapping("/device/{device_id}")
-    public void updateDevice(@RequestBody Device device){
+    public Optional<DeviceRequest> updateDevice(@PathVariable int device_id, @RequestBody DeviceRequest device) throws AlreadyRegistered {
         logger.info("updateDevice method is called");
-        deviceService.updateDevice(device);
+        if(deviceRepository.findById(device_id).isEmpty())
+            throw new AlreadyRegistered("Device not found");
+        return deviceService.updateDevice(device_id,device);
     }
     @DeleteMapping("/device/{device_id}")
     public void deleteDevice(@PathVariable int device_id){

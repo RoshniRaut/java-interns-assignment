@@ -98,15 +98,15 @@
       <th></th>
     </tr>
     <tr ng-repeat="d in Device| filter: search| orderBy: order:reverse">
-      <td>{{d.device_number}}</td>
+      <td>{{d.deviceNumber}}</td>
       <td>{{d.device_model}}</td>
-      <td>{{d.architecture}}</td>
+      <td>{{d.architectureName}}</td>
       <td>{{d.mac}}</td>
       <td><span>{{d.developer==null?'Free':d.developer}}</span></td>
       <td>{{d.blocked_since}}</td>
       <td>{{d.blocked_till}}</td>
       <td>{{d.comments}}</td>
-      <td>{{d.rack}}</td>
+      <td>{{d.rackName}}</td>
       <td>
         
         <!-- start -->
@@ -116,13 +116,13 @@
           </md-button>
           <md-menu-content width="4">
             <md-menu-item>
-              <md-button ng-click="editDevice($event)" value="{{d.device_number}}">
+              <md-button ng-click="editDevice($event)" value="{{d.device_id}}">
                 <md-icon ng-bind="'edit'" md-menu-align-target></md-icon>
                 Edit
               </md-button>
             </md-menu-item>
             <md-menu-item>
-              <md-button ng-click="delete($event)" value="{{d.device_number}}">
+              <md-button ng-click="delete($event)" value="{{d.device_id}}">
                 <md-icon  ng-bind="'delete'"></md-icon>
                 Delete
               </md-button>
