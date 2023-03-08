@@ -1,5 +1,5 @@
 <md-dialog >
-    <form ng-submit="answer(device)">
+    <form ng-submit="answer(oldDevice)">
         <md-toolbar>
             <div class="md-toolbar-tools">
               <h2>Edit Device </h2>
@@ -13,38 +13,38 @@
             <md-content layout="row">
                 <md-input-container >
                     <label>Device Number</label>
-                    <input type="number" ng-model="device.deviceNumber" />
+                    <input type="number" ng-model="oldDevice.deviceNumber" />
                 </md-input-container>
                 <md-input-container >
                     <label>Device Model</label>
-                    <input type="text" ng-model="device.device_model" required/>
+                    <input type="text" ng-model="oldDevice.device_model" required/>
                 </md-input-container>
             </md-content>
 
             <md-content layout="row">
                 <md-input-container flex-gt-sm>
-                    <label>Architecture</label>
-                    <md-select ng-model="device.architectureName" required>
-                        <md-option ng-repeat="a in architecture" value="{{a.name}}">{{a.name}}</md-option>
+                    <label>Architecture {{oldDevice.architectureId}}</label>
+                    <md-select ng-model="oldDevice.architectureId" required>
+                        <md-option ng-repeat="a in architecture" ng-value="a.id">{{a.name}}</md-option>
                       </md-select>
                 </md-input-container>
                 <md-input-container flex-gt-sm >
                     <label>MAC</label>
-                    <input  ng-model="device.mac" required/>
+                    <input  ng-model="oldDevice.mac" required/>
                 </md-input-container>
             </md-content>
             <md-content layout="row">
                 <md-input-container flex-gt-sm>
                     <label>Developer</label>
-                    <md-select style="margin:5px 0px;"  ng-model="device.developer">
-                        <md-option ng-repeat="u in developer" value="{{u.name}}">{{u.name}}</md-option>
+                    <md-select style="margin:5px 0px;"  ng-model="oldDevice.developerId">
+                        <md-option ng-repeat="u in developer" ng-value="u.id">{{u.name}}</md-option>
                     </md-select>
                 </md-input-container>
                 <md-input-container flex-gt-sm>
                     <label>Rack</label>
-                    <md-select placeholder="Rack" ng-model="device.rackName" required>
-                        <md-option ng-repeat="r in rack" value="{{r.name}}">{{r.name}}</option>
-                      </select>
+                    <md-select placeholder="Rack" ng-model="oldDevice.rackId" required>
+                        <md-option ng-repeat="r in rack" ng-value="r.id">{{r.name}}</option>
+                      </md-select>
                 </md-input-container>
             </md-content>
 
@@ -52,20 +52,20 @@
                 <!--set min date-->
                 <md-input-container flex-gt-sm>
                     <label>Blocked Since</label>
-                    <md-datepicker ng-model="device.blocked_since" 
-                    md-min-date="" md-max-date="device.blocked_till"/>
+                    <md-datepicker ng-model="oldDevice.blocked_since" 
+                    md-min-date="" md-max-date="oldDevice.blocked_till"/>
                 </md-input-container>
                 <md-input-container flex-gt-sm>
                     <label>Blocked Till</label>
-                    <md-datepicker ng-model="device.blocked_till" 
-                    md-min-date="device.blocked_since" md-max-date=""/>
+                    <md-datepicker ng-model="oldDevice.blocked_till" 
+                    md-min-date="oldDevice.blocked_since" md-max-date=""/>
                 </md-input-container>
             </md-content>
 
             <md-content  layout="row">
                 <md-input-container flex-gt-sm>
                     <label>Comments</label>
-                    <input type="text" ng-model="device.comments" />
+                    <input type="text" ng-model="oldDevice.comments" />
                 </md-input-container>
             </md-content>
 

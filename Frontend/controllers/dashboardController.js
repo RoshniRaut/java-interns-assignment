@@ -11,51 +11,55 @@ app.controller('dashboardController',function($scope,$mdDialog,$location,TokenSe
       $scope.architecture.forEach(a=>a.device=0)
       $scope.Device.forEach(ele => {
         $scope.rack.forEach(r=>{
-          if(r.name==ele.rack)
+          if(r.name==ele.rackName)
             r.device+=1;
         })
         $scope.architecture.forEach(a=>{
-          if(a.name==ele.architecture)
+          if(a.name==ele.architectureName)
             a.device+=1;
         })
-      
-        if(ele.developer==null)
+        if(ele.developerName==null)
           $scope.status.free+=1
         else  
           $scope.status.occupied+=1
-      
       });  
     }
+
     function load(){
-      ArchitectureService.getAllArchitecture().then(res=>{
-        arch=angular.fromJson(res.data)
-        arch.forEach(a=>{
-          architecture={name:a.architectureName, id: a.architecture_id,device:0};
+      ArchitectureService.getAllArchitecture().then(arch=>{
+        arch.data.forEach(a=>{
+          architecture={name:a.architectureName, id: a.architecture_id, device:0};
           $scope.architecture.push(architecture);
         })
-      })
-      RackService.getAllRack().then(res=>{
-        angular.fromJson(res.data).forEach(r=>{
-          rack={name:r.rackName, id: r.rack_id,device:0};
-          $scope.rack.push(rack);
-        })
-      }).then(()=>{
-        //when the page loads all data call method once
-        $scope.updateCounts();
-      })
-      $scope.currentUser=TokenService.getCurrentUser();
 
-      DeveloperService.getAllDeveloper().then(res=>{
-        $scope.developer=angular.fromJson(res.data);
-      })
-      .catch(err=>{
+        RackService.getAllRack().then(rack=>{
+          rack.data.forEach(r=>{
+            rack={name:r.rackName, id: r.rack_id,device:0};
+            $scope.rack.push(rack);
+          })
+
+          DeveloperService.getAllDeveloper().then(dev=>{
+            $scope.developer=angular.fromJson(dev.data);
+            DeviceService.getAllDevice().then(res=>{
+              res.data.forEach(d=>{
+                d.architectureName=$scope.architecture.find(a=> a.id==d.architectureId).name;
+                d.rackName=$scope.rack.find(r=>r.id==d.rackId).name;
+                if(d.developerId){
+                  d.developerName=$scope.developer.find(dev=>dev.id==d.developerId).name;
+                }
+                $scope.Device.push(d);
+              })
+              $scope.updateCounts();
+            })
+          })
+        })
+      }).catch(err=>{
         alert("session expired!!");
         $scope.logout();
       })
-      DeviceService.getAllDevice().then(res=>{
-        $scope.Device=angular.fromJson(res.data);
-        console.log(res.data[0])
-      })
+           
+      $scope.currentUser=TokenService.getCurrentUser();    
+      
   }
     load();
     $scope.logout=function(){
@@ -93,19 +97,22 @@ app.controller('dashboardController',function($scope,$mdDialog,$location,TokenSe
         transclude: true,
         replace:true
       }).then(function(device) {
-            //put request for add device
-            console.log(device)
             if(device.blocked_since)
               device.blocked_since=moment(device.blocked_since).format("YYYY-MM-DD");
             if(device.blocked_till)
               device.blocked_till=moment(device.blocked_till).format("YYYY-MM-DD");
+            
             DeviceService.addDevice(device).then(res=>{
-              $scope.Device.push(device);
+              res.data.architectureName=$scope.architecture.find(a=> a.id=res.data.architectureId).name
+              res.data.rackName=$scope.rack.find(r=>r.id==res.data.rackId).name;
+              if(res.data.developerId)
+                res.data.developerName=$scope.developer.find(dev=>dev.id==res.data.developerId).name;
+              
+              $scope.Device.push(angular.fromJson(res.data));
+              $scope.updateCounts();
             }).catch(err=>{
               console.log(err);
             })
-            $scope.Device.push(device);
-            $scope.updateCounts();
       });
       
     };
@@ -121,9 +128,10 @@ app.controller('dashboardController',function($scope,$mdDialog,$location,TokenSe
 
     // editing device
     $scope.editDevice = function(ev) {
-      let device=$scope.Device.filter(d=> d.device_id==ev.target.value)[0];
+      let olddevice=$scope.Device.filter(d=> d.device_id==ev.target.value)[0];
+
       $mdDialog.show({
-        locals: {device:device, developer:$scope.developer, rack:$scope.rack, architecture:$scope.architecture},
+        locals: {olddevice:olddevice, developer:$scope.developer, rack:$scope.rack, architecture:$scope.architecture},
         controller: editDeviceController,
         templateUrl:'./dialogs/edit_device.html',
         parent: angular.element(document.body),
@@ -138,19 +146,32 @@ app.controller('dashboardController',function($scope,$mdDialog,$location,TokenSe
               device.blocked_since=moment(device.blocked_since).format("YYYY-MM-DD");
             if(device.blocked_till)
               device.blocked_till=moment(device.blocked_till).format("YYYY-MM-DD");
-            
-            DeviceService.updateDevice(device);
-            
-            $scope.updateCounts();
+        
+            DeviceService.updateDevice(device).then(res=>{
+              console.log("updated");
+              $scope.Device.forEach(d=>{
+                if(d.device_id==res.data.device_id){
+                  d.architectureName=$scope.architecture.find(a=> a.id==d.architectureId).name;
+                  d.rackName=$scope.rack.find(r=>r.id==d.rackId).name;
+                  if(d.developerId){
+                    d.developerName=$scope.developer.find(dev=>dev.id==d.developerId).name;
+                  }
+                  d=res.data;
+                }
+              });
+              $scope.updateCounts();
+            }).catch(err=>{
+              console.log(err)
+            });
       });
       
     };
     
-    function editDeviceController($scope, $mdDialog,device,developer,rack,architecture) {
+    function editDeviceController($scope, $mdDialog,olddevice,developer,rack,architecture) {
         $scope.hide = ()=>{ $mdDialog.hide();};
         $scope.cancel =()=> {$mdDialog.cancel();};
-        $scope.answer =(answer)=> {$mdDialog.hide(answer);};
-        $scope.device=device;
+        $scope.answer =(device)=> {$mdDialog.hide(device);};
+        $scope.oldDevice=olddevice;
         $scope.developer=developer;
         $scope.rack=rack;
         $scope.architecture=architecture;
@@ -193,7 +214,6 @@ app.controller('dashboardController',function($scope,$mdDialog,$location,TokenSe
               ArchitectureService.addArchitecture(architecture).then(res=>{
                 arch={name:res.data.architectureName, id: res.data.architecture_id,device:0};
                 $scope.architecture.push(arch);
-                console.log($scope.architecture)
               })
               .catch(err=>{
                 console.log(err.data.message);
@@ -219,6 +239,9 @@ app.controller('dashboardController',function($scope,$mdDialog,$location,TokenSe
         console.log(ev.target.value);
         DeviceService.deleteDevice(ev.target.value).then(res=>{
           console.log("successfully deleted");
+          device=$scope.Device.filter(d=> d.device_id==ev.target.value);
+          index=$scope.Device.indexOf(device[0]);
+          $scope.Device.splice(index,1);
         }).catch(err=>{
           console.log(err)
         })

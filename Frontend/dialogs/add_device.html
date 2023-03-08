@@ -1,5 +1,5 @@
 <md-dialog >
-    <form ng-submit="return(device)">
+    <form ng-submit="addDeviceForm.$valid && return(device)" name="addDeviceForm">
         <md-toolbar>
             <div class="md-toolbar-tools">
               <h2>Add Device </h2>
@@ -13,7 +13,7 @@
             <md-content layout="row">
                 <md-input-container >
                     <label>Device Number</label>
-                    <input type="number" ng-model="device.device_number"/>
+                    <input type="number" ng-model="device.deviceNumber"/>
                 </md-input-container>
                 <md-input-container >
                     <label>Device Model</label>
@@ -24,8 +24,8 @@
             <md-content layout="row">
                 <md-input-container flex-gt-sm>
                     <label>Architecture</label>
-                    <md-select ng-model="device.architecture" required>
-                        <md-option ng-repeat="a in architecture" value="{{a.name}}">{{a.name}}</md-option>
+                    <md-select ng-model="device.architectureId" required>
+                        <md-option ng-repeat="a in architecture" ng-value="a.id">{{a.name}}</md-option>
                       </md-select>
                 </md-input-container>
                 <md-input-container flex-gt-sm >
@@ -36,14 +36,14 @@
             <md-content layout="row">
                 <md-input-container flex-gt-sm>
                     <label>Developer</label>
-                    <md-select style="margin:5px 0px;"  ng-model="device.developer">
-                        <md-option ng-repeat="u in developer" value="{{u.name}}">{{u.name}}</md-option>
+                    <md-select style="margin:5px 0px;"  ng-model="device.developerId">
+                        <md-option ng-repeat="d in developer" value="{{d.id}}">{{d.name}}</md-option>
                     </md-select>
                 </md-input-container>
                 <md-input-container flex-gt-sm>
                     <label>Rack</label>
-                    <md-select placeholder="Rack" ng-model="device.rack" required>
-                        <md-option ng-repeat="r in rack" value="{{r.name}}">{{r.name}}</option>
+                    <md-select placeholder="Rack" ng-model="device.rackId" required>
+                        <md-option ng-repeat="r in rack" value="{{r.id}}">{{r.name}}</option>
                       </select>
                 </md-input-container>
             </md-content>

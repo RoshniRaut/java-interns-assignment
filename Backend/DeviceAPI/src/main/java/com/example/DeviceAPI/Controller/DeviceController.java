@@ -28,7 +28,7 @@ public class DeviceController {
     private DeviceRepository deviceRepository;
 
     @GetMapping("/getAllDevice")
-    public List<DeviceRequest> getAllDevices(){
+    public List<Device> getAllDevices(){
         logger.info("getAllDevices method is called");
         return deviceService.getAllDevices();
     }
@@ -38,12 +38,12 @@ public class DeviceController {
         return deviceService.getDevice(device_id);
     }
     @PostMapping("/addDevice")
-    public Optional<DeviceRequest> addDevice(@Valid @RequestBody DeviceRequest deviceRequest)throws AlreadyRegistered {
+    public Optional<Device> addDevice(@Valid @RequestBody Device deviceRequest)throws AlreadyRegistered {
         logger.info("addDevices method is called");
         return deviceService.addDevice(deviceRequest);
     }
     @PutMapping("/device/{device_id}")
-    public Optional<DeviceRequest> updateDevice(@PathVariable int device_id, @RequestBody DeviceRequest device) throws AlreadyRegistered {
+    public Optional<Device> updateDevice(@PathVariable int device_id, @RequestBody Device device) throws AlreadyRegistered {
         logger.info("updateDevice method is called");
         if(deviceRepository.findById(device_id).isEmpty())
             throw new AlreadyRegistered("Device not found");

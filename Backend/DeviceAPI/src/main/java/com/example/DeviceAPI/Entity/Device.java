@@ -30,8 +30,8 @@ public class Device {
     private String blocked_till;
     @Column(name = "comments")
     private String comments;
-    @Column(name = "devId")
-    private int developerId;
+    @Column(name = "devId",nullable = true)
+    private Integer developerId;
     @Column(name = "device_model")
     @NotNull
     private String device_model;
