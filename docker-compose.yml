@@ -1,49 +1,38 @@
-version: "3" # need depends_on
+version: "3.7"
 services:
- # mysqldbContainer:
-    #     image: mysqldb
-    #     build: ./MySQL
-    #     ports: 
-    #         - "3306:3306"
-    #     environment:
-    #         - MYSQL_ROOT_PASSWORD=root
-    #         - MYSQL_DATABASE=root
-    
     angular-service:
         image: frontend
+        container_name: frontendservice
         build: ./Frontend
         ports:
            - "4200:80"
-    
+
+    backend-server:
+        image: backend
+        restart: always
+        container_name: springbackend
+        build: ./Backend/DeviceAPI
+        environment:
+          - SPRING_DATASOURCE_URL=jdbc:mysql://mysqldb:3306/DeviceReservationSystem
+        ports:
+            - "8081:8081"
+        depends_on: 
+          - db
+        links:
+          - angular-service
+
     db: 
         image: mysql
-        container_name: mysql-db
         restart: always
+        container_name: mysqldb
         environment: 
+          - MYSQL_DATABASE=DeviceReservationSystem
           - MYSQL_ROOT_USERNAME=root
           - MYSQL_ROOT_PASSWORD=Ness@123
         ports:
-          - "3307:3306" #internal and external port mapping
-        expose:
-          - "3307"  #exposed port 
+          - "3307:3306" 
         volumes: 
-          - my-db= '/var/lib/mysql' #internal volumne
-
-    adminer:
-      image: adminer
-      restart: always
-      ports:
-        - 9000:8080
-
-    rest-api:
-        image: rest-api
-        build: ./login-security/SB_Security_JWT_v2.7
-        ports:
-            - "8081:8080"
-        links:
-            - angular-service
-        depends_on:
-            - db
+          - my-db= '/var/lib/mysql' 
 
 volumes:
   my-db:

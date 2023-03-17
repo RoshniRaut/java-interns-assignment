@@ -23,8 +23,8 @@ app.config(function($routeProvider,$mdDateLocaleProvider){
 })
 
  app.run(function($rootScope,$location,$http,TokenService,$rootScope){
-  $rootScope.location="http://localhost:8081"
-  // $rootScope.location="http://172.17.0.2:8081"
+  $rootScope.location="http://0.0.0.0:8081"
+  // $rootScope.location="http://localhost:8081"
 //   //$routeChangeStart is the event
   $rootScope.$on('$routeChangeStart',function(event, next, current){
    /* if the route is authenticated, then the user should access token */
